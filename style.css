@@ -1,0 +1,22 @@
+/*
+Theme Name: РАМ.НЕТ - Остекление от производителя
+Theme URI: https://ramnet.ru
+Author: РАМ.НЕТ
+Author URI: https://ramnet.ru
+Description: Профессиональная тема для компании по панорамному остеклению. Адаптивный дизайн, современные решения для террас, веранд, фасадов и крыш. Полностью кастомизируемая через настройщик WordPress.
+Version: 1.0.0
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ramnet
+Domain Path: /languages
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, one-column, two-columns, flexible-header, accessibility-ready
+
+Requires at least: 5.0
+Tested up to: 6.4
+Requires PHP: 7.4
+
+/* This theme is designed for glazing and panoramic systems company
+/* Все стили вынесены в отдельные файлы:
+/* - assets/css/index.css - основные стили
+/* - assets/css/adaptive.css - адаптивные стили
+*/
