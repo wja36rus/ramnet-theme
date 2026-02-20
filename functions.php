@@ -32,6 +32,7 @@ require_once RAMNET_THEME_DIR . '/inc/template-tags.php'; // ДОБАВЛЕНО
 require_once RAMNET_THEME_DIR . '/inc/post-types/projects.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/testimonials.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/services.php';
+require_once RAMNET_THEME_DIR . '/inc/post-types/question.php';
 
 /**
  * Добавляем поддержку виджетов и сайдбаров
