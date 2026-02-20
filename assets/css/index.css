@@ -1448,3 +1448,9 @@ nav.nav__menu.active {
 .call__to__action__form__success__image {
   width: 5rem;
 }
+
+.people__stars {
+  color: black;
+  font-size: 19px;
+  letter-spacing: 3px;
+}

@@ -93,7 +93,6 @@ function ramnet_testimonial_details_callback( $post ) {
     wp_nonce_field( 'ramnet_testimonial_details', 'ramnet_testimonial_details_nonce' );
     
     $client_position = get_post_meta( $post->ID, '_client_position', true );
-    $client_company = get_post_meta( $post->ID, '_client_company', true );
     $client_location = get_post_meta( $post->ID, '_client_location', true );
     $rating = get_post_meta( $post->ID, '_rating', true );
     $rating = $rating ? $rating : 5;
@@ -139,12 +138,6 @@ function ramnet_testimonial_details_callback( $post ) {
     <label for="client_position"><?php _e( 'Должность клиента:', 'ramnet' ); ?></label>
     <input type="text" id="client_position" name="client_position" value="<?php echo esc_attr( $client_position ); ?>"
         class="widefat" placeholder="<?php _e( 'Например: директор', 'ramnet' ); ?>">
-</div>
-
-<div class="testimonial-meta-field">
-    <label for="client_company"><?php _e( 'Компания клиента:', 'ramnet' ); ?></label>
-    <input type="text" id="client_company" name="client_company" value="<?php echo esc_attr( $client_company ); ?>"
-        class="widefat" placeholder="<?php _e( 'Например: Природный парк «Олений»', 'ramnet' ); ?>">
 </div>
 
 <div class="testimonial-meta-field">
@@ -206,7 +199,6 @@ function ramnet_save_testimonial_meta( $post_id ) {
     
     $fields = array(
         'client_position',
-        'client_company',
         'client_location',
         'rating',
     );
@@ -226,7 +218,6 @@ function ramnet_testimonial_columns( $columns ) {
     return array(
         'cb'        => '<input type="checkbox" />',
         'title'     => __( 'Клиент', 'ramnet' ),
-        'company'   => __( 'Компания', 'ramnet' ),
         'position'  => __( 'Должность', 'ramnet' ),
         'location'  => __( 'Локация', 'ramnet' ),
         'rating'    => __( 'Рейтинг', 'ramnet' ),
@@ -241,10 +232,6 @@ add_filter( 'manage_ramnet_testimonial_posts_columns', 'ramnet_testimonial_colum
  */
 function ramnet_testimonial_custom_column( $column, $post_id ) {
     switch ( $column ) {
-        case 'company':
-            echo esc_html( get_post_meta( $post_id, '_client_company', true ) );
-            break;
-            
         case 'position':
             echo esc_html( get_post_meta( $post_id, '_client_position', true ) );
             break;
