@@ -10,7 +10,6 @@ $services = new WP_Query(array(
     'post_type'      => 'ramnet_testimonial',
     'posts_per_page' => -1, // Показываем все отзывы
     'orderby'        => 'meta_value_num',
-    'meta_key'       => '_client_position',
     'order'          => 'ASC',
     'post_status'    => 'publish',
 ));
