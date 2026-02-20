@@ -23,8 +23,7 @@ define( 'RAMNET_THEME_URI', get_template_directory_uri() );
 require_once RAMNET_THEME_DIR . '/inc/setup.php';
 require_once RAMNET_THEME_DIR . '/inc/enqueue.php';
 require_once RAMNET_THEME_DIR . '/inc/customizer.php';
-require_once RAMNET_THEME_DIR . '/inc/ajax-handlers.php';
-require_once RAMNET_THEME_DIR . '/inc/template-tags.php'; // ДОБАВЛЕНО
+require_once RAMNET_THEME_DIR . '/inc/template-tags.php';
 
 /**
  * Добавляем поддержку пользовательских типов записей (Custom Post Types)
