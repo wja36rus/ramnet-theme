@@ -75,7 +75,7 @@ $services = new WP_Query(array(
                         
                         <!-- Кнопка -->
                         <div class="button__container__service">
-                            <button class="button__main" onclick="window.location.href='<?php echo esc_url( get_permalink() ); ?>'">
+                            <button class="button__main">
                                 <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
                             </button>
                         </div>

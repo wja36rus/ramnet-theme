@@ -11,7 +11,7 @@
 
         <!-- Кнопка заказа звонка -->
         <div class="call__to__action">
-            <button class="call__to__action__button"><?php echo esc_html__( 'заказать звонок', 'ramnet' ); ?></button>
+            <button class="call__to__action__button call__open__form"><?php echo esc_html__( 'заказать звонок', 'ramnet' ); ?></button>
             <span class="call__to__action__underline"></span>
 
             <!-- Форма заказа звонка -->

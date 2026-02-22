@@ -47,8 +47,8 @@ $hero_bg_url = get_theme_mod( 'background_image' );
             </li>
         </ul>
 
-        <div class="call__to__action__button button__container__main">
-            <button class="button__main">
+        <div class="button__container__main">
+            <button class="button__main call__open__form">
                 <p class="button__text"><?php echo esc_html__( 'РАССЧИТАТЬ СТОИМОСТЬ', 'ramnet' ); ?></p>
             </button>
         </div>

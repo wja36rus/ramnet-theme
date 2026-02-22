@@ -70,7 +70,7 @@ $services = new WP_Query(array(
 
         </div>
 
-        <div class="button__container__bus">
+        <div class="call__open__form  button__container__bus">
             <button class="button__main__black">
                 <p class="button__text"><?php echo esc_html__( 'ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ', 'ramnet' ); ?></p>
             </button>

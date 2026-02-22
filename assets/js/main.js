@@ -208,7 +208,7 @@
     });
 
     /* ========== Call to action form ========== */
-    $(".call__to__action__button").click(function (e) {
+    $(".call__open__form").click(function (e) {
       e.preventDefault();
       $("#call__to__action__form").addClass("active");
       $(".call__to__action__form__inset").addClass("active");
