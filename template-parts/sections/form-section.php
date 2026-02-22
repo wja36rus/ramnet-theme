@@ -38,7 +38,10 @@
                 <input type="text" name="username" class="form__input"
                     placeholder="<?php echo esc_attr__( 'Имя', 'ramnet' ); ?>">
                 <input name="phone" type="text" class="form__input" placeholder="+7">
-
+                <span>
+                    <?php echo esc_html__('Нажимая на кнопку, Вы даете согласие ');?><br>
+                    <?php echo esc_html__('на обработку персональных данных');?>
+                </span>
                 <div class="button__container__project">
                     <button id="form__submit" class="button__main">
                         <p class="button__text"><?php echo esc_html__( 'НАЧАТЬ ПРОЕКТ', 'ramnet' ); ?></p>

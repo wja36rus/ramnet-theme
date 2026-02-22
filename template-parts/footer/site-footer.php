@@ -111,6 +111,10 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
         <p class="footer__offer__text">
             <?php echo esc_html__( 'Вся представленная информация на сайте не является публичной офертой.', 'ramnet' ); ?>
         </p>
+        <a href="#" target="_blank" class="footer__docs">
+            <?php echo esc_html__( 'Политика в отношении обработки персональных данных', 'ramnet' ); ?>
+        </a>
+        <br>
         <br>
         <p class="footer_offer__text"><?php echo esc_html( '2026. ' . __( 'Все права защищены.', 'ramnet' ) ); ?></p>
         <p class="footer_offer__text"><?php echo esc_html__( 'Источник изображений:', 'ramnet' ); ?></p>
