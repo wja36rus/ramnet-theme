@@ -4,6 +4,15 @@
  *
  * @package RAMNET
  */
+
+ // Получаем услуги из базы данных
+$services = new WP_Query(array(
+    'post_type'      => 'ramnet_job',
+    'posts_per_page' => -1, // Показываем все услуги
+    'orderby'        => 'meta_value_num',
+    'order'          => 'ASC',
+    'post_status'    => 'publish',
+));
 ?>
 
 <section class="jobs" id="jobs">
@@ -12,69 +21,55 @@
 
         <!-- Левая колонка с названиями технологий -->
         <div class="jobs__wrapper">
-            <div data-attribute="1" class="jobs__items active">
-                <?php echo esc_html__( 'Подъемное гильотинное остекление', 'ramnet' ); ?></div>
-            <div data-attribute="2" class="jobs__items">
-                <?php echo esc_html__( 'Раздвижное безрамное остекление', 'ramnet' ); ?></div>
-            <div data-attribute="3" class="jobs__items">
-                <?php echo esc_html__( 'Раздвижное остекление со стеклопакетом', 'ramnet' ); ?></div>
-            <div data-attribute="4" class="jobs__items">
-                <?php echo esc_html__( 'Безрамное остекление «книжка», «гармошка»', 'ramnet' ); ?></div>
-            <div data-attribute="5" class="jobs__items">
-                <?php echo esc_html__( 'Панорамные раздвижные двери HS, LS (порталы)', 'ramnet' ); ?></div>
-            <div data-attribute="6" class="jobs__items">
-                <?php echo esc_html__( 'Панорамные складные двери «гармошка»', 'ramnet' ); ?></div>
-            <div data-attribute="7" class="jobs__items">
-                <?php echo esc_html__( 'Алюминиевые окна и двери', 'ramnet' ); ?></div>
-            <div data-attribute="8" class="jobs__items"><?php echo esc_html__( 'Стеклянные ограждения', 'ramnet' ); ?>
+
+        <?php if ( $services->have_posts() ) : ?>
+            <?php 
+            $counter = 1;
+            while ( $services->have_posts() ) : $services->the_post();
+                                
+                // Используем заголовок как название услуги
+                $service_title = get_the_title();
+                
+            ?>
+            <div data-attribute="<?php echo $counter;?>" class="jobs__items <?php if($counter === 1) {echo "active";}?>">
+                 <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
             </div>
-            <div data-attribute="9" class="jobs__items">
-                <?php echo esc_html__( 'Стеклянные крыши и фасады', 'ramnet' ); ?></div>
+        
+        <?php 
+            $counter++;
+        endwhile;
+        wp_reset_postdata();
+        ?>
+        <?php endif; ?>
         </div>
 
-        <!-- Правая колонка с карточками (динамически меняются) -->
-        <div id="jobs1" class="jobs__item__card active">
-            <div class="jobs__cards">
-                <div class="cards__title"><?php echo esc_html__( 'Подъемное гильотинное остекление', 'ramnet' ); ?>
-                </div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="jobs2" class="jobs__item__card">
-            <div class="jobs__cards">
-                <div class="cards__title"><?php echo esc_html__( 'Раздвижное безрамное остекление', 'ramnet' ); ?></div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Здесь должны быть остальные карточки (jobs3 - jobs9) с соответствующими фоновыми изображениями -->
-        <!-- Для краткости добавлю шаблон для остальных -->
-
-        <div id="jobs3" class="jobs__item__card">
+        <?php if ( $services->have_posts() ) : ?>
+            <?php 
+            $counters = 1;
+            while ( $services->have_posts() ) : $services->the_post();
+                                
+                // Используем заголовок как название услуги
+                $service_title = get_the_title();
+                
+                // Используем контент или отрывок как описание
+                $service_description = has_excerpt() ? get_the_excerpt() : get_the_content();
+                if ( empty($service_description) ) {
+                    $service_description = __( 'Панорамное остекление для комфортного отдыха в любое время года', 'ramnet' );
+                }
+                
+            ?>
+        <div id="jobs<?php echo $counters;?>" style="background-image: url(<?php if (has_post_thumbnail()) {
+                        $url = get_the_post_thumbnail_url();
+                        echo $url;
+                    }?>)" class="jobs__item__card <?php if($counters === 1) {echo "active";}?>">
             <div class="jobs__cards">
                 <div class="cards__title">
-                    <?php echo esc_html__( 'Раздвижное остекление со стеклопакетом', 'ramnet' ); ?></div>
+                    <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
+                </div>
                 <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
+                <div class="cards__text">
+                    <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
+                </div>
                 <div class="button__container__jobs">
                     <button class="button__main">
                         <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
@@ -82,99 +77,12 @@
                 </div>
             </div>
         </div>
-
-        <div id="jobs4" class="jobs__item__card">
-            <div class="jobs__cards">
-                <div class="cards__title">
-                    <?php echo esc_html__( 'Безрамное остекление «книжка», «гармошка»', 'ramnet' ); ?></div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="jobs5" class="jobs__item__card">
-            <div class="jobs__cards">
-                <div class="cards__title">
-                    <?php echo esc_html__( 'Панорамные раздвижные двери HS, LS (порталы)', 'ramnet' ); ?></div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="jobs6" class="jobs__item__card">
-            <div class="jobs__cards">
-                <div class="cards__title"><?php echo esc_html__( 'Панорамные складные двери «гармошка»', 'ramnet' ); ?>
-                </div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="jobs7" class="jobs__item__card">
-            <div class="jobs__cards">
-                <div class="cards__title"><?php echo esc_html__( 'Алюминиевые окна и двери', 'ramnet' ); ?></div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="jobs8" class="jobs__item__card">
-            <div class="jobs__cards">
-                <div class="cards__title"><?php echo esc_html__( 'Стеклянные ограждения', 'ramnet' ); ?></div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="jobs9" class="jobs__item__card">
-            <div class="jobs__cards">
-                <div class="cards__title"><?php echo esc_html__( 'Стеклянные крыши и фасады', 'ramnet' ); ?></div>
-                <hr class="jobs__hr">
-                <p class="cards__text">
-                    <?php echo esc_html__( 'универсальное решение для открытых террас и веранд. Система элегантно зонирует пространство, создавая ощущение легкости', 'ramnet' ); ?>
-                </p>
-                <div class="button__container__jobs">
-                    <button class="button__main">
-                        <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <?php 
+            $counters++;
+            endwhile;
+            wp_reset_postdata();
+            ?>
+        <?php endif; ?>
 
     </div>
 </section>

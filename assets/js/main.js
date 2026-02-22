@@ -22,16 +22,6 @@
       }
     });
 
-    /* ========== Service section background change on hover ========== */
-    $(".service__card").hover(function () {
-      var cardIndex = $(this).find(".service__number").text().split("0")[1];
-
-      $(".service").css(
-        "background-image",
-        `url(wp-content/themes/ramnet-theme/assets/images/service-bg${Number(cardIndex)}.jpg)`,
-      );
-    });
-
     /* ========== Jobs section tabs ========== */
     $(".jobs__items").click(function (e) {
       e.preventDefault();

@@ -34,6 +34,9 @@ require_once RAMNET_THEME_DIR . '/inc/post-types/services.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/question.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/time.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/boss.php';
+require_once RAMNET_THEME_DIR . '/inc/post-types/jobs.php';
+require_once RAMNET_THEME_DIR . '/inc/post-types/say.php';
+require_once RAMNET_THEME_DIR . '/inc/post-types/business.php';
 
 /**
  * Добавляем поддержку виджетов и сайдбаров

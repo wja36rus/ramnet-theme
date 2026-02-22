@@ -136,7 +136,6 @@ function ramnet_project_details_callback( $post ) {
     
     $project_location = get_post_meta( $post->ID, '_project_location', true );
     $project_year = get_post_meta( $post->ID, '_project_year', true );
-    $project_scope = get_post_meta( $post->ID, '_project_scope', true );
     ?>
 
 <p>
@@ -149,12 +148,6 @@ function ramnet_project_details_callback( $post ) {
     <label for="project_year"><?php _e( 'Год реализации:', 'ramnet' ); ?></label>
     <input type="text" id="project_year" name="project_year" value="<?php echo esc_attr( $project_year ); ?>"
         class="widefat">
-</p>
-
-<p>
-    <label for="project_scope"><?php _e( 'Объем работ:', 'ramnet' ); ?></label>
-    <textarea id="project_scope" name="project_scope" class="widefat"
-        rows="3"><?php echo esc_textarea( $project_scope ); ?></textarea>
 </p>
 
 <?php
@@ -184,7 +177,6 @@ function ramnet_save_project_meta( $post_id ) {
     $fields = array(
         'project_location',
         'project_year',
-        'project_scope',
     );
     
     foreach ( $fields as $field ) {

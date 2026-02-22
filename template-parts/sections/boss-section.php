@@ -13,9 +13,6 @@ $services = new WP_Query(array(
     'post_status'    => 'publish',
 ));
 
-// echo "<pre>";
-// print_r($services);
-// echo "</pre>";
 ?>
 
 <section class="boss" id="boss">

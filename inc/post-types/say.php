@@ -1,6 +1,6 @@
 <?php
 /**
- * Time Custom Post Type
+ * Say Custom Post Type
  *
  * @package RAMNET
  */
@@ -10,14 +10,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register Time Custom Post Type
+ * Register Say Custom Post Type
  */
-function ramnet_register_time_cpt() {
+function ramnet_register_say_cpt() {
     
     $labels = array(
-        'name'                  => __( 'Ценности', 'ramnet' ),
+        'name'                  => __( 'Мотивация', 'ramnet' ),
         'singular_name'         => __( 'Пост', 'ramnet' ),
-        'menu_name'             => __( 'Ценности', 'ramnet' ),
+        'menu_name'             => __( 'Мотивация', 'ramnet' ),
         'name_admin_bar'        => __( 'Пост', 'ramnet' ),
         'add_new'               => __( 'Добавить пост', 'ramnet' ),
         'add_new_item'          => __( 'Добавить новый пост', 'ramnet' ),
@@ -29,9 +29,9 @@ function ramnet_register_time_cpt() {
         'not_found_in_trash'    => __( 'В корзине постов нет', 'ramnet' ),
         'archives'              => __( 'Архив постов', 'ramnet' ),
         'insert_into_item'      => __( 'Вставить в пост', 'ramnet' ),
-        'uploaded_to_this_item' => __( 'Загружено для этого поста', 'ramnet' ),
+        'uploaded_to_this_item' => __( 'Загружено для этой поста', 'ramnet' ),
         'filter_items_list'     => __( 'Фильтр постов', 'ramnet' ),
-        'items_list_navigation' => __( 'Навигация по услугам', 'ramnet' ),
+        'items_list_navigation' => __( 'Навигация по постам', 'ramnet' ),
         'items_list'            => __( 'Список постов', 'ramnet' ),
     );
     
@@ -46,14 +46,14 @@ function ramnet_register_time_cpt() {
         'show_in_rest'        => true,
         'query_var'           => true,
         'rewrite'             => array(
-            'slug'       => 'time',
+            'slug'       => 'say',
             'with_front' => false,
         ),
         'capability_type'     => 'post',
         'has_archive'         => true,
         'hierarchical'        => false,
         'menu_position'       => 22,
-        'menu_icon'           => 'dashicons-star-filled',
+        'menu_icon'           => 'dashicons-editor-rtl',
         'supports'            => array(
             'title',
             'editor',
@@ -64,19 +64,17 @@ function ramnet_register_time_cpt() {
         ),
     );
     
-    register_post_type( 'ramnet_time', $args );
+    register_post_type( 'ramnet_say', $args );
 }
-add_action( 'init', 'ramnet_register_time_cpt' );
-
-
+add_action( 'init', 'ramnet_register_say_cpt' );
 
 /**
- * Modify columns in time list
+ * Modify columns in say list
  */
-function ramnet_time_columns( $columns ) {
+function ramnet_say_columns( $columns ) {
     return array(
         'cb'         => '<input type="checkbox" />',
         'title'      => __( 'Название поста', 'ramnet' ),
     );
 }
-add_filter( 'manage_ramnet_time_posts_columns', 'ramnet_time_columns' );
+add_filter( 'manage_ramnet_say_posts_columns', 'ramnet_say_columns' );

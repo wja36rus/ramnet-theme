@@ -4,6 +4,15 @@
  *
  * @package RAMNET
  */
+
+ // Получаем услуги из базы данных
+$services = new WP_Query(array(
+    'post_type'      => 'ramnet_busines',
+    'posts_per_page' => -1, // Показываем все услуги
+    'orderby'        => 'meta_value_num',
+    'order'          => 'ASC',
+    'post_status'    => 'publish',
+));
 ?>
 
 <section class="business" id="business">
@@ -19,102 +28,45 @@
             alt="<?php esc_attr_e( 'Бизнес остекление', 'ramnet' ); ?>" class="bus__hero__image">
 
         <div class="bus__cards__wrapper">
-
+        <?php if ( $services->have_posts() ) : ?>
+            <?php 
+            while ( $services->have_posts() ) : $services->the_post();
+                                
+                // Используем заголовок как название услуги
+                $service_title = get_the_title();
+                
+                // Используем контент или отрывок как описание
+                $service_description = has_excerpt() ? get_the_excerpt() : get_the_content();
+                if ( empty($service_description) ) {
+                    $service_description = __( 'Панорамное остекление для комфортного отдыха в любое время года', 'ramnet' );
+                }
+                
+            ?>
             <!-- Карточка 1: Энергоэффективность -->
             <div class="bus__card">
                 <img class="ml-2" style="width: 55px"
-                    src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/buisuness/1.svg' ); ?>" alt="">
-                <span class="bus__title ml-2"><?php echo esc_html__( 'Энергоэффективность', 'ramnet' ); ?></span>
+                    src="<?php if (has_post_thumbnail()) {
+                        $url = get_the_post_thumbnail_url();
+                        echo $url;
+                    }?>" alt="<?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>">
+                <span class="bus__title ml-2">
+                    <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
+                </span>
 
                 <div class="bus__hr__flex">
                     <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross.svg' ); ?>" alt="">
                     <div class="bus__hr"></div>
                 </div>
 
-                <span class="bus__text ml-2">
-                    <?php echo esc_html__( 'Профили с многослойным стеклом снижают теплопотери на 30%, обеспечивая 90% естественного света и шумоизоляцию 35 дБ – идеально для коммерческих фасадов и террас', 'ramnet' ); ?>
-                </span>
-            </div>
-
-            <!-- Карточка 2: Быстрый монтаж под ключ -->
-            <div class="bus__card">
-                <img class="ml-2" style="width: 55px"
-                    src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/buisuness/2.svg' ); ?>" alt="">
-                <span class="bus__title ml-2"><?php echo esc_html__( 'Быстрый монтаж под ключ', 'ramnet' ); ?></span>
-
-                <div class="bus__hr__flex">
-                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross.svg' ); ?>" alt="">
-                    <div class="bus__hr"></div>
+                <div class="bus__text ml-2">
+                    <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
                 </div>
-
-                <span class="bus__text ml-2">
-                    <?php echo esc_html__( 'Профили с многослойным стеклом снижают теплопотери на 30%, обеспечивая 90% естественного света и шумоизоляцию 35 дБ – идеально для коммерческих фасадов и террас', 'ramnet' ); ?>
-                </span>
             </div>
-
-            <!-- Карточка 3: Кастомизация проектов -->
-            <div class="bus__card">
-                <img class="ml-2" style="width: 55px"
-                    src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/buisuness/3.svg' ); ?>" alt="">
-                <span class="bus__title ml-2"><?php echo esc_html__( 'Кастомизация проектов', 'ramnet' ); ?></span>
-
-                <div class="bus__hr__flex">
-                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross.svg' ); ?>" alt="">
-                    <div class="bus__hr"></div>
-                </div>
-
-                <span class="bus__text ml-2">
-                    <?php echo esc_html__( 'Профили с многослойным стеклом снижают теплопотери на 30%, обеспечивая 90% естественного света и шумоизоляцию 35 дБ – идеально для коммерческих фасадов и террас', 'ramnet' ); ?>
-                </span>
-            </div>
-
-            <!-- Карточка 4: Маркетинговый плюс -->
-            <div class="bus__card">
-                <img class="ml-2" style="width: 55px"
-                    src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/buisuness/4.svg' ); ?>" alt="">
-                <span class="bus__title ml-2"><?php echo esc_html__( 'Маркетинговый плюс', 'ramnet' ); ?></span>
-
-                <div class="bus__hr__flex">
-                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross.svg' ); ?>" alt="">
-                    <div class="bus__hr"></div>
-                </div>
-
-                <span class="bus__text ml-2">
-                    <?php echo esc_html__( 'Профили с многослойным стеклом снижают теплопотери на 30%, обеспечивая 90% естественного света и шумоизоляцию 35 дБ – идеально для коммерческих фасадов и террас', 'ramnet' ); ?>
-                </span>
-            </div>
-
-            <!-- Карточка 5: Специальные условия -->
-            <div class="bus__card">
-                <img class="ml-2" style="width: 55px"
-                    src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/buisuness/5.svg' ); ?>" alt="">
-                <span class="bus__title ml-2"><?php echo esc_html__( 'Специальные условия', 'ramnet' ); ?></span>
-
-                <div class="bus__hr__flex">
-                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross.svg' ); ?>" alt="">
-                    <div class="bus__hr"></div>
-                </div>
-
-                <span class="bus__text ml-2">
-                    <?php echo esc_html__( 'Профили с многослойным стеклом снижают теплопотери на 30%, обеспечивая 90% естественного света и шумоизоляцию 35 дБ – идеально для коммерческих фасадов и террас', 'ramnet' ); ?>
-                </span>
-            </div>
-
-            <!-- Карточка 6: Надежное партнерство -->
-            <div class="bus__card">
-                <img class="ml-2" style="width: 55px"
-                    src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/buisuness/6.svg' ); ?>" alt="">
-                <span class="bus__title ml-2"><?php echo esc_html__( 'Надежное партнерство', 'ramnet' ); ?></span>
-
-                <div class="bus__hr__flex">
-                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross.svg' ); ?>" alt="">
-                    <div class="bus__hr"></div>
-                </div>
-
-                <span class="bus__text ml-2">
-                    <?php echo esc_html__( 'Профили с многослойным стеклом снижают теплопотери на 30%, обеспечивая 90% естественного света и шумоизоляцию 35 дБ – идеально для коммерческих фасадов и террас', 'ramnet' ); ?>
-                </span>
-            </div>
+            <?php 
+            endwhile;
+            wp_reset_postdata();
+            ?>
+            <?php endif; ?>
 
         </div>
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Services Custom Post Type
+ * Jobs Custom Post Type
  *
  * @package RAMNET
  */
@@ -10,14 +10,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register Services Custom Post Type
+ * Register Jobs Custom Post Type
  */
-function ramnet_register_services_cpt() {
+function ramnet_register_jobs_cpt() {
     
     $labels = array(
-        'name'                  => __( 'Услуги', 'ramnet' ),
+        'name'                  => __( 'Как остекляем', 'ramnet' ),
         'singular_name'         => __( 'Услуга', 'ramnet' ),
-        'menu_name'             => __( 'Услуги', 'ramnet' ),
+        'menu_name'             => __( 'Как остекляем', 'ramnet' ),
         'name_admin_bar'        => __( 'Услуга', 'ramnet' ),
         'add_new'               => __( 'Добавить услугу', 'ramnet' ),
         'add_new_item'          => __( 'Добавить новую услугу', 'ramnet' ),
@@ -50,14 +50,14 @@ function ramnet_register_services_cpt() {
         'show_in_rest'        => true,
         'query_var'           => true,
         'rewrite'             => array(
-            'slug'       => 'services',
+            'slug'       => 'jobs',
             'with_front' => false,
         ),
         'capability_type'     => 'post',
         'has_archive'         => true,
         'hierarchical'        => false,
         'menu_position'       => 22,
-        'menu_icon'           => 'dashicons-hammer',
+        'menu_icon'           => 'dashicons-media-text',
         'supports'            => array(
             'title',
             'editor',
@@ -68,17 +68,17 @@ function ramnet_register_services_cpt() {
         ),
     );
     
-    register_post_type( 'ramnet_service', $args );
+    register_post_type( 'ramnet_job', $args );
 }
-add_action( 'init', 'ramnet_register_services_cpt' );
+add_action( 'init', 'ramnet_register_jobs_cpt' );
 
 /**
- * Modify columns in services list
+ * Modify columns in jobs list
  */
-function ramnet_service_columns( $columns ) {
+function ramnet_job_columns( $columns ) {
     return array(
         'cb'         => '<input type="checkbox" />',
         'title'      => __( 'Название услуги', 'ramnet' ),
     );
 }
-add_filter( 'manage_ramnet_service_posts_columns', 'ramnet_service_columns' );
+add_filter( 'manage_ramnet_job_posts_columns', 'ramnet_job_columns' );
