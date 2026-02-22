@@ -39,6 +39,43 @@ require_once RAMNET_THEME_DIR . '/inc/post-types/business.php';
 require_once RAMNET_THEME_DIR . '/inc/ajax-handlers.php';
 
 /**
+ * Add SVG favicon
+ */
+function ramnet_add_favicon() {
+    // Путь к папке favicon в корне темы
+    $favicon_path = get_template_directory_uri() . '/favicon/';
+    
+    // Проверяем существует ли SVG файл
+    $svg_favicon = $favicon_path . 'favicon.svg';
+    
+    echo '<link rel="icon" type="image/svg+xml" href="' . esc_url($svg_favicon) . '">' . "\n";
+    echo '<link rel="alternate icon" href="' . esc_url($favicon_path . 'favicon.ico') . '">' . "\n";
+    echo '<link rel="apple-touch-icon" href="' . esc_url($favicon_path . 'apple-touch-icon.png') . '">' . "\n";
+    
+    // Для современных браузеров
+    echo '<link rel="manifest" href="' . esc_url($favicon_path . 'site.webmanifest') . '">' . "\n";
+}
+add_action('wp_head', 'ramnet_add_favicon');
+
+/**
+ * Также добавляем фавикон в админку
+ */
+function ramnet_admin_favicon() {
+    $favicon_path = get_template_directory_uri() . '/favicon/favicon.svg';
+    echo '<link rel="icon" type="image/svg+xml" href="' . esc_url($favicon_path) . '">' . "\n";
+}
+add_action('admin_head', 'ramnet_admin_favicon');
+
+/**
+ * И для страницы входа
+ */
+function ramnet_login_favicon() {
+    $favicon_path = get_template_directory_uri() . '/favicon/favicon.svg';
+    echo '<link rel="icon" type="image/svg+xml" href="' . esc_url($favicon_path) . '">' . "\n";
+}
+add_action('login_head', 'ramnet_login_favicon');
+
+/**
  * Добавляем классы для навигации
  */
 require_once RAMNET_THEME_DIR . '/inc/classes/class-walker-nav.php';

@@ -4,7 +4,7 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" href="<?php echo RAMNET_THEME_URI;?>/favicon/favicon.svg" type="image/svg+xml" sizes="any" />
     <?php wp_head(); ?>
 </head>
 
