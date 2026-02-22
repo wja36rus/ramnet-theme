@@ -37,7 +37,7 @@
             <form id="form" novalidate>
                 <input type="text" name="username" class="form__input"
                     placeholder="<?php echo esc_attr__( 'Имя', 'ramnet' ); ?>">
-                <input name="phone" type="text" class="form__input" placeholder="+7">
+                <input name="phone" type="text" class="form__input phone-mask" placeholder="+7">
                 <span>
                     <?php echo esc_html__('Нажимая на кнопку, Вы даете согласие ');?><br>
                     <?php echo esc_html__('на обработку персональных данных');?>

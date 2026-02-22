@@ -61,24 +61,139 @@
       }
     });
 
+    /* ========== Маска для телефона ========== */
+    // Подключаем jQuery Mask если еще не подключен
+    if (typeof $.fn.mask === "undefined") {
+      $.getScript(
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js",
+        function () {
+          initPhoneMask();
+        },
+      );
+    } else {
+      initPhoneMask();
+    }
+
+    function initPhoneMask() {
+      $('input[name="phone"], .phone-mask, input[placeholder*="+7"]').mask(
+        "+7 (999) 999-99-99",
+        {
+          placeholder: "+7 (___) ___-__-__",
+          onKeyPress: function (value, event, currentField, options) {
+            // Дополнительная обработка при вводе
+            $(currentField).removeClass("error warning");
+          },
+        },
+      );
+    }
+
+    /* ========== Валидация форм ========== */
+    function validateForm($form) {
+      let isValid = true;
+      let errors = [];
+
+      // Валидация имени
+      let $name = $form.find('input[name="username"], input[name="name"]');
+      if ($name.length) {
+        let nameValue = $name.val().trim();
+        if (nameValue === "") {
+          $name.addClass("error");
+          errors.push("Введите имя");
+          isValid = false;
+        } else if (nameValue.length < 2) {
+          $name.addClass("error");
+          errors.push("Имя должно содержать минимум 2 символа");
+          isValid = false;
+        } else if (!/^[a-zA-Zа-яА-ЯёЁ\s-]+$/.test(nameValue)) {
+          $name.addClass("error");
+          errors.push("Имя может содержать только буквы, пробелы и дефис");
+          isValid = false;
+        } else {
+          $name.removeClass("error");
+        }
+      }
+
+      // Валидация телефона
+      let $phone = $form.find('input[name="phone"]');
+      if ($phone.length) {
+        let phoneValue = $phone.val().replace(/\D/g, "");
+        if (phoneValue === "") {
+          $phone.addClass("error");
+          errors.push("Введите телефон");
+          isValid = false;
+        } else if (phoneValue.length < 11) {
+          $phone.addClass("error");
+          errors.push("Введите полный номер телефона (11 цифр)");
+          isValid = false;
+        } else {
+          $phone.removeClass("error");
+        }
+      }
+
+      // Показываем ошибки
+      if (!isValid) {
+        showErrors($form, errors);
+      } else {
+        hideErrors($form);
+      }
+
+      return isValid;
+    }
+
+    function showErrors($form, errors) {
+      // Удаляем старые ошибки
+      $form.find(".form-errors").remove();
+
+      // Создаем блок с ошибками
+      let $errorBlock = $('<div class="form-errors"></div>');
+      $.each(errors, function (index, error) {
+        $errorBlock.append('<p class="error-message">❌ ' + error + "</p>");
+      });
+
+      // Вставляем в начало формы
+      $form.prepend($errorBlock);
+
+      // Подсвечиваем форму
+      $form.addClass("has-errors");
+
+      // Автоскролл к форме
+      $("html, body").animate(
+        {
+          scrollTop: $form.offset().top - 150,
+        },
+        500,
+      );
+    }
+
+    function hideErrors($form) {
+      $form.find(".form-errors").fadeOut(300, function () {
+        $(this).remove();
+      });
+      $form.removeClass("has-errors");
+      $form.find(".error").removeClass("error");
+    }
+
     /* ========== Form submission ========== */
     $("#form, #call__to__action__form").on("submit", function (e) {
       e.preventDefault();
 
       var $form = $(this);
-      var $submitButton = $form.find('button[type="submit"]');
+
+      // Валидация перед отправкой
+      if (!validateForm($form)) {
+        return false;
+      }
+
+      var $submitButton = $form.find('button[type="submit"], .button__main');
       var formData = $form.serializeArray();
       var name = formData[0] ? formData[0].value : "";
       var phone = formData[1] ? formData[1].value : "";
 
-      // Валидация
-      if (!name || !phone) {
-        alert("Пожалуйста, заполните все поля");
-        return;
-      }
-
       // Блокируем кнопку на время отправки
-      $submitButton.prop("disabled", true).text("Отправка...");
+      $submitButton
+        .prop("disabled", true)
+        .addClass("loading")
+        .text("Отправка...");
 
       // Send data via AJAX
       $.ajax({
@@ -129,7 +244,10 @@
         },
         complete: function () {
           // Разблокируем кнопку
-          $submitButton.prop("disabled", false).text("ОТПРАВИТЬ");
+          $submitButton
+            .prop("disabled", false)
+            .removeClass("loading")
+            .text("ОТПРАВИТЬ");
         },
       });
 
@@ -137,6 +255,23 @@
         name: name,
         phone: phone,
       });
+    });
+
+    /* ========== Убираем ошибку при вводе ========== */
+    $(document).on("input", "input", function () {
+      $(this).removeClass("error warning");
+    });
+
+    /* ========== Валидация телефона при потере фокуса ========== */
+    $(document).on("blur", "input[name='phone']", function () {
+      let $this = $(this);
+      let phoneValue = $this.val().replace(/\D/g, "");
+
+      if (phoneValue.length > 0 && phoneValue.length < 11) {
+        $this.addClass("warning");
+      } else {
+        $this.removeClass("warning");
+      }
     });
 
     /* ========== Mobile menu toggle ========== */
@@ -227,9 +362,6 @@
       var telegramUrl = ramnet_ajax.telegram_url || "https://t.me/ramnet";
       window.open(telegramUrl, "_blank");
     });
-
-    /* ========== Initialize any sliders or carousels ========== */
-    // Можно добавить инициализацию слайдеров если понадобятся
 
     /* ========== Add active class to current menu item ========== */
     var currentLocation = window.location.href;

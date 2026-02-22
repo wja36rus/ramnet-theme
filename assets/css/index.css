@@ -1450,3 +1450,124 @@ nav.nav__menu.active {
 .footer__docs {
   color: white;
 }
+
+/* Стили для блока ошибок внутри формы */
+.form-errors {
+  background-color: rgba(214, 54, 56, 0.1);
+  border-left: 4px solid #d63638;
+  border-radius: 4px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.form.has-errors {
+  box-shadow: 0 0 0 1px rgba(214, 54, 56, 0.3);
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Стили для валидации форм */
+.form-errors {
+  background-color: rgba(214, 54, 56, 0.1);
+  border-left: 4px solid #d63638;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #d63638;
+  font-size: 14px;
+  margin: 5px 0;
+  font-weight: 400;
+}
+
+input.error {
+  border-color: #d63638 !important;
+  border-bottom: 2px solid #d63638 !important;
+  background-color: rgba(214, 54, 56, 0.05);
+}
+
+input.warning {
+  border-color: #f0b849 !important;
+  border-bottom: 2px solid #f0b849 !important;
+}
+
+input:focus.error {
+  box-shadow: 0 0 0 1px #d63638;
+}
+
+/* Анимация для ошибок */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+input.error {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Стили для заблокированной кнопки */
+.button__main:disabled,
+.button__main__black:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Индикатор загрузки */
+.button__main.loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.button__main.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-top: -8px;
+  margin-left: -8px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: button-loading-spinner 0.8s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
