@@ -1,23 +1,28 @@
 <?php
 /**
- * Service section template (Что остекляем)
- * Выводит услуги из custom post type ramnet_service
+ * Service page section template (Подробнее о том что остекляем)
+ * Выводит услугу из custom post type ramnet_service
  *
  * @package RAMNET
  */
+$project_id = isset( $_GET['project_id'] ) ? intval( $_GET['project_id'] ) : 0;
 
 // Получаем услуги из базы данных
 $services = new WP_Query(array(
     'post_type'      => 'ramnet_service',
-    'posts_per_page' => -1, // Показываем все услуги
+    'posts_per_page' => -1, 
     'orderby'        => 'meta_value_num',
     'order'          => 'ASC',
     'post_status'    => 'publish',
+    'p' => $project_id
 ));
+
+
 ?>
 
 <section class="service" id="service">
-    
+    <?php
+?>
     <h4 class="title__service"><?php echo esc_html__( 'Что остекляем', 'ramnet' ); ?></h4>
     
     <div class="service__grid">
@@ -74,7 +79,8 @@ $services = new WP_Query(array(
                         <?php endif; $projects_page_url = get_permalink( 141 );?>
                         <!-- Кнопка -->
                         <div class="button__container__service">
-                            <button class="button__main" onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'">
+                            <a href="<?php echo esc_url( add_query_arg( array('from_project' => $counter), $projects_page_url) ); ?>">Го</a>
+                            <button class="button__main" onclick="window.location.href='<?php echo esc_url(  get_page_by_path( 'страница-проекта' )  ); ?>'">
                                 <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
                             </button>
                         </div>
