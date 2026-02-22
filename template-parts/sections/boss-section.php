@@ -4,6 +4,18 @@
  *
  * @package RAMNET
  */
+// Получаем услуги из базы данных
+$services = new WP_Query(array(
+    'post_type'      => 'ramnet_boss',
+    'posts_per_page' => -1, // Показываем все услуги
+    'orderby'        => 'meta_value_num',
+    'order'          => 'ASC',
+    'post_status'    => 'publish',
+));
+
+// echo "<pre>";
+// print_r($services);
+// echo "</pre>";
 ?>
 
 <section class="boss" id="boss">
@@ -11,30 +23,41 @@
         <h4 class="title__boss"><?php echo esc_html__( 'О компании', 'ramnet' ); ?></h4>
 
         <div class="boss__lines">
-
+        <?php if ( $services->have_posts() ) : ?>
+            <?php 
+            $counter = 1;
+            while ( $services->have_posts() ) : $services->the_post();
+                
+                // Используем заголовок как название услуги
+                $service_title = get_the_title();
+                // Используем контент или отрывок как описание
+                $service_description = has_excerpt() ? get_the_excerpt() : get_the_content();
+                if ( empty($service_description) ) {
+                    $service_description = __( 'Панорамное остекление для комфортного отдыха в любое время года', 'ramnet' );
+                }
+                
+                
+            ?>
             <!-- Фото основателя -->
-            <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/boss.png' ); ?>"
-                alt="<?php esc_attr_e( 'Павел Бахаев - основатель компании', 'ramnet' ); ?>">
+            <?php the_post_thumbnail('full'); ?>
 
             <div class="boss__card">
                 <h1 class="boss__title">
-                    <?php echo esc_html__( 'Павел Бахаев – основатель компании РАМ.НЕТ', 'ramnet' ); ?>
+                <?php echo esc_html__( $service_title, 'ramnet' ); ?>
                 </h1>
 
                 <div class="boss__text__flex">
-                    <p class="boss__text">
-                        <?php echo esc_html__( 'Производственная компания РАМ.НЕТ специализируется на установке систем панорамного остекления под ключ: от проекта до изготовления и монтажа конструкций различного типа и конфигурации. Можем изготовить все, что связано с закаленным стеклом. Монтаж также производят специалисты, которые знают особенности этого материала.', 'ramnet' ); ?>
-                    </p>
-
-                    <p class="boss__text">
-                        <?php echo esc_html__( 'Свое дело мы с любовью развиваем уже более 15 лет. Нас знают как надежного и ответственного подрядчика не только в Воронеже, но и в регионах России: от Москвы до Сочи.', 'ramnet' ); ?>
-                    </p>
-
-                    <p class="boss__text">
-                        <?php echo esc_html__( 'Сейчас в штате компании трудится 10 человек. Личный опыт работы каждого сотрудника от 5 лет.', 'ramnet' ); ?>
-                    </p>
+                    <div class="boss__text">
+                       <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
+            </div>
                 </div>
             </div>
+            <?php 
+            endwhile;
+            wp_reset_postdata();
+            ?>
+
+            <?php endif; ?>
         </div>
     </div>
 </section>

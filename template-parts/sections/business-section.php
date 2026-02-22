@@ -11,7 +11,8 @@
         <h4 class="title__business"><?php echo esc_html__( 'Для бизнеса', 'ramnet' ); ?></h4>
 
         <h1 class="bus__hero">
-            <?php echo esc_html__( 'Мы превратили процесс работы в удобный сервис', 'ramnet' ); ?>
+            <?php echo esc_html__( 'Мы превратили процесс работы', 'ramnet' ); ?><br>
+            <?php echo esc_html__( 'в удобный сервис', 'ramnet' ); ?>
         </h1>
 
         <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/business.jpg' ); ?>"

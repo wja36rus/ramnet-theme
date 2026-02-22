@@ -37,7 +37,7 @@ $services = new WP_Query(array(
                 // Используем контент или отрывок как описание
                 $service_description = has_excerpt() ? get_the_excerpt() : get_the_content();
                 if ( empty($service_description) ) {
-                    $service_description = __( 'Панорамное остекление для комфортного отдыха в любое время года', 'ramnet' );
+                    $service_description = __( '', 'ramnet' );
                 }
                 
                 
@@ -49,7 +49,7 @@ $services = new WP_Query(array(
                     <div class="people__card__starline">
                         <div class="people__card__title__and__start">
                             <h1 class="people__card__title">
-                                <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
+                                <?php echo esc_html__( wpautop($service_title), 'ramnet' ); ?>
                             </h1>
                             <div class="people__stars">
                             <?php

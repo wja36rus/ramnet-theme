@@ -12,11 +12,12 @@ $hero_subtitle_1 = get_theme_mod( 'ramnet_hero_subtitle_1', 'от произво
 $hero_subtitle_2 = get_theme_mod( 'ramnet_hero_subtitle_2', 'в Воронеже и ВО' );
 
 // Получаем фоновое изображение
-$hero_bg_id = get_theme_mod( 'ramnet_hero_background' );
-$hero_bg_url = wp_get_attachment_image_url( $hero_bg_id, 'full' );
+$hero_bg_url = get_theme_mod( 'background_image' );
 if ( ! $hero_bg_url ) {
     $hero_bg_url = RAMNET_THEME_URI . '/assets/images/hero-bg.png';
 }
+
+
 ?>
 
 <section class="hero">

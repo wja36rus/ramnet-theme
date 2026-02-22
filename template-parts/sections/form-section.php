@@ -29,7 +29,9 @@
             </div>
 
             <h1 class="form__title__second">
-                <?php echo esc_html__( 'Вы в одном шаге от правильного решения о выборе подрядчика', 'ramnet' ); ?>
+                <?php echo esc_html__( 'Вы в одном шаге ', 'ramnet' ); ?><br>
+                <?php echo esc_html__( 'от правильного решения', 'ramnet' ); ?><br>
+                <?php echo esc_html__( 'о выборе подрядчика', 'ramnet' ); ?>
             </h1>
 
             <form id="form">
