@@ -198,7 +198,7 @@
 
 .button__container__main {
   text-align: center;
-  padding-top: 4rem;
+  padding-top: 4rem !important;
   width: 631px;
 }
 
