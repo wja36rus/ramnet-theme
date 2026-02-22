@@ -49,7 +49,7 @@ $services = new WP_Query(array(
                     <div class="people__card__starline">
                         <div class="people__card__title__and__start">
                             <h1 class="people__card__title">
-                                <?php echo esc_html__( wpautop($service_title), 'ramnet' ); ?>
+                                <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
                             </h1>
                             <div class="people__stars">
                             <?php
