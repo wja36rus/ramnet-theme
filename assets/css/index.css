@@ -1218,6 +1218,7 @@ body {
   letter-spacing: -0.01em;
   color: #ffffff;
   width: 270px;
+  min-height: 50px;
 }
 
 .time__card__text {
