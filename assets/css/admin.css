@@ -1,0 +1,50 @@
+/**
+ * Admin styles for RAM.NET theme
+ */
+
+/* Стили для баджа с количеством заявок */
+#adminmenu .toplevel_page_edit-php-post_type-ramnet_lead .wp-menu-name {
+  position: relative;
+}
+
+#adminmenu .toplevel_page_edit-php-post_type-ramnet_lead .update-plugins {
+  background-color: #d63638;
+  color: #fff;
+  margin-left: 5px;
+  padding: 0 5px;
+  border-radius: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  display: inline-block;
+}
+
+/* Стили для статуса в списке заявок */
+.column-status {
+  width: 100px;
+}
+
+.status-new {
+  color: #d63638;
+  font-weight: bold;
+}
+
+.status-read {
+  color: #00a32a;
+}
+
+/* Анимация для новых заявок */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.status-new {
+  animation: pulse 2s infinite;
+}

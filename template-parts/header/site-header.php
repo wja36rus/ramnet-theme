@@ -15,7 +15,7 @@
             <span class="call__to__action__underline"></span>
 
             <!-- Форма заказа звонка -->
-            <form id="call__to__action__form">
+            <form id="call__to__action__form" novalidate>
                 <div class="call__to__action__form__inset">
                     <img class="call__to__action__close"
                         src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/close.svg' ); ?>"

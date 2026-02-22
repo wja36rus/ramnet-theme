@@ -62,45 +62,25 @@
     });
 
     /* ========== Form submission ========== */
-    $("#form__submit, #call__to__action__submit").click(function (e) {
+    $("#form, #call__to__action__form").on("submit", function (e) {
       e.preventDefault();
 
-      // Get form data
-      var $form;
-      if ($(this).attr("id") === "form__submit") {
-        $form = $("#form");
-      } else {
-        $form = $("#call__to__action__form");
-      }
-
+      var $form = $(this);
+      var $submitButton = $form.find('button[type="submit"]');
       var formData = $form.serializeArray();
       var name = formData[0] ? formData[0].value : "";
       var phone = formData[1] ? formData[1].value : "";
 
-      // Show success message
-      if ($(this).attr("id") === "form__submit") {
-        // For main form
-        $(".call__to__action").addClass("active");
-        $("#call__to__action__form").addClass("active");
-        $(".call__to__action__form__success").addClass("active");
-
-        setTimeout(function () {
-          $(".call__to__action").removeClass("active");
-          $("#call__to__action__form").removeClass("active");
-          $(".call__to__action__form__success").removeClass("active");
-        }, 3000);
-      } else {
-        // For call to action form
-        $(".call__to__action__form__inset").removeClass("active");
-        $(".call__to__action__form__success").addClass("active");
-
-        setTimeout(function () {
-          $("#call__to__action__form").removeClass("active");
-          $(".call__to__action__form__success").removeClass("active");
-        }, 3000);
+      // Валидация
+      if (!name || !phone) {
+        alert("Пожалуйста, заполните все поля");
+        return;
       }
 
-      // Send data via AJAX (if needed)
+      // Блокируем кнопку на время отправки
+      $submitButton.prop("disabled", true).text("Отправка...");
+
+      // Send data via AJAX
       $.ajax({
         url: ramnet_ajax.ajax_url,
         type: "POST",
@@ -112,9 +92,44 @@
         },
         success: function (response) {
           console.log("Form submitted:", response);
+
+          if (response.success) {
+            // Очищаем поля формы
+            $form.find('input[type="text"]').val("");
+
+            // Определяем какая форма
+            if ($form.attr("id") === "form") {
+              // For main form
+              $(".call__to__action").addClass("active");
+              $("#call__to__action__form").addClass("active");
+              $(".call__to__action__form__success").addClass("active");
+
+              setTimeout(function () {
+                $(".call__to__action").removeClass("active");
+                $("#call__to__action__form").removeClass("active");
+                $(".call__to__action__form__success").removeClass("active");
+              }, 3000);
+            } else {
+              // For call to action form
+              $(".call__to__action__form__inset").removeClass("active");
+              $(".call__to__action__form__success").addClass("active");
+
+              setTimeout(function () {
+                $("#call__to__action__form").removeClass("active");
+                $(".call__to__action__form__success").removeClass("active");
+              }, 3000);
+            }
+          } else {
+            alert("Ошибка: " + response.data);
+          }
         },
         error: function (error) {
           console.log("Error:", error);
+          alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
+        },
+        complete: function () {
+          // Разблокируем кнопку
+          $submitButton.prop("disabled", false).text("ОТПРАВИТЬ");
         },
       });
 

@@ -23,7 +23,6 @@ define( 'RAMNET_THEME_URI', get_template_directory_uri() );
 require_once RAMNET_THEME_DIR . '/inc/setup.php';
 require_once RAMNET_THEME_DIR . '/inc/enqueue.php';
 require_once RAMNET_THEME_DIR . '/inc/customizer.php';
-require_once RAMNET_THEME_DIR . '/inc/template-tags.php';
 
 /**
  * Добавляем поддержку пользовательских типов записей (Custom Post Types)
@@ -37,11 +36,7 @@ require_once RAMNET_THEME_DIR . '/inc/post-types/boss.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/jobs.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/say.php';
 require_once RAMNET_THEME_DIR . '/inc/post-types/business.php';
-
-/**
- * Добавляем поддержку виджетов и сайдбаров
- */
-require_once RAMNET_THEME_DIR . '/inc/widgets.php';
+require_once RAMNET_THEME_DIR . '/inc/ajax-handlers.php';
 
 /**
  * Добавляем классы для навигации

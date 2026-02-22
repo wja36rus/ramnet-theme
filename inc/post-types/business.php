@@ -79,6 +79,24 @@ function ramnet_busines_columns( $columns ) {
     return array(
         'cb'         => '<input type="checkbox" />',
         'title'      => __( 'Название поста', 'ramnet' ),
+        'thumbnail' => __( 'Изображение', 'ramnet' ),
+
     );
 }
 add_filter( 'manage_ramnet_busines_posts_columns', 'ramnet_busines_columns' );
+
+/**
+ * Display custom column data for business
+ */
+function ramnet_busines_custom_column( $column, $post_id ) {
+    switch ( $column ) { 
+        case 'thumbnail':
+            if ( has_post_thumbnail( $post_id ) ) {
+                echo get_the_post_thumbnail( $post_id, 'thumbnail' );
+            } else {
+                echo '—';
+            }
+            break;
+    }
+}
+add_action( 'manage_ramnet_busines_posts_custom_column', 'ramnet_busines_custom_column', 10, 2 );

@@ -79,6 +79,25 @@ function ramnet_boss_columns( $columns ) {
     return array(
         'cb'         => '<input type="checkbox" />',
         'title'      => __( 'Название поста', 'ramnet' ),
+        'thumbnail' => __( 'Изображение', 'ramnet' ),
+
     );
 }
 add_filter( 'manage_ramnet_boss_posts_columns', 'ramnet_boss_columns' );
+
+/**
+ * Display custom column data for boss
+ */
+function ramnet_boss_custom_column( $column, $post_id ) {
+    switch ( $column ) {
+
+        case 'thumbnail':
+            if ( has_post_thumbnail( $post_id ) ) {
+                echo get_the_post_thumbnail( $post_id, 'thumbnail' );
+            } else {
+                echo '—';
+            }
+            break;
+    }
+}
+add_action( 'manage_ramnet_boss_posts_custom_column', 'ramnet_boss_custom_column', 10, 2 );
