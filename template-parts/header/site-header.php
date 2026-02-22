@@ -40,8 +40,8 @@
                     <img class="call__to__action__form__success__image"
                         src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/success.svg' ); ?>"
                         alt="<?php esc_attr_e( 'Успешно', 'ramnet' ); ?>">
-                    <h1><?php echo esc_html__( 'Ваше сообщение получено!', 'ramnet' ); ?></h1>
-                    <h3><?php echo esc_html__( 'Мы скоро с Вами свяжемся', 'ramnet' ); ?></h3>
+                    <h1><?php echo esc_html__( 'Ваша заявка принята.', 'ramnet' ); ?></h1>
+                    <h3><?php echo esc_html__( 'Мы скоро свяжемся с Вами', 'ramnet' ); ?></h3>
                 </div>
             </form>
         </div>
