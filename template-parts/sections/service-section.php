@@ -78,44 +78,7 @@ $services = new WP_Query(array(
             wp_reset_postdata();
             ?>
             
-        <?php else : ?>
-            <!-- Резервный вывод, если услуг нет -->
-            
-            <!-- Карточка 1: Террасы, веранды -->
-            <div id="service__card_1" class="service__card">
-                <h3 class="service__number">01</h3>
-                <h4 class="service__card__title"><?php echo esc_html__( 'ТЕРРАСЫ, ВЕРАНДЫ', 'ramnet' ); ?></h4>
-                <div class="service__card__hidden">
-                    <hr class="service__hr">
-                    <p class="service__card__text">
-                        <?php echo esc_html__( 'Панорамное остекление открытых террас и веранд для комфортного отдыха в любое время года', 'ramnet' ); ?>
-                    </p>
-                    <div class="button__container__service">
-                        <button class="button__main">
-                            <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Карточка 2: Беседки -->
-            <div id="service__card_2" class="service__card">
-                <h3 class="service__number">02</h3>
-                <h4 class="service__card__title"><?php echo esc_html__( 'БЕСЕДКИ', 'ramnet' ); ?></h4>
-                <div class="service__card__hidden">
-                    <hr class="service__hr">
-                    <p class="service__card__text">
-                        <?php echo esc_html__( 'Панорамное остекление открытых террас и веранд для комфортного отдыха в любое время года', 'ramnet' ); ?>
-                    </p>
-                    <div class="button__container__service">
-                        <button class="button__main">
-                            <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Остальные карточки... (можно добавить) -->
+        
             
         <?php endif; ?>
         

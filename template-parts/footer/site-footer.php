@@ -5,6 +5,8 @@
  * @package RAMNET
  */
 
+
+
 // Получаем настройки из Customizer
 $phone = get_theme_mod( 'ramnet_phone', '+7 (XXX) XXX-XX-XX' );
 $email = get_theme_mod( 'ramnet_email', 'info@zasteklim.ru' );
@@ -42,26 +44,29 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
                 )
             );
             
-            // Fallback меню, если меню не создано
             function ramnet_footer_menu_fallback() {
-                $services = array(
-                    'Подъемное гильотинное остекление',
-                    'Раздвижное безрамное остекление',
-                    'Раздвижное остекление со стеклопакетом',
-                    'Безрамное остекление «книжка», «гармошка»',
-                    'Панорамные раздвижные двери HS, LS (порталы)',
-                    'Панорамные складные двери «гармошка»',
-                    'Алюминиевые окна и двери',
-                    'Стеклянные ограждения',
-                    'Стеклянные крыши и фасады',
-                );
-                
-                foreach ( $services as $service ) {
-                    echo '<a href="#" class="footer__nav__item">' . esc_html( $service ) . '</a>';
+            $services = new WP_Query(array(
+                'post_type'      => 'ramnet_job',
+                'posts_per_page' => -1,
+                'orderby'        => 'meta_value_num',
+                'order'          => 'ASC',
+                'post_status'    => 'publish',
+            ));
+
+        if ( $services->have_posts() ) {
+            while ( $services->have_posts() ) { 
+                $services->the_post();
+                $service_title = get_the_title();
+                $projects_page_url = get_permalink( 141 );
+            
+            echo '<a class="footer__nav__item" href='.esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ).'>'.esc_html__( wp_strip_all_tags($service_title), 'ramnet' ),'</a>';
+
+            wp_reset_postdata();
+                    }
                 }
             }
-            ?>
-        </div>
+    ?>
+    </div>
 
         <!-- Контактная информация -->
         <div class="footer__info">
