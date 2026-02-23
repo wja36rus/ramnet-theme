@@ -68,17 +68,6 @@ $services = new WP_Query(array(
                             <?php echo esc_html__( wp_strip_all_tags($service_description), 'ramnet' ); ?>
                         </p>
                         
-                        <!-- Дополнительная информация, если есть -->
-                        <?php if ( ! empty( $service_price ) ) : ?>
-                            <p class="service__price"><?php echo esc_html__( $service_price ); ?></p>
-                        <?php endif; $projects_page_url = get_permalink( 141 );?>
-                        <!-- Кнопка -->
-                        <div class="button__container__service">
-                            <button class="button__main" onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'">
-                                <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
-                            </button>
-                        </div>
-                        
                     </div>
                 </div>
             </div>

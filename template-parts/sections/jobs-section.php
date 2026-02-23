@@ -70,8 +70,9 @@ $services = new WP_Query(array(
                 <div class="cards__text">
                     <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
                 </div>
+                <?php $projects_page_url = get_permalink( 141 );?>
                 <div class="button__container__jobs">
-                    <button class="button__main">
+                    <button class="button__main" onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'">
                         <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>
                     </button>
                 </div>
