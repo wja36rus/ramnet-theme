@@ -154,6 +154,39 @@ function ramnet_customize_register( $wp_customize ) {
         'type'        => 'text',
     ) );
 
+    $wp_customize->add_setting( 'ramnet_hero_about_line_1', array(
+        'default'           => 'эстетика, функциональность и комфорт Вашего пространства',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'ramnet_hero_about_line_1', array(
+        'label'       => __( 'Описание (первая строка)', 'ramnet' ),
+        'section'     => 'ramnet_hero_settings',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'ramnet_hero_about_line_2', array(
+        'default'           => 'под ключ: от проекта до изготовления и монтажа конструкций',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'ramnet_hero_about_line_2', array(
+        'label'       => __( 'Описание (первая строка)', 'ramnet' ),
+        'section'     => 'ramnet_hero_settings',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'ramnet_hero_about_line_3', array(
+        'default'           => 'сервисное обслуживание 12 месяцев БЕСПЛАТНО',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'ramnet_hero_about_line_3', array(
+        'label'       => __( 'Описание (первая строка)', 'ramnet' ),
+        'section'     => 'ramnet_hero_settings',
+        'type'        => 'text',
+    ) );
+
     // Фоновое изображение
     $wp_customize->add_setting( 'ramnet_hero_background', array(
         'default'           => '',
