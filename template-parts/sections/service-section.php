@@ -40,7 +40,7 @@ $services = new WP_Query(array(
             
         
             <div class="service__card__bg__wrapper">
-                <img id="service__card__bg_<?php echo $counter; ?>" class="service__card__bg" src="<?php 
+                <img id="service__card__bg_<?php echo $counter; ?>" class="service__card__bg <?php if($counter === 1) {echo 'active';}?>" src="<?php 
                     if (has_post_thumbnail()) {
                         $url = get_the_post_thumbnail_url();
                         echo $url;

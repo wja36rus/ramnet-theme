@@ -1099,6 +1099,11 @@ body {
   top: 0;
   left: 0;
   transition: 1s;
+  opacity: 0;
+}
+
+.service__card__bg.active {
+  opacity: 1;
 }
 
 .service__card__bg__wrapper {
@@ -1123,6 +1128,7 @@ body {
 
     .service__card__bg {
       z-index: 1;
+      opacity: 1;
     }
   }
 }
