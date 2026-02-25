@@ -69,6 +69,17 @@ $services = new WP_Query(array(
                         </p>
                         
                     </div>
+
+                    <?php
+                    $gallery = get_post_gallery(get_the_ID(), false);
+                        if ($gallery):
+                            foreach($gallery['src'] as $value):
+                    ?>
+                    <img src="<?= $value; ?>" alt="">
+                    <?php
+                        endforeach;
+                        endif;
+                    ?>
                 </div>
             </div>
             
