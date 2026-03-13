@@ -20,7 +20,7 @@
                     <img class="call__to__action__close"
                         src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/close.svg' ); ?>"
                         alt="<?php esc_attr_e( 'Закрыть', 'ramnet' ); ?>">
-                    <h1><?php echo esc_html__( 'Напишите нам и мы вам перезвоним!', 'ramnet' ); ?></h1>
+                    <h1><?php echo esc_html__( 'Напишите нам и мы Вам перезвоним!', 'ramnet' ); ?></h1>
 
                     <input type="text" name="username" class="form__input"
                         placeholder="<?php echo esc_attr__( 'Имя', 'ramnet' ); ?>">
