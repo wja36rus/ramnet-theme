@@ -22,7 +22,7 @@ $services = new WP_Query(array(
 
 <section class="page__job">
         <div class="page__job__container">
-        <a class="page__job__back" href="<?php echo esc_url( home_url( '/' ) ); ?>">Назад</a>
+        
         <?php if ( $services->have_posts() ) : ?>
             <?php 
             $counter = 1;
@@ -38,7 +38,7 @@ $services = new WP_Query(array(
                 }
                 
             ?>
-
+                <a class="page__job__back" href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная/Как остекляем/<?= $service_title;?></a>
                 <img class="page__service__card__bg" src="<?php 
                     if (has_post_thumbnail()) {
                         $url = get_the_post_thumbnail_url();
