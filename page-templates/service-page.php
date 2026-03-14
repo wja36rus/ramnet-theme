@@ -38,16 +38,15 @@ get_header(); ?>
             </div>
         </div>
     </header>
-
     <main>
-        <!-- Хлебные крошки -->
-        <div class="breadcrumbs">
-            <a href="http://ram.net/">Главная</a> / <a href="http://ram.net/#jobs">Как остекляем</a> / <span>Подъемное гильотинное остекление</span>
-        </div>
 
         <!-- 1-й экран -->
         <section class="page-hero">
             <div class="page-hero__container">
+                <!-- Хлебные крошки -->
+                <div class="breadcrumbs">
+                    <a href="http://ram.net/">Главная</a> / <a href="http://ram.net/#jobs">Как остекляем</a> / <span>Подъемное гильотинное остекление</span>
+                </div>
                 <div class="page-hero__content">
                     <h1 class="page-hero__title">
                         ПОДЪЁМНО-ГИЛЬОТИННОЕ ОСТЕКЛЕНИЕ В ВОРОНЕЖЕ: <br>ЦЕНЫ, МОНТАЖ И ФОТО
@@ -67,8 +66,9 @@ get_header(); ?>
                         <button class="button__main call__open__form"><p class="button__text">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</p></button>
                     </div>
                 </div>
-                <div class="page-hero__image" style="background-image: url('http://ram.net/wp-content/uploads/2026/02/service-bg.jpg');"></div>
             </div>
+            <div class="page-hero__image" style="background-image: url('http://ram.net/wp-content/uploads/2026/02/service-bg.jpg');"></div>
+
         </section>
 
         <!-- Современное решение -->

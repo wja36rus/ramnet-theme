@@ -1635,12 +1635,11 @@ input.error {
 
 .breadcrumbs {
   position: absolute;
-  top: 120px;
-  left: 40px;
   z-index: 5;
   color: rgba(255,255,255,0.6);
   font-weight: 400;
   font-size: 14px;
+  top: -4rem;
 }
 .breadcrumbs a {
   color: rgba(255,255,255,0.8);
@@ -1670,6 +1669,7 @@ input.error {
   justify-content: space-between;
   align-items: center;
   gap: 4rem;
+  position: relative;
 }
 .page-hero__content {
   flex: 1;
@@ -1715,8 +1715,9 @@ input.error {
   border-left: 4px solid #ffffff;
   padding: 15px 25px;
   margin: 30px 0;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 600;
+  width: 50%;
 }
 .hero__promo span {
   color: #ffffff;
