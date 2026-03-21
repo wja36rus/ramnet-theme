@@ -1,6 +1,6 @@
 <?php
 /**
- * Project section template (Некоторые реализованные нами проекты)
+ * Project section template
  *
  * @package RAMNET
  */
@@ -16,13 +16,16 @@ $services = new WP_Query(array(
 ?>
 
 <section class="project" id="project">
+    <div class="all__project__container">
+<h1 class="all__project__title">
+                <?php echo esc_html__( 'Реализованные проекты', 'ramnet' ); ?>
+            </h1>
+</div>
     <div class="project__wrapper">
             
 
             <div class="project__left__columns">  
-            <h1 class="project__title">
-                <?php echo esc_html__( 'Некоторые реализованные нами проекты', 'ramnet' ); ?>
-            </h1>
+            
             <?php if ( $services->have_posts() ) : ?>
             <?php 
             $counter = 1;
@@ -110,12 +113,6 @@ $services = new WP_Query(array(
             wp_reset_postdata();
             ?>
             <?php endif; ?>
-            <!-- Кнопка "Смотреть все проекты" -->
-            <div class="button__container__project">
-                <button class="button__main" onclick="window.location.href='<?php echo home_url('/реализованные-проекты/'); ?>'">
-                    <p class="button__text"><?php echo esc_html__( 'СМОТРЕТЬ ВСЕ ПРОЕКТЫ', 'ramnet' ); ?></p>
-                </button>
-            </div>
         </div>
         </div>
     </div>

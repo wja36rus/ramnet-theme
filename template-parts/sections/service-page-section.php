@@ -5,7 +5,6 @@
  *
  * @package RAMNET
  */
-$project_id = isset( $_GET['project_id'] ) ? intval( $_GET['project_id'] ) : 0;
 
 // Получаем услуги из базы данных
 $services = new WP_Query(array(
@@ -14,7 +13,6 @@ $services = new WP_Query(array(
     'orderby'        => 'meta_value_num',
     'order'          => 'ASC',
     'post_status'    => 'publish',
-    'p' => $project_id
 ));
 
 
@@ -43,7 +41,7 @@ $services = new WP_Query(array(
                     <h4 class="page__service__card__title">
                         <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
                     </h4>
-                    <a href="" class="no__decoration">
+                    <a href="<?php echo get_permalink(220); ?>" class="no__decoration">
                     <div class="paje__job__back"><img class="page__service__back" src="https://static.tildacdn.com/tild6334-3239-4032-b166-633565623864/left.svg" alt="">Вернуться ко всем проектам</div>
             </a>
             </div>
