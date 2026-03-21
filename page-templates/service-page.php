@@ -13,7 +13,7 @@ get_header(); ?>
         <section class="page-hero">
             <div class="page-hero__container">
                 <div class="page-hero__content">
-                    <h1 class="page-hero__title">ПОДЪЁМНО-ГИЛЬОТИННОЕ</h1>
+                    <h1 class="page-hero__title">ПОДЪЁМНОЕ ГИЛЬОТИННОЕ</h1>
                     <h1 class="page-hero__title__second">ОСТЕКЛЕНИЕ В ВОРОНЕЖЕ:</h1>
                     <h2 class="page-hero__title__small">ЦЕНЫ, МОНТАЖ И ФОТО</h2>
                     <div class="hero__stats">
@@ -21,10 +21,11 @@ get_header(); ?>
                         <div class="hero__stat-item"><img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt=""><p>Комплектующие от европейских производителей</p></div>
                         <div class="hero__stat-item"><img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt=""><p>Прочные алюминиевые профили</p></div>
                         <div class="hero__stat-item"><img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt=""><p>Надежная автоматика</p></div>
-                    </div
-                    <div class="button__container__main" style="width: auto; text-align: left; padding-top: 0;">
+                        <div class="button__container__main" style="width: auto; text-align: left; padding-top: 50px;">
                         <button class="button__main call__open__form"><p class="button__text">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</p></button>
                     </div>
+</div>
+
                 </div>
             </div>
             <div class="page-hero__image" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/03/photo_2026-02-18_21-58-58-3-1.jpg');"></div>
@@ -53,10 +54,24 @@ get_header(); ?>
         <section class="solution">
             <div class="solution__container">
                 <h2 class="solution__title">
-                    СОВРЕМЕННОЕ РЕШЕНИЕ ДЛЯ ЧАСТНЫХ ДОМОВ<br> И ОБЩЕСТВЕННЫХ МЕСТ: <br><strong>ресторанов, кафе, офисных зданий и не только</strong>
+                    СОВРЕМЕННОЕ РЕШЕНИЕ <br><strong>для ресторанов, кафе, офисных зданий и не только</strong>
                 </h2>
                 <p class="solution__text">
                     Подъемное гильотинное остекление — автоматизированная система остекления с вертикальным открыванием для гибкого использования пространства. Управляется дистанционно со смартфона или планшета.
+                </p>
+                <br>
+                <p class="solution__text">
+                    По теплоизоляции гильотинное остекление зависит от типа используемого профиля и стеклопакета: 
+                </p>
+                <br>
+                <p class="solution__text__flex">
+                <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
+                «холодные» решения — с одинарным стеклом для сезонных веранд 
+            </p>
+            <br>
+                <p class="solution__text__flex">
+                <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
+                    «тёплые» системы — на терморазрывном алюминиевом профиле с двух- или трехкамерным стеклопакетом. Достигается уровень теплоизоляции, сопоставимый с современными оконными системами, и остекление можно использовать в отапливаемых помещениях круглый год. Герметичность обеспечивается за счет многоуровневых резиновых уплотнителей и точной подгонки створок в направляющих.
                 </p>
             </div>
         </section>
@@ -101,10 +116,15 @@ get_header(); ?>
         <!-- Технические характеристики и особенности -->
         <section class="specs-features">
             <div class="specs-features__container">
-                <h2 class="specs-features__section-title">ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ СИСТЕМЫ</h2>
-                <p class="specs-features__desc">Конструктив состоит из алюминиевого каркаса, двух направляющих, створок и короба для мотора.</p>
-
                 <div class="spec__flex">
+                    <div>
+                        <h2 class="specs-features__section-title">ТЕХНИЧЕСКИЕ</h2>
+                        <h2 class="specs-features__section-title">ХАРАКТЕРИСТИКИ</h2>
+                    </div>
+                    <p class="specs-features__desc">Конструктив состоит из алюминиевого каркаса, двух направляющих, створок и короба для мотора.</p>
+                </div>
+
+                <div class="spec__flex__second">
                 <div>
                 <h2 class="specs-features__section-title">ОСОБЕННОСТИ СИСТЕМЫ</h2>
                 <p class="specs-features__desc">Может иметь различные конфигурации, в зависимости от проекта и пожеланий заказчика:</p>
@@ -137,7 +157,6 @@ get_header(); ?>
                     <div class="feature__group">
                         <h4>по способу открытия-закрытия:</h4>
                         <div class="feature__tags">
-                            <span class="feature__tag">стационарная кнопка</span>
                             <span class="feature__tag">пульт</span>
                             <span class="feature__tag">датчики (движения, дождя и ветра)</span>
                         </div>
@@ -151,14 +170,61 @@ get_header(); ?>
         <section class="gallery">
             <div class="gallery__container">
                 <h2 class="section__title">МЫ ВЫПОЛНИЛИ 50+ ПРОЕКТОВ ПОДЪЕМНОГО ГИЛЬОТИННОГО ОСТЕКЛЕНИЯ</h2>
-                <div class="gallery__grid">
-                    <div class="gallery__item" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project1.jpg');"></div>
-                    <div class="gallery__item" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project2.jpg');"></div>
-                    <div class="gallery__item" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project3.jpg');"></div>
-                    <div class="gallery__item" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project4.jpg');"></div>
-                    <div class="gallery__item" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project5.jpg');"></div>
-                    <div class="gallery__item" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project6.jpg');"></div>
-                </div>
+</div>
+                <div class="flexslider">
+  <ul class="slides">
+    <li>
+      <div
+        class="gallery__item"
+        style="
+          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project1.jpg&quot;);
+        "
+      ></div>
+    </li>
+    <li>
+      <div
+        class="gallery__item"
+        style="
+          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project2.jpg&quot;);
+        "
+      ></div>
+    </li>
+    <li>
+      <div
+        class="gallery__item"
+        style="
+          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project3.jpg&quot;);
+        "
+      ></div>
+    </li>
+    <li>
+      <div
+        class="gallery__item"
+        style="
+          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project4.jpg&quot;);
+        "
+      ></div>
+    </li>
+    <li>
+      <div
+        class="gallery__item"
+        style="
+          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project5.jpg&quot;);
+        "
+      ></div>
+    </li>
+    <li>
+      <div
+        class="gallery__item"
+        style="
+          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project6.jpg&quot;);
+        "
+      ></div>
+    </li>
+  </ul>
+</div>
+<div class="gallery__container">
+
                 <!-- Блок с отзывами внутри галереи, как в ТЗ -->
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 40px;">
                     <div>

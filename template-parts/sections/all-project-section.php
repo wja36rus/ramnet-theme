@@ -24,11 +24,10 @@ $services = new WP_Query(array(
     <div class="project__wrapper">
             
 
-            <div class="project__left__columns">  
+            <div class="project__columns">  
             
             <?php if ( $services->have_posts() ) : ?>
             <?php 
-            $counter = 1;
             while ( $services->have_posts() ) : $services->the_post();
                                 
                 // Используем заголовок как название услуги
@@ -46,73 +45,24 @@ $services = new WP_Query(array(
                 
             ?>
 
-            <?php 
-            if($counter % 2 != 0):
-            ?>
             <?php $projects_page_url = get_permalink( 192 );?>
             <!-- Проект 1 -->
-            <div onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'" id="project<?php echo $counter;?>" style="background-image: url(<?php if (has_post_thumbnail()) {
+            <div onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'" style="background-image: url(<?php if (has_post_thumbnail()) {
                         $url = get_the_post_thumbnail_url();
                         echo $url;
-                    }?>)" class="project__card">
-                <div class="project__card__inset">
-                    <h1 class="project__about">
+                    }?>)" class="all__project__card">
+                <div class="all__project__card__inset">
+                    <h1 class="all__project__about">
                         <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
                     </h1>
                 </div>
             </div>
-            <?php endif; ?> 
-            <?php 
-                $counter++;
-            endwhile;
-            wp_reset_postdata();
-            ?>
-            <?php endif; ?>
             
-        </div>
-        <div class="project__right__columns">
-             <?php if ( $services->have_posts() ) : ?>
             <?php 
-            $counters = 1;
-            while ( $services->have_posts() ) : $services->the_post();
-                                
-                // Используем заголовок как название услуги
-                $service_title = get_the_title();
-
-                // Получаем мета-поля услуги
-                $location = get_post_meta( get_the_ID(), '_project_location', true );
-                $year = get_post_meta( get_the_ID(), '_project_year', true );
-
-                // Используем контент или отрывок как описание
-                $service_description = has_excerpt() ? get_the_excerpt() : get_the_content();
-                if ( empty($service_description) ) {
-                    $service_description = __( 'Панорамное остекление для комфортного отдыха в любое время года', 'ramnet' );
-                }
-                
-            ?>
-
-            <?php 
-            if($counters % 2 == 0):
-            ?>
-            <!-- Проект 1 -->
-            <div onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'" id="project<?php echo $counters;?>" style="background-image: url(<?php if (has_post_thumbnail()) {
-                        $url = get_the_post_thumbnail_url();
-                        echo $url;
-                    }?>)" class="project__card">
-                <div class="project__card__inset">
-                    <h1 class="project__about">
-                        <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
-                    </h1>
-                </div>
-            </div>
-
-            <?php endif; ?> 
-            <?php 
-                $counters++;
             endwhile;
             wp_reset_postdata();
             ?>
-            <?php endif; ?>
+        <?php endif; ?> 
         </div>
         </div>
     </div>

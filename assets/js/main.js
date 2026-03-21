@@ -394,4 +394,12 @@
     // Скрываем прелоадер если есть
     $("body").addClass("loaded");
   });
+
+  $('.flexslider').flexslider({
+    animation: "slide",
+    animationLoop: false,
+    itemWidth: 550,
+    itemMargin: 3
+  });
+  
 })(jQuery);

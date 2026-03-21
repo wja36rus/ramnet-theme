@@ -74,25 +74,23 @@ $services = new WP_Query(array(
                         
                 </div>
 
-                <div class="page__job__gallery">
-                    <div class="arrow__gallery"><</div>
-                <?php
-                    $gallery = get_post_gallery(get_the_ID(), false);
+               
+
+                <div class="flexslider">
+                    <ul class="slides">
+                        <?php
+                        $gallery = get_post_gallery(get_the_ID(), false);
                         if ($gallery):
-                            $count = 0;
-                            foreach($gallery['src'] as $value):
-                            $count++;
-                            if ($count >= 4) {
-                                break;
-                            }
-                    ?>
-                    <img src="<?= $value; ?>" class="page__job__gallery__image" alt="">
-                    <?php
+                            foreach($gallery['src'] as $value): ?>
+                            <li>
+                                <img src="<?= $value; ?>" class="page__job__gallery__image" alt="">
+                            </li>
+                        <?php
                         endforeach;
                         endif;
-                    ?>
-                    <div class="arrow__gallery">></div>
-            </div>
+                        ?>
+                    </ul>
+                </div>
             <?php 
                 $counter++;
             endwhile;
