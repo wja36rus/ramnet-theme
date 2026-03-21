@@ -9,7 +9,7 @@ $project_id = isset( $_GET['project_id'] ) ? intval( $_GET['project_id'] ) : 0;
 
 // Получаем услуги из базы данных
 $services = new WP_Query(array(
-    'post_type'      => 'ramnet_job',
+    'post_type'      => 'ramnet_project',
     'posts_per_page' => -1, 
     'orderby'        => 'meta_value_num',
     'order'          => 'ASC',
@@ -38,31 +38,61 @@ $services = new WP_Query(array(
                 }
                 
             ?>
-                <a class="page__job__back" href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная/Как остекляем/<?= $service_title;?></a>
-                <img class="page__service__card__bg" src="<?php 
-                    if (has_post_thumbnail()) {
-                        $url = get_the_post_thumbnail_url();
-                        echo $url;
-                    } 
-                ?>" alt="<?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>">
                 
-
                     <!-- Название услуги -->
                     <h4 class="page__service__card__title">
                         <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
                     </h4>
-                    
+                    <a href="" class="no__decoration">
+                    <div class="paje__job__back"><img class="page__service__back" src="https://static.tildacdn.com/tild6334-3239-4032-b166-633565623864/left.svg" alt="">Вернуться ко всем проектам</div>
+            </a>
+            </div>
+
+            <div class="paje__job__bg_project" style="background-image: url(<?php 
+                    if (has_post_thumbnail()) {
+                        $url = get_the_post_thumbnail_url();
+                        echo $url;
+                    } 
+                ?>)"></div>
                         
+                        <div class="page__job__container">
+
+                        <div class="page__job__about">
+                            <h1 class="page__job__about__title">О проекте</h1>
                         <!-- Описание -->
-                        <p class="page__service__card__text">
-                            <?php echo esc_html__( wp_strip_all_tags($service_description), 'ramnet' ); ?>
-                        </p>
-
+                        <div class="page__service__card__text">
+                            
+                            <?php
+                            $content = get_the_content();
+                            $content = preg_replace('/<img[^>]+>/', '', $content);
+                            $content = preg_replace('/<figure[^>]*>.*?<\/figure>/s', '', $content);
+                            echo apply_filters('the_content', $content);
+                            ?>
+                        </div>
+                        </div>
+                        </div>
                         
+                </div>
 
-
-
-            
+                <div class="page__job__gallery">
+                    <div class="arrow__gallery"><</div>
+                <?php
+                    $gallery = get_post_gallery(get_the_ID(), false);
+                        if ($gallery):
+                            $count = 0;
+                            foreach($gallery['src'] as $value):
+                            $count++;
+                            if ($count >= 4) {
+                                break;
+                            }
+                    ?>
+                    <img src="<?= $value; ?>" class="page__job__gallery__image" alt="">
+                    <?php
+                        endforeach;
+                        endif;
+                    ?>
+                    <div class="arrow__gallery">></div>
+            </div>
             <?php 
                 $counter++;
             endwhile;

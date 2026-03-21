@@ -129,5 +129,5 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
 <!-- Telegram иконка -->
 <div class="telegramm__to__go">
     <div class="telegramm__text"><?php echo esc_html__( 'Напишите нам', 'ramnet' ); ?></div>
-    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/telegramm.svg' ); ?>" alt="Telegram">
+    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/max.svg' ); ?>" alt="Telegram">
 </div>
