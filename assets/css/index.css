@@ -2342,3 +2342,25 @@ input.error {
 .flex-direction-nav a:before {
   color: white !important;
 }
+
+.flex-direction-nav a.flex-next:before {
+  content: " " !important;
+  width: 2rem;
+  height: 3rem;
+  background-image: url('../images/icon/arrow-left.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.flex-direction-nav a:before {
+  content: " " !important;
+  width: 2rem;
+  height: 3rem;
+  background-image: url('../images/icon/arrow-rigth.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.flex-control-paging li a {
+  border-radius: 0 !important;
+}
