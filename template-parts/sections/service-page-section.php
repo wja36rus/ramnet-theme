@@ -5,6 +5,7 @@
  *
  * @package RAMNET
  */
+$project_id = isset( $_GET['project_id'] ) ? intval( $_GET['project_id'] ) : 0;
 
 // Получаем услуги из базы данных
 $services = new WP_Query(array(
@@ -13,6 +14,7 @@ $services = new WP_Query(array(
     'orderby'        => 'meta_value_num',
     'order'          => 'ASC',
     'post_status'    => 'publish',
+    'p' => $project_id
 ));
 
 
