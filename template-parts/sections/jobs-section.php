@@ -48,14 +48,12 @@ $services = new WP_Query(array(
             $counters = 1;
             while ( $services->have_posts() ) : $services->the_post();
                                 
-                // Используем заголовок как название услуги
-                $service_title = get_the_title();
-                
-                // Используем контент или отрывок как описание
-                $service_description = has_excerpt() ? get_the_excerpt() : get_the_content();
-                if ( empty($service_description) ) {
-                    $service_description = __( 'Панорамное остекление для комфортного отдыха в любое время года', 'ramnet' );
-                }
+                // Получаем мета-поля услуги
+                $service_title = get_post_meta( get_the_ID(), '_job_title', true );
+                $service_description1 = get_post_meta( get_the_ID(), '_list_line_1', true );
+                $service_description2 = get_post_meta( get_the_ID(), '_list_line_2', true );
+                $service_description3 = get_post_meta( get_the_ID(), '_list_line_3', true );
+                $service_description4 = get_post_meta( get_the_ID(), '_list_line_4', true );
                 
             ?>
         <div id="jobs<?php echo $counters;?>" style="background-image: url(<?php if (has_post_thumbnail()) {
@@ -68,7 +66,18 @@ $services = new WP_Query(array(
                 </div>
                 <hr class="jobs__hr">
                 <div class="cards__text">
-                    <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
+                <?php if($service_description1):?>
+                    <?php echo esc_html__( wp_strip_all_tags($service_description1), 'ramnet' ); ?>
+                <?php endif; ?>
+                <?php if($service_description2):?>
+                    <?php echo esc_html__( wp_strip_all_tags($service_description2), 'ramnet' ); ?>
+                <?php endif; ?>
+                <?php if($service_description3):?>
+                    <?php echo esc_html__( wp_strip_all_tags($service_description3), 'ramnet' ); ?>
+                <?php endif; ?>
+                <?php if($service_description4):?>
+                    <?php echo esc_html__( wp_strip_all_tags($service_description4), 'ramnet' ); ?>
+                <?php endif; ?>
                 </div>
                 <?php $projects_page_url = get_permalink( 141 );?>
                 <div class="button__container__jobs">

@@ -4,23 +4,137 @@
  *
  * @package RAMNET
  */
+$project_id = isset( $_GET['project_id'] ) ? intval( $_GET['project_id'] ) : 0;
 
+ // Получаем услуги из базы данных
+ $services = new WP_Query(array(
+    'post_type'      => 'ramnet_job',
+    'orderby'        => 'meta_value_num',
+    'order'          => 'ASC',
+    'post_status'    => 'publish',
+    'p' => $project_id
+));
+
+// print_r($services);
 get_header(); ?>
 
     <main>
+        <?php
+        $headings = [];
+        $lists = [];
+        $group = [];
+        $paragraf = [];
+        $images = [];
+        $quote = [];
+
+        if ($services->have_posts()):
+            while ($services->have_posts()):
+                $services->the_post();
+                
+                $content = get_the_content();
+                
+                // Создаем DOMDocument
+                $dom = new DOMDocument();
+                libxml_use_internal_errors(true); // Подавляем ошибки HTML5
+                $dom->loadHTML('<?xml encoding="UTF-8">' . $content);
+                libxml_clear_errors();
+                
+                // Ищем все блоки с классом wp-block-heading
+                $xpath = new DOMXPath($dom);
+                $headingBlocks = $xpath->query('//*[contains(@class, "wp-block-heading")]');
+                $groupBlocks = $xpath->query('//*[contains(@class, "wp-block-group")]//p');
+                $quoteBlocks = $xpath->query('//*[contains(@class, "wp-block-quote")]//p');
+                $paragrafBlock = $xpath->query('//p');
+                $imgBlocks = $xpath->query('//img');
+                $listBlock = $xpath->query('//li');
+                
+                foreach ($headingBlocks as $block){
+                    $headings[] = [
+                        'text' => trim($block->textContent),
+                        'tag' => $block->tagName,
+                    ];
+                }
+
+                foreach ($quoteBlocks as $block){
+                    $quote[] = [
+                        'text' => trim($block->textContent),
+                        'tag' => $block->tagName,
+                    ];
+                }
+
+                foreach ($listBlock as $block){
+                    
+                    $lists[] = [
+                        'text' => trim($block->textContent),
+                        'tag' => $block->tagName,
+                    ];
+                }
+
+                foreach ($paragrafBlock as $block){
+                    $paragraf[] = [
+                        'text' => trim($block->textContent),
+                        'tag' => $block->tagName,
+                    ];
+                }
+
+                foreach ($groupBlocks as $block){
+                    $group[] = [
+                        'text' => trim($block->textContent),
+                        'tag' => $block->tagName,
+                    ];
+                }
+
+                foreach ($imgBlocks as $block){
+                    $src = $block->getAttribute('src');
+
+                    $images[] = [
+                        'src' => $src,
+                        'tag' => $block->tagName,
+                    ];
+                }
+
+
+        ?>
 
         <!-- 1-й экран -->
         <section class="page-hero">
             <div class="page-hero__container">
                 <div class="page-hero__content">
-                    <h1 class="page-hero__title">ПОДЪЕМНОЕ ГИЛЬОТИННОЕ</h1>
-                    <h1 class="page-hero__title__second">ОСТЕКЛЕНИЕ В ВОРОНЕЖЕ:</h1>
-                    <h2 class="page-hero__title__small">ЦЕНЫ, МОНТАЖ И ФОТО</h2>
+                    <h1 class="page-hero__title">
+                        <?php echo esc_html__( wp_strip_all_tags($headings[0]['text']), 'ramnet' ); ?>
+                    </h1>
+                    <h1 class="page-hero__title__second">
+                        <?php echo esc_html__( wp_strip_all_tags($headings[1]['text']), 'ramnet' ); ?>
+                    </h1>
+                    <h2 class="page-hero__title__small">
+                        <?php echo esc_html__( wp_strip_all_tags($paragraf[0]['text']), 'ramnet' ); ?>
+                    </h2>
                     <div class="hero__stats">
-                        <div class="hero__stat-item"><img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt=""><p>Установка «под ключ»</p></div>
-                        <div class="hero__stat-item"><img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt=""><p>Комплектующие от европейских производителей</p></div>
-                        <div class="hero__stat-item"><img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt=""><p>Прочные алюминиевые профили</p></div>
-                        <div class="hero__stat-item"><img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt=""><p>Надежная автоматика</p></div>
+                        <div class="hero__stat-item">
+                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                            <p>
+                                <?php echo esc_html__( wp_strip_all_tags($lists[0]['text']), 'ramnet' ); ?>
+                            </p>
+                        </div>
+                        <div class="hero__stat-item">
+                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                            <p>
+                                <?php echo esc_html__( wp_strip_all_tags($lists[1]['text']), 'ramnet' ); ?>
+                            </p>
+                        </div>
+                        <div class="hero__stat-item">
+                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                            <p>
+                                <?php echo esc_html__( wp_strip_all_tags($lists[2]['text']), 'ramnet' ); ?>
+                            </p>
+                        </div>
+                        <div class="hero__stat-item">
+                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                            <p>
+                                <?php echo esc_html__( wp_strip_all_tags($lists[3]['text']), 'ramnet' ); ?>
+                            </p>
+                        </div>
+
                         <div class="button__container__main" style="width: auto; text-align: left; padding-top: 50px;">
                         <button class="button__main call__open__form"><p class="button__text">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</p></button>
                     </div>
@@ -28,24 +142,30 @@ get_header(); ?>
 
                 </div>
             </div>
-            <div class="page-hero__image" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/03/photo_2026-02-18_21-58-58-3-1.jpg');"></div>
-            <span class="hero__lines">15 лет работы и 1 000+ благодарных клиентов</span>
-            <span class="hero__lines__second">15 лет работы и 1 000+ благодарных клиентов</span>
-            <span class="hero__lines__third">15 лет работы и 1 000+ благодарных клиентов</span>
+            <div class="page-hero__image" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags($images[0]['src']), 'ramnet' ); ?>');"></div>
+            <span class="hero__lines">
+                <?php echo esc_html__( wp_strip_all_tags($paragraf[1]['text']), 'ramnet' ); ?>
+            </span>
+            <span class="hero__lines__second">
+                <?php echo esc_html__( wp_strip_all_tags($paragraf[1]['text']), 'ramnet' ); ?>
+            </span>
+            <span class="hero__lines__third">
+                <?php echo esc_html__( wp_strip_all_tags($paragraf[1]['text']), 'ramnet' ); ?>
+            </span>
         </section>
 
         <section class="action">
             <div class="action__container">
         <div class="hero__promo">
-                        Цена снижена до 1 марта!
-                        <span>Успейте заказать по специальной цене</span>
+            <?php echo esc_html__( wp_strip_all_tags($group[0]['text']), 'ramnet' ); ?>
+            <span><?php echo esc_html__( wp_strip_all_tags($group[1]['text']), 'ramnet' ); ?></span>
                     
 
                     <div class="button__container__main" style="width: auto; text-align: center; padding-top: 20px;">
                         <button class="button__main__black call__open__form"><p class="button__text">ЗАКАЗАТЬ</p></button>
                     </div>
                     </div>
-                    <div class="page-hero__image__sale" style="background-image: url('https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/03/pngwingcom_3.png');"></div>
+                    <div class="page-hero__image__sale" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags($images[1]['src']), 'ramnet' ); ?>');"></div>
 
                     </div>
         </section>
@@ -54,25 +174,28 @@ get_header(); ?>
         <section class="solution">
             <div class="solution__container">
                 <h2 class="solution__title">
-                    СОВРЕМЕННОЕ РЕШЕНИЕ <br><strong>для ресторанов, кафе, офисных зданий и не только</strong>
+                <?php echo esc_html__( wp_strip_all_tags($headings[2]['text']), 'ramnet' ); ?>
+                <br>
+                <strong><?php echo esc_html__( wp_strip_all_tags($headings[3]['text']), 'ramnet' ); ?></strong>
                 </h2>
                 <p class="solution__text">
-                    Подъемное гильотинное остекление — автоматизированная система остекления с вертикальным открыванием для гибкого использования пространства. Управляется дистанционно со смартфона или планшета.
+                    <?php echo esc_html__( wp_strip_all_tags($paragraf[4]['text']), 'ramnet' ); ?>
                 </p>
                 <br>
                 <p class="solution__text">
-                    По теплоизоляции гильотинное остекление зависит от типа используемого профиля и стеклопакета: 
+                    <?php echo esc_html__( wp_strip_all_tags($paragraf[5]['text']), 'ramnet' ); ?>
                 </p>
                 <br>
+                
                 <p class="solution__text__flex">
-                <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                «холодные» решения — с одинарным стеклом для сезонных веранд 
-            </p>
-            <br>
-                <p class="solution__text__flex">
-                <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                    «теплые» системы — на терморазрывном алюминиевом профиле с двух- или трехкамерным стеклопакетом. Достигается уровень теплоизоляции, сопоставимый с современными оконными системами, и остекление можно использовать в отапливаемых помещениях круглый год. Герметичность обеспечивается за счет многоуровневых резиновых уплотнителей и точной подгонки створок в направляющих.
+                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
+                    <?php echo esc_html__( wp_strip_all_tags($lists[4]['text']), 'ramnet' ); ?>
                 </p>
+                    <br>
+                <p class="solution__text__flex">
+                <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
+                <?php echo esc_html__( wp_strip_all_tags($lists[5]['text']), 'ramnet' ); ?>
+            </p>
             </div>
         </section>
 
@@ -265,6 +388,8 @@ get_header(); ?>
             </div>
         </section>
 
+        <?php endwhile; ?>
+        <?php endif; ?>
     <?php
         get_template_part( 'template-parts/sections/form-service-section' );
     ?>

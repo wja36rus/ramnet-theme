@@ -73,6 +73,104 @@ function ramnet_register_jobs_cpt() {
 add_action( 'init', 'ramnet_register_jobs_cpt' );
 
 /**
+ * Add custom meta boxes for jobs
+ */
+function ramnet_add_job_meta_boxes() {
+    add_meta_box(
+        'ramnet_job_details',
+        __( 'Наполнение страницы услуги', 'ramnet' ),
+        'ramnet_job_details_callback',
+        'ramnet_job',
+        'normal',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes', 'ramnet_add_job_meta_boxes' );
+
+/**
+ * Job details meta box callback
+ */
+function ramnet_job_details_callback( $post ) {
+    wp_nonce_field( 'ramnet_job_details', 'ramnet_job_details_nonce' );
+    
+    // Основные поля
+    $job_title = get_post_meta( $post->ID, '_job_title', true );
+    
+    // Поля списка
+    $list_line_1 = get_post_meta( $post->ID, '_list_line_1', true );
+    $list_line_2 = get_post_meta( $post->ID, '_list_line_2', true );
+    $list_line_3 = get_post_meta( $post->ID, '_list_line_3', true );
+    $list_line_4 = get_post_meta( $post->ID, '_list_line_4', true );
+    ?>
+
+    <h3><?php _e( 'Основная информация', 'ramnet' ); ?></h3>
+    <p>
+        <label for="job_title"><?php _e( 'Заголовок:', 'ramnet' ); ?></label>
+        <input type="text" id="job_title" name="job_title" value="<?php echo esc_attr( $job_title ); ?>" class="widefat">
+    </p>
+
+    <h3><?php _e( 'Список', 'ramnet' ); ?></h3>
+    <p>
+        <label for="list_line_1"><?php _e( 'Список строка 1:', 'ramnet' ); ?></label>
+        <input type="text" id="list_line_1" name="list_line_1" value="<?php echo esc_attr( $list_line_1 ); ?>" class="widefat">
+    </p>
+    <p>
+        <label for="list_line_2"><?php _e( 'Список строка 2:', 'ramnet' ); ?></label>
+        <input type="text" id="list_line_2" name="list_line_2" value="<?php echo esc_attr( $list_line_2 ); ?>" class="widefat">
+    </p>
+    <p>
+        <label for="list_line_3"><?php _e( 'Список строка 3:', 'ramnet' ); ?></label>
+        <input type="text" id="list_line_3" name="list_line_3" value="<?php echo esc_attr( $list_line_3 ); ?>" class="widefat">
+    </p>
+    <p>
+        <label for="list_line_4"><?php _e( 'Список строка 4:', 'ramnet' ); ?></label>
+        <input type="text" id="list_line_4" name="list_line_4" value="<?php echo esc_attr( $list_line_4 ); ?>" class="widefat">
+    </p>
+
+<?php
+}
+
+/**
+ * Save job meta box data
+ */
+function ramnet_save_job_meta( $post_id ) {
+    
+    if ( ! isset( $_POST['ramnet_job_details_nonce'] ) ) {
+        return;
+    }
+    
+    if ( ! wp_verify_nonce( $_POST['ramnet_job_details_nonce'], 'ramnet_job_details' ) ) {
+        return;
+    }
+    
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+    
+    $fields = array(
+        // Основные поля
+        'job_title',
+        
+        // Поля списка
+        'list_line_1',
+        'list_line_2',
+        'list_line_3',
+        'list_line_4',
+    );
+    
+    foreach ( $fields as $field ) {
+        if ( isset( $_POST[$field] ) ) {
+            update_post_meta( $post_id, '_' . $field, sanitize_text_field( $_POST[$field] ) );
+        }
+    }
+}
+add_action( 'save_post_ramnet_job', 'ramnet_save_job_meta' );
+
+/**
  * Modify columns in jobs list
  */
 function ramnet_job_columns( $columns ) {
@@ -80,7 +178,6 @@ function ramnet_job_columns( $columns ) {
         'cb'         => '<input type="checkbox" />',
         'title'      => __( 'Название услуги', 'ramnet' ),
         'thumbnail' => __( 'Изображение', 'ramnet' ),
-
     );
 }
 add_filter( 'manage_ramnet_job_posts_columns', 'ramnet_job_columns' );
@@ -89,7 +186,7 @@ add_filter( 'manage_ramnet_job_posts_columns', 'ramnet_job_columns' );
  * Display custom column data for jobs
  */
 function ramnet_job_custom_column( $column, $post_id ) {
-    switch ( $column ) { 
+    switch ( $column ) {
         case 'thumbnail':
             if ( has_post_thumbnail( $post_id ) ) {
                 echo get_the_post_thumbnail( $post_id, 'thumbnail' );

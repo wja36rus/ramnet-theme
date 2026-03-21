@@ -72,6 +72,7 @@ function ramnet_register_projects_cpt() {
         'taxonomies'          => array( 'project_category' ),
     );
     
+    
     register_post_type( 'ramnet_project', $args );
 }
 add_action( 'init', 'ramnet_register_projects_cpt' );
