@@ -20,12 +20,10 @@ get_header(); ?>
 
     <main>
         <?php
-        $headings = [];
-        $lists = [];
-        $group = [];
-        $paragraf = [];
-        $images = [];
-        $quote = [];
+        $body = [];
+        // $lists = [];
+        // $paragraf = [];
+        // $images = [];
 
         if ($services->have_posts()):
             while ($services->have_posts()):
@@ -41,58 +39,75 @@ get_header(); ?>
                 
                 // Ищем все блоки с классом wp-block-heading
                 $xpath = new DOMXPath($dom);
-                $headingBlocks = $xpath->query('//*[contains(@class, "wp-block-heading")]');
-                $groupBlocks = $xpath->query('//*[contains(@class, "wp-block-group")]//p');
-                $quoteBlocks = $xpath->query('//*[contains(@class, "wp-block-quote")]//p');
-                $paragrafBlock = $xpath->query('//p');
-                $imgBlocks = $xpath->query('//img');
-                $listBlock = $xpath->query('//li');
+                // $headingBlocks = $xpath->query('//*[contains(@class, "wp-block-heading")]');
+                // $paragrafBlock = $xpath->query('//p');
+                // $imgBlocks = $xpath->query('//img');
+                // $listBlock = $xpath->query('//li');
                 
-                foreach ($headingBlocks as $block){
-                    $headings[] = [
-                        'text' => trim($block->textContent),
-                        'tag' => $block->tagName,
-                    ];
-                }
+                $combined_query = '//*[contains(@class, "wp-block-heading")] | ' .
+                      '//img | ' .
+                      '//li | ' .
+                      '//p';
 
-                foreach ($quoteBlocks as $block){
-                    $quote[] = [
-                        'text' => trim($block->textContent),
-                        'tag' => $block->tagName,
-                    ];
-                }
+                $elements = $xpath->query($combined_query);
 
-                foreach ($listBlock as $block){
-                    
-                    $lists[] = [
-                        'text' => trim($block->textContent),
-                        'tag' => $block->tagName,
-                    ];
-                }
-
-                foreach ($paragrafBlock as $block){
-                    $paragraf[] = [
-                        'text' => trim($block->textContent),
-                        'tag' => $block->tagName,
-                    ];
-                }
-
-                foreach ($groupBlocks as $block){
-                    $group[] = [
-                        'text' => trim($block->textContent),
-                        'tag' => $block->tagName,
-                    ];
-                }
-
-                foreach ($imgBlocks as $block){
+                foreach ($elements as $block){
                     $src = $block->getAttribute('src');
 
-                    $images[] = [
-                        'src' => $src,
+                    $body[] = [
+                        'text' => trim($block->textContent),
                         'tag' => $block->tagName,
+                        'src' => $src,
                     ];
                 }
 
+                
+                // foreach ($listBlock as $block){
+                    
+                //     $lists[] = [
+                //         'text' => trim($block->textContent),
+                //         'tag' => $block->tagName,
+                //     ];
+                // }
+
+                // foreach ($paragrafBlock as $block){
+                //     $paragraf[] = [
+                //         'text' => trim($block->textContent),
+                //         'tag' => $block->tagName,
+                //     ];
+                // }
+
+
+                // foreach ($imgBlocks as $block){
+                //     $src = $block->getAttribute('src');
+
+                //     $images[] = [
+                //         'src' => $src,
+                //         'tag' => $block->tagName,
+                //     ];
+                // }
+
+                $count = 0;
+
+
+                function findFirstByTag(&$array, $searchTag) {
+                    foreach ($array as $key => $item) {
+                        if (isset($item['tag']) && $item['tag'] === $searchTag) {
+                            if ($searchTag === 'img') {
+                                unset($array[$key]);
+                                $array = array_values($array);
+
+                                return $item['src'];
+                            } else {
+                                unset($array[$key]);
+                                $array = array_values($array);
+
+                                return $item['text'];
+                            }
+                        }
+                    }
+                    return null; // Если элемент не найден
+                }
 
         ?>
 
@@ -101,37 +116,37 @@ get_header(); ?>
             <div class="page-hero__container">
                 <div class="page-hero__content">
                     <h1 class="page-hero__title">
-                        <?php echo esc_html__( wp_strip_all_tags($headings[0]['text']), 'ramnet' ); ?>
+                        <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?>
                     </h1>
                     <h1 class="page-hero__title__second">
-                        <?php echo esc_html__( wp_strip_all_tags($headings[1]['text']), 'ramnet' ); ?>
+                        <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?>
                     </h1>
                     <h2 class="page-hero__title__small">
-                        <?php echo esc_html__( wp_strip_all_tags($paragraf[0]['text']), 'ramnet' ); ?>
+                        <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?>
                     </h2>
                     <div class="hero__stats">
                         <div class="hero__stat-item">
                             <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                             <p>
-                                <?php echo esc_html__( wp_strip_all_tags($lists[0]['text']), 'ramnet' ); ?>
+                                <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?>
                             </p>
                         </div>
                         <div class="hero__stat-item">
                             <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                             <p>
-                                <?php echo esc_html__( wp_strip_all_tags($lists[1]['text']), 'ramnet' ); ?>
+                                <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?>
                             </p>
                         </div>
                         <div class="hero__stat-item">
                             <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                             <p>
-                                <?php echo esc_html__( wp_strip_all_tags($lists[2]['text']), 'ramnet' ); ?>
+                                <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?>
                             </p>
                         </div>
                         <div class="hero__stat-item">
                             <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                             <p>
-                                <?php echo esc_html__( wp_strip_all_tags($lists[3]['text']), 'ramnet' ); ?>
+                                <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?>
                             </p>
                         </div>
 
@@ -142,30 +157,34 @@ get_header(); ?>
 
                 </div>
             </div>
-            <div class="page-hero__image" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags($images[0]['src']), 'ramnet' ); ?>');"></div>
+            <div class="page-hero__image" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>');"></div>
             <span class="hero__lines">
-                <?php echo esc_html__( wp_strip_all_tags($paragraf[1]['text']), 'ramnet' ); ?>
+                <?php $line = findFirstByTag($body, 'p');
+                echo esc_html__( wp_strip_all_tags($line), 'ramnet' ); ?>
             </span>
             <span class="hero__lines__second">
-                <?php echo esc_html__( wp_strip_all_tags($paragraf[1]['text']), 'ramnet' ); ?>
+                <?php echo esc_html__( wp_strip_all_tags($line), 'ramnet' ); ?>
             </span>
             <span class="hero__lines__third">
-                <?php echo esc_html__( wp_strip_all_tags($paragraf[1]['text']), 'ramnet' ); ?>
+                <?php echo esc_html__( wp_strip_all_tags($line), 'ramnet' ); ?>
             </span>
         </section>
+
+
 
         <section class="action">
             <div class="action__container">
         <div class="hero__promo">
-            <?php echo esc_html__( wp_strip_all_tags($group[0]['text']), 'ramnet' ); ?>
-            <span><?php echo esc_html__( wp_strip_all_tags($group[1]['text']), 'ramnet' ); ?></span>
+            <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?>
+            <span><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></span>
                     
 
-                    <div class="button__container__main" style="width: auto; text-align: center; padding-top: 20px;">
+ <div class="button__container__main" style="width: auto; text-align: center; padding-top: 20px;">
                         <button class="button__main__black call__open__form"><p class="button__text">ЗАКАЗАТЬ</p></button>
                     </div>
+
                     </div>
-                    <div class="page-hero__image__sale" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags($images[1]['src']), 'ramnet' ); ?>');"></div>
+                    <div class="page-hero__image__sale" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>');"></div>
 
                     </div>
         </section>
@@ -174,27 +193,27 @@ get_header(); ?>
         <section class="solution">
             <div class="solution__container">
                 <h2 class="solution__title">
-                <?php echo esc_html__( wp_strip_all_tags($headings[2]['text']), 'ramnet' ); ?>
+                <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?>
                 <br>
-                <strong><?php echo esc_html__( wp_strip_all_tags($headings[3]['text']), 'ramnet' ); ?></strong>
+                <strong><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></strong>
                 </h2>
                 <p class="solution__text">
-                    <?php echo esc_html__( wp_strip_all_tags($paragraf[4]['text']), 'ramnet' ); ?>
+                    <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?>
                 </p>
                 <br>
                 <p class="solution__text">
-                    <?php echo esc_html__( wp_strip_all_tags($paragraf[5]['text']), 'ramnet' ); ?>
+                    <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?>
                 </p>
                 <br>
                 
                 <p class="solution__text__flex">
                     <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                    <?php echo esc_html__( wp_strip_all_tags($lists[4]['text']), 'ramnet' ); ?>
+                    <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?>
                 </p>
                     <br>
                 <p class="solution__text__flex">
                 <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                <?php echo esc_html__( wp_strip_all_tags($lists[5]['text']), 'ramnet' ); ?>
+                <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?>
             </p>
             </div>
         </section>
@@ -202,34 +221,38 @@ get_header(); ?>
         <!-- ПОЧЕМУ ВЫБИРАЮТ -->
         <section class="benefits">
             <div class="benefits__container">
-                <h2 class="section__title">ПОЧЕМУ ВЫБИРАЮТ <br>ПОДЪЕМНОЕ ГИЛЬОТИННОЕ ОСТЕКЛЕНИЕ?</h2>
+                <h2 class="section__title">
+                    <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?>
+                    <br>
+                    <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?>
+                </h2>
                 <div class="benefits__grid">
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
                         <div class="benefit__content">
-                            <h3>Максимум света и воздуха</h3>
-                            <p>Полное открытие террасы одним движением</p>
+                            <h3><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h3>
+                            <p><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></p>
                         </div>
                     </div>
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                         <div class="benefit__content">
-                            <h3>Комфорт и защита</h3>
-                            <p>Усиленные стеклопакеты. Герметичность. Тепло и шумоизоляция. Тонировка. Автоматика на пульте или смартфоне, поддерживает подключение к системе «Умный дом»</p>
+                            <h3><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h3>
+                            <p><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></p>
                         </div>
                     </div>
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                         <div class="benefit__content">
-                            <h3>Функциональность</h3>
-                            <p>Конструкции удобны в эксплуатации. Долговечны и подходят для круглогодичного использования</p>
+                            <h3><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h3>
+                            <p><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></p>
                         </div>
                     </div>
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
                         <div class="benefit__content">
-                            <h3>Эстетика премиум-класса</h3>
-                            <p>Минималистичный дизайн сочетается с любым архитектурным стилем. Нет видимых элементов крепления</p>
+                            <h3><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h3>
+                            <p><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></p>
                         </div>
                     </div>
                 </div>
@@ -241,47 +264,47 @@ get_header(); ?>
             <div class="specs-features__container">
                 <div class="spec__flex">
                     <div>
-                        <h2 class="specs-features__section-title">ТЕХНИЧЕСКИЕ</h2>
-                        <h2 class="specs-features__section-title">ХАРАКТЕРИСТИКИ</h2>
+                        <h2 class="specs-features__section-title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h2>
+                        <h2 class="specs-features__section-title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h2>
                     </div>
-                    <p class="specs-features__desc">Конструктив состоит из алюминиевого каркаса, двух направляющих, створок и короба для мотора.</p>
+                    <p class="specs-features__desc">К<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></p>
                 </div>
 
                 <div class="spec__flex__second">
                 <div>
-                <h2 class="specs-features__section-title">ОСОБЕННОСТИ СИСТЕМЫ</h2>
-                <p class="specs-features__desc">Может иметь различные конфигурации, в зависимости от проекта и пожеланий заказчика:</p>
+                <h2 class="specs-features__section-title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h2>
+                <p class="specs-features__desc"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></p>
                 </div>
 
                 <div class="features__list">
                     <div class="feature__group">
-                        <h4>по количеству створок:</h4>
+                        <h4><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag">2 створки</span>
-                            <span class="feature__tag">3 створки</span>
-                            <span class="feature__tag">4 створки</span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
                         </div>
                     </div>
                     <div class="feature__group">
-                        <h4>по варианту парковки:</h4>
+                        <h4><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag">верхняя</span>
-                            <span class="feature__tag">нижняя</span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
                         </div>
                     </div>
                     <div class="feature__group">
-                        <h4>по варианту монтажа:</h4>
+                        <h4><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag">в проем</span>
-                            <span class="feature__tag">скрыта в пол</span>
-                            <span class="feature__tag">скрыта в потолок</span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
                         </div>
                     </div>
                     <div class="feature__group">
-                        <h4>по способу открытия-закрытия:</h4>
+                        <h4><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag">пульт</span>
-                            <span class="feature__tag">датчики (движения, дождя и ветра)</span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
+                            <span class="feature__tag"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></span>
                         </div>
                     </div>
                 </div>
@@ -292,7 +315,7 @@ get_header(); ?>
         <!-- Галерея проектов -->
         <section class="gallery">
             <div class="gallery__container">
-                <h2 class="section__title">МЫ ВЫПОЛНИЛИ 50+ ПРОЕКТОВ ПОДЪЕМНОГО ГИЛЬОТИННОГО ОСТЕКЛЕНИЯ</h2>
+                <h2 class="section__title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?><br><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h2>
 </div>
                 <div class="flexslider">
   <ul class="slides">
@@ -300,7 +323,7 @@ get_header(); ?>
       <div
         class="gallery__item"
         style="
-          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project1.jpg&quot;);
+          background-image: url(<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>);
         "
       ></div>
     </li>
@@ -308,7 +331,7 @@ get_header(); ?>
       <div
         class="gallery__item"
         style="
-          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project2.jpg&quot;);
+          background-image: url(<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>);
         "
       ></div>
     </li>
@@ -316,7 +339,7 @@ get_header(); ?>
       <div
         class="gallery__item"
         style="
-          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project3.jpg&quot;);
+          background-image: url(<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>);
         "
       ></div>
     </li>
@@ -324,7 +347,7 @@ get_header(); ?>
       <div
         class="gallery__item"
         style="
-          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project4.jpg&quot;);
+          background-image: url(<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>);
         "
       ></div>
     </li>
@@ -332,7 +355,7 @@ get_header(); ?>
       <div
         class="gallery__item"
         style="
-          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project5.jpg&quot;);
+          background-image: url(<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>);
         "
       ></div>
     </li>
@@ -340,7 +363,7 @@ get_header(); ?>
       <div
         class="gallery__item"
         style="
-          background-image: url(&quot;https://ramnet-wordpress-cy18w.tw1.ru/wp-content/uploads/2026/02/project6.jpg&quot;);
+          background-image: url(<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>);
         "
       ></div>
     </li>
@@ -351,10 +374,11 @@ get_header(); ?>
                 <!-- Блок с отзывами внутри галереи, как в ТЗ -->
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 40px;">
                     <div>
-                        <h3 style="color: white; font-size: 26px; font-weight: 400; font-style: italic; max-width: 700px;">«Ребята сделали все идеально, строго в оговорённые сроки», — пишут клиенты</h3>
-                        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;">Смотрите и читайте все отзывы наших клиентов</p>
+                        <h3 style="color: white; font-size: 26px; font-weight: 400; font-style: italic; max-width: 700px;">
+                        <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?></h3>
+                        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></p>
                     </div>
-                    <a href="#people" style="text-decoration: none;"><button class="button__main"><p class="button__text">ОТЗЫВЫ</p></button></a>
+                    <a href="<?= home_url()?>/#people" style="text-decoration: none;"><button class="button__main"><p class="button__text">ОТЗЫВЫ</p></button></a>
                 </div>
             </div>
         </section>
@@ -362,37 +386,66 @@ get_header(); ?>
         <!-- Как мы работаем -->
         <section class="work-steps">
             <div class="work-steps__container">
-                <h2 class="section__title">КАК МЫ РАБОТАЕМ?</h2>
+                <h2 class="section__title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?>?</h2>
                 <div class="steps__grid">
                     <div class="step__card">
-                        <div class="step__number">01</div>
-                        <div class="step__title">Встреча-знакомство</div>
-                        <div class="step__desc">Уточняем цели, задачи, бюджет и сроки. Заключаем договор подряда. Производим замеры за 1 день. Предоставляем детальный сметный расчет без скрытых платежей.</div>
+                        <div class="step__number"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__desc"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
                     </div>
                     <div class="step__card">
-                        <div class="step__number">02</div>
-                        <div class="step__title">Изготовление конструкций</div>
-                        <div class="step__desc">Разрабатываем индивидуальный проект за 5 дней. Исходим из точных расчетов и находим оптимальные решения. Закупаем комплектующие у лидеров рынка.</div>
+                        <div class="step__number"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__desc"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
                     </div>
                     <div class="step__card">
-                        <div class="step__number">03</div>
-                        <div class="step__title">Монтаж</div>
-                        <div class="step__desc">Делаем с вниманием к деталям. Выполняем работу за 3-5 дней. Не оставляем после себя никакой грязи.</div>
+                        <div class="step__number"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__desc"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
                     </div>
                     <div class="step__card">
-                        <div class="step__number">04</div>
-                        <div class="step__title">Тестирование и сдача</div>
-                        <div class="step__desc">Сдаем объект по акту. Проводим инструктаж. Даем гарантию 12 месяцев.</div>
+                        <div class="step__number"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__title"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
+                        <div class="step__desc"><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'li')), 'ramnet' ); ?></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section class="form">
+    <div class="form__container">
+        <div class="form__inner">
+
+
+            <h1 class="form__title__second">
+            <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?><br>
+            <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'h2')), 'ramnet' ); ?><br>
+            </h1>
+
+            <form id="form" novalidate>
+                <input type="text" name="username" class="form__input"
+                    placeholder="<?php echo esc_attr__( 'Имя', 'ramnet' ); ?>">
+                <input name="phone" type="text" class="form__input phone-mask" placeholder="+7">
+                <span>
+                    <?php echo esc_html__('Нажимая на кнопку, Вы даете согласие ');?><br>
+                    <?php echo esc_html__('на обработку персональных данных');?>
+                </span>
+                <div class="button__container__project">
+                    <button id="form__submit" class="button__main">
+                        <p class="button__text"><?php echo esc_html__( 'РАССЧИТАТЬ СТОИМОСТЬ', 'ramnet' ); ?></p>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+        <?php  $img = findFirstByTag($body, 'img');?>
+        <img class="form__images" src="<?php echo esc_html__( wp_strip_all_tags($img), 'ramnet' ); ?>" alt="">
+        <img class="form__images__fon" src="<?php echo esc_html__( wp_strip_all_tags($img), 'ramnet' ); ?>" alt="">
+    </div>
+</section>
+
         <?php endwhile; ?>
         <?php endif; ?>
-    <?php
-        get_template_part( 'template-parts/sections/form-service-section' );
-    ?>
 
     </main>
 

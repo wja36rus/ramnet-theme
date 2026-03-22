@@ -1540,6 +1540,7 @@ body {
   bottom: 0;
   right: 0;
   z-index: 1;
+  height: 100%;
 }
 
 .form__inner {
@@ -2363,4 +2364,13 @@ input.error {
 
 .flex-control-paging li a {
   border-radius: 0 !important;
+}
+
+.form__images__fon {
+    position: absolute;
+    bottom: 0;
+    right: 6rem;
+    z-index: 0;
+    height: 100%;
+    filter: blur(2rem);
 }
