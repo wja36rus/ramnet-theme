@@ -431,7 +431,7 @@ get_header(); ?>
                     <?php echo esc_html__('на обработку персональных данных');?>
                 </span>
                 <div class="button__container__project">
-                    <button id="form__submit" class="button__main">
+                    <button id="form__submit" class="button__main call__open__form">
                         <p class="button__text"><?php echo esc_html__( 'РАССЧИТАТЬ СТОИМОСТЬ', 'ramnet' ); ?></p>
                     </button>
                 </div>

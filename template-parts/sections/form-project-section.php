@@ -16,7 +16,7 @@
             </h1>
 
 
-                    <button id="form__submit" class="button__main">
+                    <button id="form__submit" class="button__main call__open__form">
                         <p class="button__text"><?php echo esc_html__( 'РАССЧИТАТЬ СТОИМОСТЬ', 'ramnet' ); ?></p>
                     </button>
 

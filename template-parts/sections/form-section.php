@@ -43,7 +43,7 @@
                     <?php echo esc_html__('на обработку персональных данных');?>
                 </span>
                 <div class="button__container__project">
-                    <button id="form__submit" class="button__main">
+                    <button id="form__submit" class="button__main ">
                         <p class="button__text"><?php echo esc_html__( 'НАЧАТЬ ПРОЕКТ', 'ramnet' ); ?></p>
                     </button>
                 </div>
