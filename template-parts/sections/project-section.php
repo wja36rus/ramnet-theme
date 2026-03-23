@@ -8,7 +8,7 @@
  // Получаем услуги из базы данных
 $services = new WP_Query(array(
     'post_type'      => 'ramnet_project',
-    'posts_per_page' => -1, // Показываем все услуги
+    'posts_per_page' => 6, // Показываем 6 услуг
     'orderby'        => 'meta_value_num',
     'order'          => 'ASC',
     'post_status'    => 'publish',

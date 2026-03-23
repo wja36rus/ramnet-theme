@@ -174,18 +174,16 @@ get_header(); ?>
 
         <section class="action">
             <div class="action__container">
-        <div class="hero__promo">
+        <div class="hero__promo" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>');">
             <?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?>
             <span><?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'p')), 'ramnet' ); ?></span>
                     
 
- <div class="button__container__main" style="width: auto; text-align: center; padding-top: 20px;">
+ <div class="button__container__main" style="width: 50%; text-align: center; padding-top: 20px;">
                         <button class="button__main__black call__open__form"><p class="button__text">ЗАКАЗАТЬ</p></button>
                     </div>
 
                     </div>
-                    <div class="page-hero__image__sale" style="background-image: url('<?php echo esc_html__( wp_strip_all_tags(findFirstByTag($body, 'img')), 'ramnet' ); ?>');"></div>
-
                     </div>
         </section>
 

@@ -1927,6 +1927,11 @@ input.error {
   font-size: 25px;
   font-weight: 600;
   color: black;
+  width: 100%;
+  text-align: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 .hero__promo span {
   color: #000000;
