@@ -1,91 +1,85 @@
-$pageData = [
-'job_title' => get_post_meta( get_the_ID(), '_job_title', true ),
-'job_title_second' => get_post_meta( get_the_ID(), '_job_title_second', true ),
-'job_subtitle' => get_post_meta( get_the_ID(), '_job_subtitle', true ),
-'list_line_1' => get_post_meta( get_the_ID(), '_list_line_1', true ),
-'list_line_2' => get_post_meta( get_the_ID(), '_list_line_2', true ),
-'list_line_3' => get_post_meta( get_the_ID(), '_list_line_3', true ),
-'list_line_4' => get_post_meta( get_the_ID(), '_list_line_4', true ),
-'running_line' => get_post_meta( get_the_ID(), '_running_line', true ),
-'promotion_date' => get_post_meta( get_the_ID(), '_promotion_date', true ),
-'call_to_purchase' => get_post_meta( get_the_ID(), '_call_to_purchase', true ),
-'description_title' => get_post_meta( get_the_ID(), '_description_title', true ),
-'description_subtitle' => get_post_meta( get_the_ID(), '_description_subtitle', true ),
-'description_paragraph' => get_post_meta( get_the_ID(), '_description_paragraph', true ),
-'service_types' => get_post_meta( get_the_ID(), '_service_types', true ),
-'type_1' => get_post_meta( get_the_ID(), '_type_1', true ),
-'type_2' => get_post_meta( get_the_ID(), '_type_2', true ),
-'questions_title' => get_post_meta( get_the_ID(), '_questions_title', true ),
-'answer_1' => get_post_meta( get_the_ID(), '_answer_1', true ),
-'answer_1_explanation' => get_post_meta( get_the_ID(), '_answer_1_explanation', true ),
-'answer_2' => get_post_meta( get_the_ID(), '_answer_2', true ),
-'answer_2_explanation' => get_post_meta( get_the_ID(), '_answer_2_explanation', true ),
-'answer_3' => get_post_meta( get_the_ID(), '_answer_3', true ),
-'answer_3_explanation' => get_post_meta( get_the_ID(), '_answer_3_explanation', true ),
-'answer_4' => get_post_meta( get_the_ID(), '_answer_4', true ),
-'answer_4_explanation' => get_post_meta( get_the_ID(), '_answer_4_explanation', true ),
-'characteristics' => get_post_meta( get_the_ID(), '_characteristics', true ),
-'characteristics_second_line' => get_post_meta( get_the_ID(), '_characteristics_second_line', true ),
-'specifications_description' => get_post_meta( get_the_ID(), '_specifications_description', true ),
-'features' => get_post_meta( get_the_ID(), '_features', true ),
-'features_second_line' => get_post_meta( get_the_ID(), '_features_second_line', true ),
-'features_description' => get_post_meta( get_the_ID(), '_features_description', true ),
-'features_description_about_1' => get_post_meta( get_the_ID(), '_features_description_about_1', true ),
-'features_description_about_1_text_1' => get_post_meta( get_the_ID(), '_features_description_about_1_text_1', true ),
-'features_description_about_1_text_2' => get_post_meta( get_the_ID(), '_features_description_about_1_text_2', true ),
-'features_description_about_1_text_3' => get_post_meta( get_the_ID(), '_features_description_about_1_text_3', true ),
-'features_description_about_1_text_4' => get_post_meta( get_the_ID(), '_features_description_about_1_text_4', true ),
-'features_description_about_1_text_5' => get_post_meta( get_the_ID(), '_features_description_about_1_text_5', true ),
-'features_description_about_1_text_6' => get_post_meta( get_the_ID(), '_features_description_about_1_text_6', true ),
-'features_description_about_2' => get_post_meta( get_the_ID(), '_features_description_about_2', true ),
-'features_description_about_2_text_1' => get_post_meta( get_the_ID(), '_features_description_about_2_text_1', true ),
-'features_description_about_2_text_2' => get_post_meta( get_the_ID(), '_features_description_about_2_text_2', true ),
-'features_description_about_2_text_3' => get_post_meta( get_the_ID(), '_features_description_about_2_text_3', true ),
-'features_description_about_2_text_4' => get_post_meta( get_the_ID(), '_features_description_about_2_text_4', true ),
-'features_description_about_2_text_5' => get_post_meta( get_the_ID(), '_features_description_about_2_text_5', true ),
-'features_description_about_2_text_6' => get_post_meta( get_the_ID(), '_features_description_about_2_text_6', true ),
-'features_description_about_3' => get_post_meta( get_the_ID(), '_features_description_about_3', true ),
-'features_description_about_3_text_1' => get_post_meta( get_the_ID(), '_features_description_about_3_text_1', true ),
-'features_description_about_3_text_2' => get_post_meta( get_the_ID(), '_features_description_about_3_text_2', true ),
-'features_description_about_3_text_3' => get_post_meta( get_the_ID(), '_features_description_about_3_text_3', true ),
-'features_description_about_3_text_4' => get_post_meta( get_the_ID(), '_features_description_about_3_text_4', true ),
-'features_description_about_3_text_5' => get_post_meta( get_the_ID(), '_features_description_about_3_text_5', true ),
-'features_description_about_3_text_6' => get_post_meta( get_the_ID(), '_features_description_about_3_text_6', true ),
-'features_description_about_4' => get_post_meta( get_the_ID(), '_features_description_about_4', true ),
-'features_description_about_4_text_1' => get_post_meta( get_the_ID(), '_features_description_about_4_text_1', true ),
-'features_description_about_4_text_2' => get_post_meta( get_the_ID(), '_features_description_about_4_text_2', true ),
-'features_description_about_4_text_3' => get_post_meta( get_the_ID(), '_features_description_about_4_text_3', true ),
-'features_description_about_4_text_4' => get_post_meta( get_the_ID(), '_features_description_about_4_text_4', true ),
-'features_description_about_4_text_5' => get_post_meta( get_the_ID(), '_features_description_about_4_text_5', true ),
-'features_description_about_4_text_6' => get_post_meta( get_the_ID(), '_features_description_about_4_text_6', true ),
-'features_description_about_5' => get_post_meta( get_the_ID(), '_features_description_about_5', true ),
-'features_description_about_5_text_1' => get_post_meta( get_the_ID(), '_features_description_about_5_text_1', true ),
-'features_description_about_5_text_2' => get_post_meta( get_the_ID(), '_features_description_about_5_text_2', true ),
-'features_description_about_5_text_3' => get_post_meta( get_the_ID(), '_features_description_about_5_text_3', true ),
-'features_description_about_5_text_4' => get_post_meta( get_the_ID(), '_features_description_about_5_text_4', true ),
-'features_description_about_5_text_5' => get_post_meta( get_the_ID(), '_features_description_about_5_text_5', true ),
-'features_description_about_5_text_6' => get_post_meta( get_the_ID(), '_features_description_about_5_text_6', true ),
-'gallery_title' => get_post_meta( get_the_ID(), '_gallery_title', true ),
-'gallery_title_second' => get_post_meta( get_the_ID(), '_gallery_title_second', true ),
-'people_answer_say' => get_post_meta( get_the_ID(), '_people_answer_say', true ),
-'people_answer_text' => get_post_meta( get_the_ID(), '_people_answer_text', true ),
-'how_we_work_1' => get_post_meta( get_the_ID(), '_how_we_work_1', true ),
-'how_we_work_1_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_1', true ),
-'how_we_work_1_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_2', true ),
-'how_we_work_1_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_3', true ),
-'how_we_work_1_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_4', true ),
-'how_we_work_2_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_1', true ),
-'how_we_work_2_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_2', true ),
-'how_we_work_2_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_3', true ),
-'how_we_work_2_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_4', true ),
-'how_we_work_3_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_1', true ),
-'how_we_work_3_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_2', true ),
-'how_we_work_3_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_3', true ),
-'how_we_work_3_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_4', true ),
-'how_we_work_4_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_1', true ),
-'how_we_work_4_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_2', true ),
-'how_we_work_4_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_3', true ),
-'how_we_work_4_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_4', true ),
-'form_title' => get_post_meta( get_the_ID(), '_form_title', true ),
-'form_title_second' => get_post_meta( get_the_ID(), '_form_title_second', true )
-];
+job_title
+job_title_second
+job_subtitle
+list_line_1
+list_line_2
+list_line_3
+list_line_4
+running_line
+promotion_date
+call_to_purchase
+description_title
+description_subtitle
+description_paragraph
+service_types
+type_1
+type_2
+questions_title
+questions_title_second
+answer_1
+answer_1_explanation
+answer_2
+answer_2_explanation
+answer_3
+answer_3_explanation
+answer_4
+answer_4_explanation
+characteristics
+characteristics_second_line
+specifications_description
+features
+features_description
+features_description_about_1
+features_description_about_1_text_1
+features_description_about_1_text_2
+features_description_about_1_text_3
+features_description_about_1_text_4
+features_description_about_1_text_5
+features_description_about_1_text_6
+features_description_about_2
+features_description_about_2_text_1
+features_description_about_2_text_2
+features_description_about_2_text_3
+features_description_about_2_text_4
+features_description_about_2_text_5
+features_description_about_2_text_6
+features_description_about_3
+features_description_about_3_text_1
+features_description_about_3_text_2
+features_description_about_3_text_3
+features_description_about_3_text_4
+features_description_about_3_text_5
+features_description_about_3_text_6
+features_description_about_4
+features_description_about_4_text_1
+features_description_about_4_text_2
+features_description_about_4_text_3
+features_description_about_4_text_4
+features_description_about_4_text_5
+features_description_about_4_text_6
+features_description_about_5
+features_description_about_5_text_1
+features_description_about_5_text_2
+features_description_about_5_text_3
+features_description_about_5_text_4
+features_description_about_5_text_5
+features_description_about_5_text_6
+gallery_title
+gallery_title_second
+people_answer_say
+people_answer_text
+how_we_work_1
+how_we_work_1_stage_1
+how_we_work_1_stage_2
+how_we_work_1_stage_3
+how_we_work_2_stage_1
+how_we_work_2_stage_2
+how_we_work_2_stage_3
+how_we_work_3_stage_1
+how_we_work_3_stage_2
+how_we_work_3_stage_3
+how_we_work_4_stage_1
+how_we_work_4_stage_2
+how_we_work_4_stage_3
+form_title
+form_title_second

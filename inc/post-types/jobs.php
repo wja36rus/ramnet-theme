@@ -115,6 +115,7 @@ function ramnet_job_details_callback( $post ) {
     $type_1 = get_post_meta( $post->ID, '_type_1', true );
     $type_2 = get_post_meta( $post->ID, '_type_2', true );
     $questions_title = get_post_meta( $post->ID, '_questions_title', true );
+    $questions_title_second = get_post_meta( $post->ID, '_questions_title_second', true );
     $answer_1 = get_post_meta( $post->ID, '_answer_1', true );
     $answer_1_explanation = get_post_meta( $post->ID, '_answer_1_explanation', true );
     $answer_2 = get_post_meta( $post->ID, '_answer_2', true );
@@ -127,7 +128,6 @@ function ramnet_job_details_callback( $post ) {
     $characteristics_second_line = get_post_meta( $post->ID, '_characteristics_second_line', true );
     $specifications_description = get_post_meta( $post->ID, '_specifications_description', true );
     $features = get_post_meta( $post->ID, '_features', true );
-    $features_second_line = get_post_meta( $post->ID, '_features_second_line', true );
     $features_description = get_post_meta( $post->ID, '_features_description', true );
     $features_description_about_1 = get_post_meta( $post->ID, '_features_description_about_1', true );
     $features_description_about_2 = get_post_meta( $post->ID, '_features_description_about_2', true );
@@ -172,19 +172,15 @@ function ramnet_job_details_callback( $post ) {
     $how_we_work_1_stage_1 = get_post_meta( $post->ID, '_how_we_work_1_stage_1', true );
     $how_we_work_1_stage_2 = get_post_meta( $post->ID, '_how_we_work_1_stage_2', true );
     $how_we_work_1_stage_3 = get_post_meta( $post->ID, '_how_we_work_1_stage_3', true );
-    $how_we_work_1_stage_4 = get_post_meta( $post->ID, '_how_we_work_1_stage_4', true );
     $how_we_work_2_stage_1 = get_post_meta( $post->ID, '_how_we_work_2_stage_1', true );
     $how_we_work_2_stage_2 = get_post_meta( $post->ID, '_how_we_work_2_stage_2', true );
     $how_we_work_2_stage_3 = get_post_meta( $post->ID, '_how_we_work_2_stage_3', true );
-    $how_we_work_2_stage_4 = get_post_meta( $post->ID, '_how_we_work_2_stage_4', true );
     $how_we_work_3_stage_1 = get_post_meta( $post->ID, '_how_we_work_3_stage_1', true );
     $how_we_work_3_stage_2 = get_post_meta( $post->ID, '_how_we_work_3_stage_2', true );
     $how_we_work_3_stage_3 = get_post_meta( $post->ID, '_how_we_work_3_stage_3', true );
-    $how_we_work_3_stage_4 = get_post_meta( $post->ID, '_how_we_work_3_stage_4', true );
     $how_we_work_4_stage_1 = get_post_meta( $post->ID, '_how_we_work_4_stage_1', true );
     $how_we_work_4_stage_2 = get_post_meta( $post->ID, '_how_we_work_4_stage_2', true );
     $how_we_work_4_stage_3 = get_post_meta( $post->ID, '_how_we_work_4_stage_3', true );
-    $how_we_work_4_stage_4 = get_post_meta( $post->ID, '_how_we_work_4_stage_4', true );
     $form_title = get_post_meta( $post->ID, '_form_title', true );
     $form_title_second = get_post_meta( $post->ID, '_form_title_second', true );
     ?>
@@ -265,6 +261,10 @@ function ramnet_job_details_callback( $post ) {
         <input type="text" id="questions_title" name="questions_title" value="<?php echo esc_attr( $questions_title ); ?>" class="widefat">
     </p>
     <p>
+        <label for="questions_title_second"><?php _e( 'Заголовок вторая строка:', 'ramnet' ); ?></label>
+        <input type="text" id="questions_title_second" name="questions_title_second" value="<?php echo esc_attr( $questions_title_second ); ?>" class="widefat">
+    </p>
+    <p>
         <label for="answer_1"><?php _e( 'Ответ 1:', 'ramnet' ); ?></label>
         <textarea id="answer_1" name="answer_1" rows="3" class="widefat"><?php echo esc_textarea( $answer_1 ); ?></textarea>
     </p>
@@ -315,10 +315,6 @@ function ramnet_job_details_callback( $post ) {
     <p>
         <label for="features"><?php _e( 'Особенности:', 'ramnet' ); ?></label>
         <textarea id="features" name="features" rows="4" class="widefat"><?php echo esc_textarea( $features ); ?></textarea>
-    </p>
-    <p>
-        <label for="features_second_line"><?php _e( 'Особенности вторая строка:', 'ramnet' ); ?></label>
-        <textarea id="features_second_line" name="features_second_line" rows="4" class="widefat"><?php echo esc_textarea( $features_second_line ); ?></textarea>
     </p>
     <p>
         <label for="features_description"><?php _e( 'Описание особенностей:', 'ramnet' ); ?></label>
@@ -522,10 +518,7 @@ function ramnet_job_details_callback( $post ) {
     <label for="how_we_work_1_stage_3"><?php _e( 'Стейдж 1-2:', 'ramnet' ); ?></label>
     <textarea id="how_we_work_1_stage_3" name="how_we_work_1_stage_3" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_1_stage_3 ); ?></textarea>
 </p>
-<p>
-    <label for="how_we_work_1_stage_4"><?php _e( 'Стейдж 1-3:', 'ramnet' ); ?></label>
-    <textarea id="how_we_work_1_stage_4" name="how_we_work_1_stage_4" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_1_stage_4 ); ?></textarea>
-</p>
+
 
 <p>
     <label for="how_we_work_2_stage_1"><?php _e( 'Номер:', 'ramnet' ); ?></label>
@@ -539,10 +532,7 @@ function ramnet_job_details_callback( $post ) {
     <label for="how_we_work_2_stage_3"><?php _e( 'Стейдж 2-2:', 'ramnet' ); ?></label>
     <textarea id="how_we_work_2_stage_3" name="how_we_work_2_stage_3" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_2_stage_3 ); ?></textarea>
 </p>
-<p>
-    <label for="how_we_work_2_stage_4"><?php _e( 'Стейдж 2-3:', 'ramnet' ); ?></label>
-    <textarea id="how_we_work_2_stage_4" name="how_we_work_2_stage_4" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_2_stage_4 ); ?></textarea>
-</p>
+
 <hr>
 <p>
     <label for="how_we_work_3_stage_1"><?php _e( 'Номер:', 'ramnet' ); ?></label>
@@ -556,10 +546,7 @@ function ramnet_job_details_callback( $post ) {
     <label for="how_we_work_3_stage_3"><?php _e( 'Стейдж 3-2:', 'ramnet' ); ?></label>
     <textarea id="how_we_work_3_stage_3" name="how_we_work_3_stage_3" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_3_stage_3 ); ?></textarea>
 </p>
-<p>
-    <label for="how_we_work_3_stage_4"><?php _e( 'Стейдж 3-3:', 'ramnet' ); ?></label>
-    <textarea id="how_we_work_3_stage_4" name="how_we_work_3_stage_4" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_3_stage_4 ); ?></textarea>
-</p>
+
 <hr>
 <p>
     <label for="how_we_work_4_stage_1"><?php _e( 'Номер:', 'ramnet' ); ?></label>
@@ -573,10 +560,7 @@ function ramnet_job_details_callback( $post ) {
     <label for="how_we_work_4_stage_3"><?php _e( 'Стейдж 4-2:', 'ramnet' ); ?></label>
     <textarea id="how_we_work_4_stage_3" name="how_we_work_4_stage_3" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_4_stage_3 ); ?></textarea>
 </p>
-<p>
-    <label for="how_we_work_4_stage_4"><?php _e( 'Стейдж 4-3:', 'ramnet' ); ?></label>
-    <textarea id="how_we_work_4_stage_4" name="how_we_work_4_stage_4" rows="1" class="widefat"><?php echo esc_textarea( $how_we_work_4_stage_4 ); ?></textarea>
-</p>
+
 <h3><?php _e( 'Заголовок формы', 'ramnet' ); ?></h3>
 <p>
     <label for="form_title"><?php _e( 'Текст:', 'ramnet' ); ?></label>
@@ -635,6 +619,7 @@ function ramnet_save_job_meta( $post_id ) {
         
         // Вопросы и ответы
         'questions_title',
+        'questions_title_second',
         'answer_1',
         'answer_1_explanation',
         'answer_2',
@@ -649,7 +634,6 @@ function ramnet_save_job_meta( $post_id ) {
         'characteristics_second_line',
         'specifications_description',
         'features',
-        'features_second_line',
         'features_description',
         'features_description_about_1',
         'features_description_about_1_text_1',
@@ -696,23 +680,19 @@ function ramnet_save_job_meta( $post_id ) {
         'people_answer_text',
 
         //Как мы работаем
-        'how_we_work_1',
+        'how_we_work',
         'how_we_work_1_stage_1',
         'how_we_work_1_stage_2',
         'how_we_work_1_stage_3',
-        'how_we_work_1_stage_4',
         'how_we_work_2_stage_1',
         'how_we_work_2_stage_2',
         'how_we_work_2_stage_3',
-        'how_we_work_2_stage_4',
         'how_we_work_3_stage_1',
         'how_we_work_3_stage_2',
         'how_we_work_3_stage_3',
-        'how_we_work_3_stage_4',
         'how_we_work_4_stage_1',
         'how_we_work_4_stage_2',
         'how_we_work_4_stage_3',
-        'how_we_work_4_stage_4',
 
         //ФОрма
         'form_title',

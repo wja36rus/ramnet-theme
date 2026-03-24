@@ -83,7 +83,6 @@ get_header(); ?>
                     'characteristics_second_line' => get_post_meta( get_the_ID(), '_characteristics_second_line', true ),
                     'specifications_description' => get_post_meta( get_the_ID(), '_specifications_description', true ),
                     'features' => get_post_meta( get_the_ID(), '_features', true ),
-                    'features_second_line' => get_post_meta( get_the_ID(), '_features_second_line', true ),
                     'features_description' => get_post_meta( get_the_ID(), '_features_description', true ),
                     'features_description_about_1' => get_post_meta( get_the_ID(), '_features_description_about_1', true ),
                     'features_description_about_1_text_1' => get_post_meta( get_the_ID(), '_features_description_about_1_text_1', true ),
@@ -124,23 +123,19 @@ get_header(); ?>
                     'gallery_title_second' => get_post_meta( get_the_ID(), '_gallery_title_second', true ),
                     'people_answer_say' => get_post_meta( get_the_ID(), '_people_answer_say', true ),
                     'people_answer_text' => get_post_meta( get_the_ID(), '_people_answer_text', true ),
-                    'how_we_work_1' => get_post_meta( get_the_ID(), '_how_we_work_1', true ),
+                    'how_we_work' => get_post_meta( get_the_ID(), '_how_we_work', true ),
                     'how_we_work_1_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_1', true ),
                     'how_we_work_1_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_2', true ),
                     'how_we_work_1_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_3', true ),
-                    'how_we_work_1_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_1_stage_4', true ),
                     'how_we_work_2_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_1', true ),
                     'how_we_work_2_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_2', true ),
                     'how_we_work_2_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_3', true ),
-                    'how_we_work_2_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_2_stage_4', true ),
                     'how_we_work_3_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_1', true ),
                     'how_we_work_3_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_2', true ),
                     'how_we_work_3_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_3', true ),
-                    'how_we_work_3_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_3_stage_4', true ),
                     'how_we_work_4_stage_1' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_1', true ),
                     'how_we_work_4_stage_2' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_2', true ),
                     'how_we_work_4_stage_3' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_3', true ),
-                    'how_we_work_4_stage_4' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_4', true ),
                     'form_title' => get_post_meta( get_the_ID(), '_form_title', true ),
                     'form_title_second' => get_post_meta( get_the_ID(), '_form_title_second', true )
                 ];
@@ -148,6 +143,8 @@ get_header(); ?>
                 function getDataInArrayPage($pageData, $key) {
                     if(isset($pageData[$key])) {
                         return $pageData[$key];
+                    } else {
+                        return "";
                     }
                 }
 
@@ -234,27 +231,27 @@ get_header(); ?>
         <section class="solution">
             <div class="solution__container">
                 <h2 class="solution__title">
-                <?php echo getDataInArrayPage($pageData, 'h2'); ?>
+                <?php echo getDataInArrayPage($pageData, 'description_title'); ?>
                 <br>
-                <strong><?php echo getDataInArrayPage($pageData, 'h2'); ?></strong>
+                <strong><?php echo getDataInArrayPage($pageData, 'description_subtitle'); ?></strong>
                 </h2>
                 <p class="solution__text">
-                    <?php echo getDataInArrayPage($pageData, 'p'); ?>
+                    <?php echo getDataInArrayPage($pageData, 'description_paragraph'); ?>
                 </p>
                 <br>
                 <p class="solution__text">
-                    <?php echo getDataInArrayPage($pageData, 'p'); ?>
+                    <?php echo getDataInArrayPage($pageData, 'service_types'); ?>
                 </p>
                 <br>
                 
                 <p class="solution__text__flex">
                     <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                    <?php echo getDataInArrayPage($pageData, 'li'); ?>
+                    <?php echo getDataInArrayPage($pageData, 'type_1'); ?>
                 </p>
                     <br>
                 <p class="solution__text__flex">
                 <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                <?php echo getDataInArrayPage($pageData, 'li'); ?>
+                <?php echo getDataInArrayPage($pageData, 'type_2'); ?>
             </p>
             </div>
         </section>
@@ -263,37 +260,37 @@ get_header(); ?>
         <section class="benefits">
             <div class="benefits__container">
                 <h2 class="section__title">
-                    <?php echo getDataInArrayPage($pageData, 'h2'); ?>
+                    <?php echo getDataInArrayPage($pageData, 'questions_title'); ?>
                     <br>
-                    <?php echo getDataInArrayPage($pageData, 'h2'); ?>
+                    <?php echo getDataInArrayPage($pageData, 'questions_title_second'); ?>
                 </h2>
                 <div class="benefits__grid">
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
                         <div class="benefit__content">
-                            <h3><?php echo getDataInArrayPage($pageData, 'h2'); ?></h3>
-                            <p><?php echo getDataInArrayPage($pageData, 'p'); ?></p>
+                            <h3><?php echo getDataInArrayPage($pageData, 'answer_1'); ?></h3>
+                            <p><?php echo getDataInArrayPage($pageData, 'answer_1_explanation'); ?></p>
                         </div>
                     </div>
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                         <div class="benefit__content">
-                            <h3><?php echo getDataInArrayPage($pageData, 'h2'); ?></h3>
-                            <p><?php echo getDataInArrayPage($pageData, 'p'); ?></p>
+                            <h3><?php echo getDataInArrayPage($pageData, 'answer_2'); ?></h3>
+                            <p><?php echo getDataInArrayPage($pageData, 'answer_2_explanation'); ?></p>
                         </div>
                     </div>
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
                         <div class="benefit__content">
-                            <h3><?php echo getDataInArrayPage($pageData, 'h2'); ?></h3>
-                            <p><?php echo getDataInArrayPage($pageData, 'p'); ?></p>
+                            <h3><?php echo getDataInArrayPage($pageData, 'answer_3'); ?></h3>
+                            <p><?php echo getDataInArrayPage($pageData, 'answer_3_explanation'); ?></p>
                         </div>
                     </div>
                     <div class="benefit__item">
                         <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
                         <div class="benefit__content">
-                            <h3><?php echo getDataInArrayPage($pageData, 'h2'); ?></h3>
-                            <p><?php echo getDataInArrayPage($pageData, 'p'); ?></p>
+                            <h3><?php echo getDataInArrayPage($pageData, 'answer_4'); ?></h3>
+                            <p><?php echo getDataInArrayPage($pageData, 'answer_4_explanation'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -305,47 +302,195 @@ get_header(); ?>
             <div class="specs-features__container">
                 <div class="spec__flex">
                     <div>
-                        <h2 class="specs-features__section-title"><?php echo getDataInArrayPage($pageData, 'h2'); ?></h2>
-                        <h2 class="specs-features__section-title"><?php echo getDataInArrayPage($pageData, 'h2'); ?></h2>
+                        <h2 class="specs-features__section-title"><?php echo getDataInArrayPage($pageData, 'characteristics'); ?></h2>
+                        <h2 class="specs-features__section-title"><?php echo getDataInArrayPage($pageData, 'characteristics_second_line'); ?></h2>
                     </div>
-                    <p class="specs-features__desc"><?php echo getDataInArrayPage($pageData, 'p'); ?></p>
+                    <p class="specs-features__desc"><?php echo getDataInArrayPage($pageData, 'specifications_description'); ?></p>
                 </div>
 
                 <div class="spec__flex__second">
                 <div>
-                <h2 class="specs-features__section-title"><?php echo getDataInArrayPage($pageData, 'h2'); ?></h2>
-                <p class="specs-features__desc"><?php echo getDataInArrayPage($pageData, 'p'); ?></p>
+                <h2 class="specs-features__section-title">
+                    <?php echo getDataInArrayPage($pageData, 'features'); ?></h2>
+                <p class="specs-features__desc">
+                <?php echo getDataInArrayPage($pageData, 'features_description'); ?>
+                </p>
                 </div>
 
                 <div class="features__list">
                     <div class="feature__group">
-                        <h4><?php echo getDataInArrayPage($pageData, 'h2'); ?></h4>
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_1'); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_1_text_1') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_1_text_1');?>
+                                </span>
+                            <?php endif;?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_1_text_2') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_1_text_2');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_1_text_3') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_1_text_3');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_1_text_4') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_1_text_4');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_1_text_5') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_1_text_5');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_1_text_6') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_1_text_6');?>
+                                </span>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="feature__group">
-                        <h4><?php echo getDataInArrayPage($pageData, 'h2'); ?></h4>
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_2'); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_2_text_1') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_2_text_1');?>
+                                </span>
+                            <?php endif;?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_2_text_2') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_2_text_2');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_2_text_3') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_2_text_3');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_2_text_4') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_2_text_4');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_2_text_5') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_2_text_5');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_2_text_6') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_2_text_6');?>
+                                </span>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="feature__group">
-                        <h4><?php echo getDataInArrayPage($pageData, 'h2'); ?></h4>
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_3'); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_3_text_1') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_3_text_1');?>
+                                </span>
+                            <?php endif;?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_3_text_2') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_3_text_2');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_3_text_3') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_3_text_3');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_3_text_4') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_3_text_4');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_3_text_5') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_3_text_5');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_3_text_6') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_3_text_6');?>
+                                </span>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="feature__group">
-                        <h4><?php echo getDataInArrayPage($pageData, 'h2'); ?></h4>
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_4'); ?></h4>
                         <div class="feature__tags">
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
-                            <span class="feature__tag"><?php echo getDataInArrayPage($pageData, 'li'); ?></span>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_4_text_1') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_4_text_1');?>
+                                </span>
+                            <?php endif;?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_4_text_2') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_4_text_2');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_4_text_3') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_4_text_3');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_4_text_4') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_4_text_4');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_4_text_5') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_4_text_5');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_4_text_6') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_4_text_6');?>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="feature__group">
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_5'); ?></h4>
+                        <div class="feature__tags">
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_5_text_1') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_5_text_1');?>
+                                </span>
+                            <?php endif;?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_5_text_2') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_5_text_2');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_5_text_3') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_5_text_3');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_5_text_4') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_5_text_4');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_5_text_5') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_5_text_5');?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if(getDataInArrayPage($pageData, 'features_description_about_5_text_6') !== ""):?>
+                                <span class="feature__tag">
+                                    <?php echo getDataInArrayPage($pageData, 'features_description_about_5_text_6');?>
+                                </span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -356,7 +501,8 @@ get_header(); ?>
         <!-- Галерея проектов -->
         <section class="gallery">
             <div class="gallery__container">
-                <h2 class="section__title"><?php echo getDataInArrayPage($pageData, 'h2'); ?><br><?php echo getDataInArrayPage($pageData, 'h2'); ?></h2>
+                <h2 class="section__title"><?php echo getDataInArrayPage($pageData, 'gallery_title'); ?>
+                <br><?php echo getDataInArrayPage($pageData, 'gallery_title_second'); ?></h2>
 </div>
                 <div class="flexslider">
   <ul class="slides">
@@ -379,8 +525,8 @@ get_header(); ?>
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 40px;">
                     <div>
                         <h3 style="color: white; font-size: 26px; font-weight: 400; font-style: italic; max-width: 700px;">
-                        <?php echo getDataInArrayPage($pageData, 'h2'); ?></h3>
-                        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;"><?php echo getDataInArrayPage($pageData, 'p'); ?></p>
+                        <?php echo getDataInArrayPage($pageData, 'people_answer_say'); ?></h3>
+                        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;"><?php echo getDataInArrayPage($pageData, 'people_answer_text'); ?></p>
                     </div>
                     <a href="<?= home_url()?>/#people" style="text-decoration: none;"><button class="button__main"><p class="button__text">ОТЗЫВЫ</p></button></a>
                 </div>
@@ -390,27 +536,27 @@ get_header(); ?>
         <!-- Как мы работаем -->
         <section class="work-steps">
             <div class="work-steps__container">
-                <h2 class="section__title"><?php echo getDataInArrayPage($pageData, 'h2'); ?></h2>
+                <h2 class="section__title"><?php echo getDataInArrayPage($pageData, 'how_we_work'); ?></h2>
                 <div class="steps__grid">
                     <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
+                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_1'); ?></div>
+                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_2'); ?></div>
+                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_3'); ?></div>
                     </div>
                     <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
+                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_1'); ?></div>
+                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_2'); ?></div>
+                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_3'); ?></div>
                     </div>
                     <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
+                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_1'); ?></div>
+                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_2'); ?></div>
+                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_3'); ?></div>
                     </div>
                     <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'li'); ?></div>
+                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_1'); ?></div>
+                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_2'); ?></div>
+                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_3'); ?></div>
                     </div>
                 </div>
             </div>
@@ -422,8 +568,8 @@ get_header(); ?>
 
 
             <h1 class="form__title__second">
-            <?php echo getDataInArrayPage($pageData, 'h2'); ?><br>
-            <?php echo getDataInArrayPage($pageData, 'h2'); ?><br>
+            <?php echo getDataInArrayPage($pageData, 'form_title'); ?><br>
+            <?php echo getDataInArrayPage($pageData, 'form_title_second'); ?><br>
             </h1>
 
             <form id="form" novalidate>
