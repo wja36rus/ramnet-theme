@@ -48,3 +48,11 @@
 .status-new {
   animation: pulse 2s infinite;
 }
+
+.flex{
+  gap: 1rem;
+}
+
+.gap-1 {
+  display: flex;
+}
