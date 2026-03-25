@@ -9,7 +9,7 @@
 $services = new WP_Query(array(
     'post_type'      => 'ramnet_job',
     'posts_per_page' => -1, // Показываем все услуги
-    'orderby'        => 'meta_value_num',
+    'orderby'        => 'menu_order',
     'order'          => 'ASC',
     'post_status'    => 'publish',
 ));
