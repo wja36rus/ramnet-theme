@@ -401,5 +401,12 @@
     itemWidth: 550,
     itemMargin: 3
   });
+
+  $('.gallery__item').click(function (e) {
+    e.preventDefault()
+   const count = $(this).attr('data-count');
+
+   
+  })
   
 })(jQuery);
