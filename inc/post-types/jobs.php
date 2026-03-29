@@ -109,8 +109,10 @@ function ramnet_job_details_callback( $post ) {
     $promotion_date = get_post_meta( $post->ID, '_promotion_date', true );
     $call_to_purchase = get_post_meta( $post->ID, '_call_to_purchase', true );
     $description_title = get_post_meta( $post->ID, '_description_title', true );
+    $description_title_second = get_post_meta( $post->ID, '_description_title_second', true );
     $description_subtitle = get_post_meta( $post->ID, '_description_subtitle', true );
     $description_paragraph = get_post_meta( $post->ID, '_description_paragraph', true );
+    $description_paragraph_second = get_post_meta( $post->ID, '_description_paragraph_second', true );
     $service_types = get_post_meta( $post->ID, '_service_types', true );
     $type_1 = get_post_meta( $post->ID, '_type_1', true );
     $type_2 = get_post_meta( $post->ID, '_type_2', true );
@@ -235,12 +237,20 @@ function ramnet_job_details_callback( $post ) {
         <input type="text" id="description_title" name="description_title" value="<?php echo esc_attr( $description_title ); ?>" class="widefat">
     </p>
     <p>
+        <label for="description_title_second"><?php _e( 'Заголовок вторая строка:', 'ramnet' ); ?></label>
+        <input type="text" id="description_title_second" name="description_title_second" value="<?php echo esc_attr( $description_title_second ); ?>" class="widefat">
+    </p>
+    <p>
         <label for="description_subtitle"><?php _e( 'Подзаголовок описания:', 'ramnet' ); ?></label>
         <input type="text" id="description_subtitle" name="description_subtitle" value="<?php echo esc_attr( $description_subtitle ); ?>" class="widefat">
     </p>
     <p>
         <label for="description_paragraph"><?php _e( 'Абзац описания:', 'ramnet' ); ?></label>
         <textarea id="description_paragraph" name="description_paragraph" rows="4" class="widefat"><?php echo esc_textarea( $description_paragraph ); ?></textarea>
+    </p>
+    <p>
+        <label for="description_paragraph_second"><?php _e( 'Абзац описания второй:', 'ramnet' ); ?></label>
+        <textarea id="description_paragraph_second" name="description_paragraph_second" rows="4" class="widefat"><?php echo esc_textarea( $description_paragraph_second ); ?></textarea>
     </p>
     <p>
         <label for="service_types"><?php _e( 'Типы услуги:', 'ramnet' ); ?></label>
@@ -611,8 +621,10 @@ function ramnet_save_job_meta( $post_id ) {
         'promotion_date',
         'call_to_purchase',
         'description_title',
+        'description_title_second',
         'description_subtitle',
         'description_paragraph',
+        'description_paragraph_second',
         'service_types',
         'type_1',
         'type_2',
