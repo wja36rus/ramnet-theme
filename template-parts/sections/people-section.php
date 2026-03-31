@@ -45,7 +45,7 @@ $services = new WP_Query(array(
 
             <div class="people__card">
                 <div class="people__card__logo_line">
-                    <div class="people__card__logo"></div>
+                    
                     <div class="people__card__starline">
                         <div class="people__card__title__and__start">
                             <h1 class="people__card__title">

@@ -62,10 +62,15 @@ $services = new WP_Query(array(
                 }
                 
             ?>
-        <div id="jobs<?php echo $counters;?>" style="background-image: url(<?php if (has_post_thumbnail()) {
+        <div id="jobs<?php echo $counters;?>"  class="jobs__item__card <?php if($counters === 1) {echo "active";}?>">
+                    <div class="card__bg" style="background-image: linear-gradient(to right, rgb(40 40 40) 25%, rgb(255 255 255 / 0%) 100%), url(<?php if (has_post_thumbnail()) {
                         $url = get_the_post_thumbnail_url();
                         echo $url;
-                    }?>)" class="jobs__item__card <?php if($counters === 1) {echo "active";}?>">
+                    }?>)"></div>
+            <div class="card__bg__effect" style="background-image: url(<?php if (has_post_thumbnail()) {
+                        $url = get_the_post_thumbnail_url();
+                        echo $url;
+                    }?>)"></div>
             <div class="jobs__cards">
                 <div class="cards__title">
                     <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>

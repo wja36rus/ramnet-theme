@@ -229,7 +229,7 @@ get_header(); ?>
                 </div>
             </div>
             <?php if(!empty($images[0]['src'])):?>
-            <div class="page-hero__image" style="background-image: url('<?php echo esc_url($images[0]['src']); ?>');"></div>
+            <div class="page-hero__image" style="background-image: linear-gradient(to right, rgb(40 40 40) 14%, rgb(40 40 40 / 0%) 100%), url('<?php echo esc_url($images[0]['src']); ?>');"></div>
             <?php endif;?>
             
             <?php echo getDataInArrayPage($pageData, 'running_line','span', "hero__lines");?>
