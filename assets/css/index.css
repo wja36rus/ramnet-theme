@@ -1255,7 +1255,7 @@ body {
   align-items: flex-start;
   letter-spacing: -0.01em;
   color: #282828;
-  width: 800px;
+  width: max-content;
   margin: 0 auto;
   padding: 10rem 0;
   flex-direction: column;
@@ -1837,12 +1837,15 @@ input.error {
   z-index: 3;
   font-weight: 100;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .page__job__container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 5rem 0rem 2rem 0;
+  padding: 5rem 0rem 4rem 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -1928,15 +1931,15 @@ input.error {
 }
 .hero__promo {
   background: rgba(255,255,255,0.1);
-  padding: 15px 25px;
   font-size: 25px;
   font-weight: 600;
+  padding: 2rem;
   color: black;
   width: 100%;
   text-align: left;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: right;
 }
 .hero__promo span {
   color: #000000;
@@ -2011,6 +2014,7 @@ input.error {
   text-align: right;
   letter-spacing: -0.01em;
 }
+
 .benefits__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2205,7 +2209,7 @@ input.error {
 .action__container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 30px 40px;
+    padding: 30px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2249,7 +2253,7 @@ input.error {
 .spec__flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding-bottom: 3rem;
 }
 
@@ -2276,6 +2280,16 @@ input.error {
     gap: 10px;
     align-items: center;
     color: #878787;
+}
+
+.paje__job__back__service {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  color: #878787;
+  position: absolute;
+  top: -4rem;
 }
 
 .no__decoration {

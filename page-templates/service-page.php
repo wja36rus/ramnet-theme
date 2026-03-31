@@ -190,6 +190,11 @@ get_header(); ?>
         <section class="page-hero">
             <div class="page-hero__container">
                 <div class="page-hero__content">
+                <a href="<?php echo esc_url( home_url( '/#jobs' ) ); ?>" class="no__decoration">
+                        <div class="paje__job__back__service">
+                            <img class="page__service__back" src="https://static.tildacdn.com/tild6334-3239-4032-b166-633565623864/left.svg" alt=""/>Вернуться ко всем услугам
+                        </div>
+                    </a>
                     <?php echo getDataInArrayPage($pageData, 'job_title'); ?>
                     <?php echo getDataInArrayPage($pageData, 'job_title_second'); ?>
                     <?php echo getDataInArrayPage($pageData, 'job_subtitle'); ?>

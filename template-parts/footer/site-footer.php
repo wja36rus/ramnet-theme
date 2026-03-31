@@ -48,7 +48,7 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
             $services = new WP_Query(array(
                 'post_type'      => 'ramnet_job',
                 'posts_per_page' => -1,
-                'orderby'        => 'meta_value_num',
+                'orderby'        => 'menu_order',
                 'order'          => 'ASC',
                 'post_status'    => 'publish',
             ));
