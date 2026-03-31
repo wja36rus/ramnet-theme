@@ -476,12 +476,12 @@ get_header(); ?>
             </div>
             <div class="flexslider">
                 <ul class="slides">
-                    <?php $count = 0; foreach($gallery as $value):?>
+                    <?php foreach($gallery as $value):?>
                         <li>
-                            <div class="gallery__item" data-count="<?php echo $count;?>" style="background-image: url(<?php echo esc_url($value['src']); ?>);">
+                            <div class="gallery__item" style="background-image: url(<?php echo esc_url($value['src']); ?>);">
                             </div>
                         </li>
-                    <?php $count++; endforeach; ?>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <div class="gallery__container">
