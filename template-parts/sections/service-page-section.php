@@ -36,6 +36,11 @@ $services = new WP_Query(array(
                 if ( empty($service_description) ) {
                     $service_description = __( '', 'ramnet' );
                 }
+
+                $content = get_the_content();
+                preg_match_all('/wp-block-video.*?<video.*?src=["\']([^"\']+)["\'].*?>/is', $content, $matches);
+
+                $videos = $matches[1] ?? [];
                 
             ?>
                 
@@ -95,10 +100,22 @@ $services = new WP_Query(array(
                 </div>
             <?php 
                 $counter++;
-            endwhile;
+                ?>
+
+                <div class="page__job__container">
+                    <?php if($videos):?>
+                    <video controls src="<?php echo $videos[0];?>"></video>
+                    <?php endif;?>
+                </div>
+            
+           <?php endwhile;
             wp_reset_postdata();
             ?>
-        
+
+                        
+                           
+                            
+            
             
         <?php endif; ?>
         </div>
