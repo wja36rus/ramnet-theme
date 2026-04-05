@@ -40,7 +40,6 @@ $services = new WP_Query(array(
                 if ( empty($service_description) ) {
                     $service_description = __( 'Панорамное остекление для комфортного отдыха в любое время года', 'ramnet' );
                 }
-                
             ?>
 
             <?php 

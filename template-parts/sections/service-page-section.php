@@ -17,7 +17,6 @@ $services = new WP_Query(array(
     'p' => $project_id
 ));
 
-
 ?>
 
 <section class="page__job">
@@ -102,9 +101,10 @@ $services = new WP_Query(array(
                 $counter++;
                 ?>
 
-                <div class="page__job__container">
+                <div class="page__job__container__bottom">
                     <?php if($videos):?>
-                    <video controls src="<?php echo $videos[0];?>"></video>
+                    <h1 class="project__video__tile">Посмотрите видео</h1>
+                    <video autoplay loop class="project__video" controls src="<?php echo $videos[0];?>"></video>
                     <?php endif;?>
                 </div>
             
