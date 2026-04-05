@@ -195,8 +195,6 @@ function ramnet_project_columns( $columns ) {
     return array(
         'cb'        => '<input type="checkbox" />',
         'title'     => __( 'Название проекта', 'ramnet' ),
-        'location'  => __( 'Локация', 'ramnet' ),
-        'year'      => __( 'Год', 'ramnet' ),
         'thumbnail' => __( 'Изображение', 'ramnet' ),
         'date'      => __( 'Дата', 'ramnet' ),
     );

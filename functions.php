@@ -267,28 +267,57 @@ add_action( 'admin_bar_menu', 'ramnet_add_duplicate_button_to_admin_bar', 100 );
 /**
  * Add menu_order column to admin list
  */
-function ramnet_add_menu_order_column( $columns ) {
+function ramnet_add_menu_order_column_job( $columns ) {
     $columns['menu_order'] = __( 'Порядок', 'ramnet' );
     return $columns;
 }
-add_filter( 'manage_ramnet_job_posts_columns', 'ramnet_add_menu_order_column' );
+add_filter( 'manage_ramnet_job_posts_columns', 'ramnet_add_menu_order_column_job' );
 
 /**
  * Display menu_order value in column
  */
-function ramnet_display_menu_order_column( $column, $post_id ) {
+function ramnet_display_menu_order_column_job( $column, $post_id ) {
     if ( $column === 'menu_order' ) {
         $order = get_post_field( 'menu_order', $post_id );
         echo $order ? esc_html( $order ) : '0';
     }
 }
-add_action( 'manage_ramnet_job_posts_custom_column', 'ramnet_display_menu_order_column', 10, 2 );
+add_action( 'manage_ramnet_job_posts_custom_column', 'ramnet_display_menu_order_column_job', 10, 2 );
 
 /**
  * Make menu_order column sortable
  */
-function ramnet_make_menu_order_sortable( $columns ) {
+function ramnet_make_menu_order_sortable_job( $columns ) {
     $columns['menu_order'] = 'menu_order';
     return $columns;
 }
-add_filter( 'manage_edit-ramnet_job_sortable_columns', 'ramnet_make_menu_order_sortable' );
+add_filter( 'manage_edit-ramnet_job_sortable_columns', 'ramnet_make_menu_order_sortable_job' );
+
+/**
+ * Add menu_order column to admin list
+ */
+function ramnet_add_menu_order_column_project( $columns ) {
+    $columns['menu_order'] = __( 'Порядок', 'ramnet' );
+    return $columns;
+}
+add_filter( 'manage_ramnet_project_posts_columns', 'ramnet_add_menu_order_column_project' );
+
+/**
+ * Display menu_order value in column
+ */
+function ramnet_display_menu_order_column_project( $column, $post_id ) {
+    if ( $column === 'menu_order' ) {
+        $order = get_post_field( 'menu_order', $post_id );
+        echo $order ? esc_html( $order ) : '0';
+    }
+}
+add_action( 'manage_ramnet_project_posts_custom_column', 'ramnet_display_menu_order_column_project', 10, 2 );
+
+/**
+ * Make menu_order column sortable
+ */
+function ramnet_make_menu_order_sortable_project( $columns ) {
+    $columns['menu_order'] = 'menu_order';
+    return $columns;
+}
+add_filter( 'manage_edit-ramnet_project_sortable_columns', 'ramnet_make_menu_order_sortable_project' );
