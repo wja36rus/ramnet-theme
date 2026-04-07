@@ -2448,3 +2448,24 @@ input.error {
     margin: 0 auto;
     height: 600px;
 }
+
+/* Исправления для корректного отображения на всех устройствах */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Улучшение читаемости на мобильных */
+body {
+  overflow-x: hidden;
+}
+
+/* Корректировка отступов для секций */
+section {
+  position: relative;
+  overflow: hidden;
+}
