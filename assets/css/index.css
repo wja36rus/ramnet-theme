@@ -2415,7 +2415,7 @@ input.error {
     width: 93%;
     height: 100%;
     z-index: 0;
-    background-position: right;
+    background-position: center center;
     background-size: cover;
     filter: blur(2rem);
 }
@@ -2428,6 +2428,8 @@ input.error {
     background-repeat: no-repeat;
     right: 0;
     top: 9%;
+    background-size: cover;
+    background-position: center center;
 }
 
 .project__video__tile {
