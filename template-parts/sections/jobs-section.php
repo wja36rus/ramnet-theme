@@ -21,7 +21,7 @@ $services = new WP_Query(array(
 
         <!-- Левая колонка с названиями технологий -->
         <div class="jobs__wrapper">
-
+        <?php $projects_page_url = get_permalink( 141 );?>
         <?php if ( $services->have_posts() ) : ?>
             <?php 
             $counter = 1;
@@ -31,7 +31,7 @@ $services = new WP_Query(array(
                 $service_title = get_the_title();
                 
             ?>
-            <div data-attribute="<?php echo $counter;?>" class="jobs__items <?php if($counter === 1) {echo "active";}?>">
+            <div data-attribute="<?php echo $counter;?>"  onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'" class="jobs__items <?php if($counter === 1) {echo "active";}?>">
                  <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
             </div>
         
@@ -63,7 +63,7 @@ $services = new WP_Query(array(
                 
             ?>
         <div id="jobs<?php echo $counters;?>"  class="jobs__item__card <?php if($counters === 1) {echo "active";}?>">
-                    <div class="card__bg" style="background-image: linear-gradient(to right, rgb(40 40 40) 25%, rgb(255 255 255 / 0%) 100%), url(<?php if (has_post_thumbnail()) {
+                    <div  class="card__bg" style="background-image: linear-gradient(to right, rgb(40 40 40) 25%, rgb(255 255 255 / 0%) 100%), url(<?php if (has_post_thumbnail()) {
                         $url = get_the_post_thumbnail_url();
                         echo $url;
                     }?>)"></div>
@@ -79,7 +79,7 @@ $services = new WP_Query(array(
                 <div class="cards__text">
                     <?php echo esc_html__( wp_strip_all_tags($service_description), 'ramnet' ); ?>
                 </div>
-                <?php $projects_page_url = get_permalink( 141 );?>
+                
                 <div class="button__container__jobs">
                     <button class="button__main" onclick="window.location.href='<?php echo esc_url( add_query_arg( array('project_id' => get_the_ID()), $projects_page_url) ); ?>'">
                         <p class="button__text"><?php echo esc_html__( 'ПОДРОБНЕЕ', 'ramnet' ); ?></p>

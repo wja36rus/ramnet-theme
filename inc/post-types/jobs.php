@@ -185,6 +185,7 @@ function ramnet_job_details_callback( $post ) {
     $how_we_work_4_stage_3 = get_post_meta( $post->ID, '_how_we_work_4_stage_3', true );
     $form_title = get_post_meta( $post->ID, '_form_title', true );
     $form_title_second = get_post_meta( $post->ID, '_form_title_second', true );
+    $form_title_third = get_post_meta( $post->ID, '_form_title_third', true );
     ?>
 
     <h3><?php _e( 'Основная информация', 'ramnet' ); ?></h3>
@@ -580,6 +581,10 @@ function ramnet_job_details_callback( $post ) {
     <label for="form_title_second"><?php _e( 'Текст вторая строка:', 'ramnet' ); ?></label>
     <textarea id="form_title_second" name="form_title_second" rows="1" class="widefat"><?php echo esc_textarea( $form_title_second ); ?></textarea>
 </p>
+<p>
+    <label for="form_title_third"><?php _e( 'Текст  третья строка:', 'ramnet' ); ?></label>
+    <textarea id="form_title_third" name="form_title_third" rows="1" class="widefat"><?php echo esc_textarea( $form_title_third ); ?></textarea>
+</p>
 <?php
 }
 
@@ -709,6 +714,7 @@ function ramnet_save_job_meta( $post_id ) {
         //ФОрма
         'form_title',
         'form_title_second',
+        'form_title_third',
     );
     
     foreach ( $fields as $field ) {

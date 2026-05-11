@@ -139,7 +139,8 @@ get_header(); ?>
                     'how_we_work_4_stage_2' => ['data' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_2', true ), 'tag' => '_', 'class' => ''],
                     'how_we_work_4_stage_3' => ['data' => get_post_meta( get_the_ID(), '_how_we_work_4_stage_3', true ), 'tag' => '_', 'class' => ''],
                     'form_title' => ['data' => get_post_meta( get_the_ID(), '_form_title', true ), 'tag' => '_', 'class' => ''],
-                    'form_title_second' => ['data' => get_post_meta( get_the_ID(), '_form_title_second', true ), 'tag' => '_', 'class' => '']
+                    'form_title_second' => ['data' => get_post_meta( get_the_ID(), '_form_title_second', true ), 'tag' => '_', 'class' => ''],
+                    'form_title_third' => ['data' => get_post_meta( get_the_ID(), '_form_title_third', true ), 'tag' => '_', 'class' => '']
                 ];
 
                 function getDataInArrayPage($pageData, $key, $tag = "", $class = "") {
@@ -559,6 +560,7 @@ get_header(); ?>
                     <h1 class="form__title__second">
                         <?php echo getDataInArrayPage($pageData, 'form_title'); ?><br>
                         <?php echo getDataInArrayPage($pageData, 'form_title_second'); ?><br>
+                        <?php echo getDataInArrayPage($pageData, 'form_title_third'); ?><br>
                     </h1>
 
                     <form id="form" novalidate>
@@ -570,7 +572,7 @@ get_header(); ?>
                             <?php echo esc_html('на обработку персональных данных');?>
                         </span>
                         <div class="button__container__project">
-                            <button id="form__submit" class="button__main call__open__form">
+                            <button id="form__submit" class="button__main">
                                 <p class="button__text"><?php echo esc_html( 'РАССЧИТАТЬ СТОИМОСТЬ', 'ramnet' ); ?></p>
                             </button>
                         </div>

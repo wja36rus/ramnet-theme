@@ -27,6 +27,21 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
             <p class="footer__text">
                 <?php echo esc_html__( 'Производство и монтаж систем панорамного остекления в Воронеже и регионах РФ', 'ramnet' ); ?>
             </p>
+            <div class="footer__text__about__wrapper">
+                <p class="footer__text__about">
+                    <?php echo esc_html__( 'ИНДИВИДУАЛЬНЫЙ ПРЕДПРИНИМАТЕЛЬ', 'ramnet' ); ?>
+                </p>
+                <p class="footer__text__about">
+                    <?php echo esc_html__( 'БАХАЕВ ПАВЕЛ ВЛАДИМИРОВИЧ', 'ramnet' ); ?>
+                </p>
+                <p class="footer__text__about">
+                    <?php echo esc_html__( 'ОГРНИП 325366800068952', 'ramnet' ); ?>
+                </p>
+                <p class="footer__text__about">
+                    <?php echo esc_html__( 'ИНН 366315660777', 'ramnet' ); ?>
+                </p>
+            </div>
+
         </div>
 
         <!-- Навигация по услугам -->
@@ -77,8 +92,7 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
                 <h2><?php echo esc_html__( 'Адрес', 'ramnet' ); ?></h2>
             </div>
             <div class="footer__info__text"><?php echo esc_html( $address ); ?></div>
-            <div class="footer__info__text"><?php echo esc_html__( 'Работаем по Воронежу и области', 'ramnet' ); ?>
-            </div>
+
 
             <!-- Телефон -->
             <div class="footer__info__flex">
@@ -89,7 +103,6 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
                 <a class="footer__info__href"
                     href="tel:<?php echo esc_attr( $phone ); ?>"><?php echo esc_html( $phone ); ?></a>
             </div>
-            <div class="footer__info__text"><?php echo esc_html__( 'Ежедневно с 9:30 до 20:00', 'ramnet' ); ?></div>
 
             <!-- Email -->
             <div class="footer__info__flex">
@@ -116,7 +129,7 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
         <p class="footer__offer__text">
             <?php echo esc_html__( 'Вся представленная информация на сайте не является публичной офертой.', 'ramnet' ); ?>
         </p>
-        <a href="#" target="_blank" class="footer__docs">
+        <a href="<?php echo esc_url( RAMNET_THEME_URI . '/assets/docs/Политика в отношении обработки персональных данных.pdf' ); ?>" target="_blank" class="footer__docs">
             <?php echo esc_html__( 'Политика в отношении обработки персональных данных', 'ramnet' ); ?>
         </a>
         <br>

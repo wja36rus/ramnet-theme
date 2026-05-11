@@ -203,7 +203,6 @@
     max-width: 100%;
   }
 
-  .boss__lines,
   .project__wrapper,
   .footer__flex,
   .form__inner__flex,
@@ -216,6 +215,14 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
+    padding: 2rem 1rem;
+  }
+
+    .boss__lines {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 2rem 1rem;
   }
 
   .title__boss,
@@ -252,6 +259,11 @@
     justify-content: flex-start;
     gap: 10px;
   }
+
+  .button__container__jobs {
+    width: 100%;
+    text-align: center;
+}
 
   .jobs__items {
     height: auto;
@@ -359,12 +371,12 @@
   }
 
   .page-hero {
-    padding: 130px 0 70px;
+    padding: 200px 0 70px;
   }
 
   .page-hero__container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .page-hero__image {
@@ -403,7 +415,7 @@
   }
 
   .call__to__action {
-    display: none;
+    display: block;
   }
 
   .menu__text {
@@ -425,8 +437,8 @@
   }
 
   .hero {
-    padding-top: 92px;
-    padding-bottom: 40px;
+    padding-top: 125px;
+    padding-bottom: 65px;
   }
 
   .hero__background {
@@ -435,13 +447,16 @@
   }
 
   .hero__content {
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-top: 0;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
 
   .hero__title {
     margin-bottom: 22px;
+  }
+
+  .page__job__container {
+    padding: 5rem 1rem;
   }
 
   .hero__title-line,
@@ -502,7 +517,7 @@
   .jobs__wrapper {
     gap: 8px;
     overflow-x: auto;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     padding-bottom: 6px;
     scrollbar-width: thin;
   }
@@ -550,8 +565,8 @@
   .time__card,
   .all__project__card,
   .service__card__bg__wrapper {
-    width: 100%;
-    flex-basis: 100%;
+    width: 50%;
+    flex-basis: 50%;
   }
 
   .project__card {
@@ -658,7 +673,6 @@
   }
 
   .footer__info__flex {
-    flex-direction: column;
     gap: 6px;
   }
 
@@ -691,6 +705,13 @@
     padding-right: 12px;
   }
 
+  
+    .people__card, .time__card, .all__project__card, .service__card__bg__wrapper {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+  
   .hero__title-line,
   .hero__title-line-second {
     font-size: 30px;

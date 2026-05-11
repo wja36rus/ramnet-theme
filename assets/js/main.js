@@ -23,6 +23,20 @@
     });
 
     /* ========== Jobs section tabs ========== */
+    $(".jobs__items").hover(function (e) {
+      e.preventDefault();
+      const attr = $(this).attr("data-attribute");
+
+      $(".jobs__items").removeClass("active");
+      $(this).addClass("active");
+      $(".jobs__item__card").removeClass("active");
+      $(`#jobs${attr}`).addClass("active");
+        
+      }, function () {
+        // out
+      }
+    );
+    
     $(".jobs__items").click(function (e) {
       e.preventDefault();
       const attr = $(this).attr("data-attribute");

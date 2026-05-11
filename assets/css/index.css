@@ -331,7 +331,7 @@ footer {
 .footer__info {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
 .footer__info__href {
@@ -500,8 +500,8 @@ body {
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
 }
 
 .hero__lines {
@@ -552,7 +552,7 @@ body {
   z-index: 2;
   max-width: 900px;
   margin-left: 8rem;
-  margin-top: 10rem;
+  margin-top: 4rem;
 }
 
 .hero__title {
@@ -1310,6 +1310,7 @@ body {
   left: 0;
   transition: 1s;
   opacity: 0;
+  filter: brightness(0.6);
 }
 
 .service__card__bg.active {
@@ -1545,7 +1546,7 @@ body {
   bottom: 0;
   right: 0;
   z-index: 1;
-  height: 100%;
+  width: 750px;
 }
 
 .form__inner {
@@ -1593,11 +1594,13 @@ body {
   right: 0;
   box-shadow: 0px 5px 5px rgb(0 0 0 / 65%);
   opacity: 0;
+  display: none;
 }
 
 nav.nav__menu.active {
   transition: 1s;
   opacity: 1;
+  display: flex;
 }
 
 .nav__menu__item {
@@ -2401,10 +2404,10 @@ input.error {
 
 .form__images__fon {
     position: absolute;
-    bottom: 0;
-    right: 6rem;
+    bottom: -1rem;
+    right: -3rem;
     z-index: 0;
-    height: 100%;
+    width: 875px;
     filter: blur(2rem);
 }
 
