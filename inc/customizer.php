@@ -61,14 +61,26 @@ function ramnet_customize_register( $wp_customize ) {
     ) );
 
     // Режим работы
-    $wp_customize->add_setting( 'ramnet_work_hours', array(
-        'default'           => 'Пн-Пт: 9:30 - 20:00, Сб-Вс: 10:00 - 18:00',
+    $wp_customize->add_setting( 'ramnet_work_hours_first', array(
+        'default'           => 'Пн-Пт: 9:30 - 20:00',
         'sanitize_callback' => 'sanitize_text_field',
         'transport'         => 'postMessage',
     ) );
 
-    $wp_customize->add_control( 'ramnet_work_hours', array(
+    $wp_customize->add_control( 'ramnet_work_hours_first', array(
         'label'       => __( 'Режим работы', 'ramnet' ),
+        'section'     => 'ramnet_main_settings',
+        'type'        => 'text',
+    ) );
+
+        $wp_customize->add_setting( 'ramnet_work_hours_second', array(
+        'default'           => 'Сб-Вс: 10:00 - 18:00',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage',
+    ) );
+
+    $wp_customize->add_control( 'ramnet_work_hours_second', array(
+        'label'       => __( '', 'ramnet' ),
         'section'     => 'ramnet_main_settings',
         'type'        => 'text',
     ) );

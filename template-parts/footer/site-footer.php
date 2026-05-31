@@ -11,7 +11,8 @@
 $phone = get_theme_mod( 'ramnet_phone', '+7 (XXX) XXX-XX-XX' );
 $email = get_theme_mod( 'ramnet_email', 'info@zasteklim.ru' );
 $address = get_theme_mod( 'ramnet_address', 'Воронеж, ул. Примерная, д. 10' );
-$work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб-Вс: 10:00 - 18:00' );
+$work_hours1 = get_theme_mod( 'ramnet_work_hours_first', 'Пн-Пт: 9:30 - 20:00' );
+$work_hours2 = get_theme_mod( 'ramnet_work_hours_second', 'Сб-Вс: 10:00 - 18:00' );
 ?>
 
 <footer id="contact">
@@ -111,7 +112,15 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
             </div>
             <div class="footer__info__text">
                 <a class="footer__info__href"
-                    href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
+                <?php
+                $parts = explode('@', $email);
+                if (function_exists('idn_to_utf8') && count($parts) === 2) {
+                    $domain_utf8 = idn_to_utf8($parts[1]);
+                    $email_utf8 = $parts[0] . '@' . $domain_utf8;
+                    echo esc_html($email_utf8); 
+                }
+                ?>
+                    href="mailto:<?php echo esc_attr( $email_utf8 ); ?>"><?php echo esc_html( $email_utf8); ?></a>
             </div>
 
             <!-- Режим работы -->
@@ -119,7 +128,8 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
                 <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/time.svg' ); ?>" alt="">
                 <h2><?php echo esc_html__( 'Режим работы', 'ramnet' ); ?></h2>
             </div>
-            <div class="footer__info__text"><?php echo esc_html( $work_hours ); ?></div>
+            <div class="footer__info__text"><?php echo esc_html( $work_hours1); ?></div>
+            <div class="footer__info__text"><?php echo esc_html( $work_hours2); ?></div>
 
         </div>
     </div>
@@ -135,7 +145,7 @@ $work_hours = get_theme_mod( 'ramnet_work_hours', 'Пн-Пт: 9:30 - 20:00, Сб
         <br>
         <br>
         <p class="footer_offer__text"><?php echo esc_html( '2026. ' . __( 'Все права защищены.', 'ramnet' ) ); ?></p>
-        <p class="footer_offer__text"><?php echo esc_html__( 'Источник изображений:', 'ramnet' ); ?></p>
+        <p class="footer_offer__text"><?php echo esc_html__( 'Источник изображений: архив компании, Shutterstock, Nano Banana', 'ramnet' ); ?></p>
     </div>
 </footer>
 

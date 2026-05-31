@@ -29,7 +29,7 @@ function ramnet_handle_form_submission() {
     }
     
     // Prepare email
-    $to = get_option( 'admin_email' );
+    $to = get_theme_mod( 'ramnet_email' );
     $subject = sprintf( __( 'Новая заявка с сайта %s', 'ramnet' ), get_bloginfo( 'name' ) );
     
     // Формируем текст сообщения с HTML-форматированием
@@ -45,7 +45,7 @@ function ramnet_handle_form_submission() {
     
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ' . get_bloginfo( 'name' ) . ' <' . get_option( 'admin_email' ) . '>'
+        'From: ' . get_bloginfo( 'name' ) . ' <' . $to . '>'
     );
     
     // Send email

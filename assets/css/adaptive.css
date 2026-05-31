@@ -1,6 +1,6 @@
 /* Adaptive styles for ramnet theme */
 
-@media (max-width: 1366px) {
+@media (max-width: 1550px) {
   .boss__container,
   .bus__container,
   .jobs__container,
@@ -27,12 +27,31 @@
     padding-right: 32px;
   }
 
-  /* Header немного компактнее на ноутбуках */
+  .page-hero {
+    padding: 12rem 0 6rem 0;
+  }
+
+  /* Header Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ ÐºÐ¾Ð¼Ð¿Ð°ÐºÑ‚Ð½ÐµÐµ Ð½Ð° Ð½Ð¾ÑƒÑ‚Ð±ÑƒÐºÐ°Ñ… */
   .header__container {
     padding: 0 32px;
   }
 
-  /* Hero: уменьшаем “разлет” текста */
+  .hero {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .time__cards {
+    padding: 4rem 0;
+  }
+  .jobs__wrapper {
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .boss__lines {
+    gap: 11rem;
+  }
+
+  /* Hero: ÑƒÐ¼ÐµÐ½ÑŒÑˆÐ°ÐµÐ¼ â€œÑ€Ð°Ð·Ð»ÐµÑ‚â€ Ñ‚ÐµÐºÑÑ‚Ð° */
   .hero__content {
     margin-left: 32px;
     margin-right: 32px;
@@ -56,7 +75,7 @@
     width: 560px;
   }
 
-  /* Jobs: избегаем тесноты, но без “пустоты” */
+  /* Jobs: Ð¸Ð·Ð±ÐµÐ³Ð°ÐµÐ¼ Ñ‚ÐµÑÐ½Ð¾Ñ‚Ñ‹, Ð½Ð¾ Ð±ÐµÐ· â€œÐ¿ÑƒÑÑ‚Ð¾Ñ‚Ñ‹â€ */
   .jobs__container {
     max-width: 1280px;
     padding-left: 32px;
@@ -67,7 +86,7 @@
     width: 760px;
   }
 
-  /* Service cards: уменьшаем боковые поля */
+  /* Service cards: ÑƒÐ¼ÐµÐ½ÑŒÑˆÐ°ÐµÐ¼ Ð±Ð¾ÐºÐ¾Ð²Ñ‹Ðµ Ð¿Ð¾Ð»Ñ */
   .service__card {
     padding: 110px 60px;
   }
@@ -160,11 +179,6 @@
     padding: 0 18px;
   }
 
-  .logo {
-    width: 120px;
-    height: 52px;
-  }
-
   .menu__text,
   .call__to__action__button {
     font-size: 14px;
@@ -218,7 +232,7 @@
     padding: 2rem 1rem;
   }
 
-    .boss__lines {
+  .boss__lines {
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -263,7 +277,7 @@
   .button__container__jobs {
     width: 100%;
     text-align: center;
-}
+  }
 
   .jobs__items {
     height: auto;
@@ -300,7 +314,7 @@
   }
 
   .jobs__item__card.active {
-    display: block;
+    display: none;
   }
 
   .jobs__cards {
@@ -345,7 +359,6 @@
 
   .quietion__answer {
     margin-left: 0;
-    opacity: 1;
   }
 
   .service__card {
@@ -406,6 +419,108 @@
 }
 
 @media (max-width: 768px) {
+  .service__ansver__lines {
+    flex-direction: column;
+  }
+  .page-hero {
+    height: 100vh;
+    padding: 15rem 0;
+  }
+  .page-hero__image {
+    display: none;
+  }
+
+  .mobile__run__line {
+    display: block;
+    text-align: center;
+    font-size: 25px;
+  }
+  .page-hero__image__mobile {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 55%;
+    background-position: center;
+  }
+  .hero__lines {
+    display: none;
+  }
+
+  .hero__lines__second {
+    display: none;
+  }
+
+  .hero__lines__third {
+    display: none;
+  }
+  .project__card__inset {
+    opacity: 1;
+    background: #282828c2;
+    padding: 1rem;
+  }
+  .service__card__hidden {
+    opacity: 1;
+  }
+  .service__card__bg {
+    opacity: 1;
+  }
+  .service__card__bg__wrapper {
+    position: relative;
+  }
+  .service__grid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .logo {
+    width: 90px;
+    height: 52px;
+  }
+
+  .people__card__wrapper__mobile {
+    display: block;
+    filter: invert(1);
+  }
+
+  .people__card__logo_line {
+    filter: invert(1);
+  }
+
+  .people__card__text {
+    filter: invert(1);
+  }
+  .people__card__wrapper {
+    display: none;
+  }
+  #show__people {
+    display: none;
+  }
+  .hero__background-image {
+    display: none;
+  }
+  .hero__background-image-mobile {
+    width: 150%;
+    height: 50%;
+    top: 0;
+    position: absolute;
+    background-size: cover;
+    background-position: -10rem;
+    z-index: 1;
+    display: block;
+  }
+  .hero__background-image-mobile-effect {
+    width: 150%;
+    height: 50%;
+    top: 5rem;
+    position: absolute;
+    background-size: cover;
+    background-position: -10rem;
+    z-index: -1;
+    filter: blur(15px);
+  }
   .header {
     height: 72px;
   }
@@ -437,8 +552,9 @@
   }
 
   .hero {
-    padding-top: 125px;
-    padding-bottom: 65px;
+    padding-top: 200px;
+    padding-bottom: 90px;
+    height: 100vh;
   }
 
   .hero__background {
@@ -452,7 +568,7 @@
   }
 
   .hero__title {
-    margin-bottom: 22px;
+    margin-bottom: 57px;
   }
 
   .page__job__container {
@@ -483,6 +599,7 @@
   .button__container__jobs,
   .button__container__main {
     width: 100%;
+    margin: 0 auto;
   }
 
   .bus__hero,
@@ -549,6 +666,7 @@
   .bus__cards__wrapper {
     top: 0;
     gap: 20px;
+    padding-bottom: 5rem;
   }
 
   .bus__card {
@@ -565,7 +683,7 @@
   .time__card,
   .all__project__card,
   .service__card__bg__wrapper {
-    width: 50%;
+    width: 100%;
     flex-basis: 50%;
   }
 
@@ -606,7 +724,7 @@
   }
 
   .service__card {
-    padding: 56px 16px;
+    padding: 65px 16px;
   }
 
   .service__card__title {
@@ -637,7 +755,7 @@
 
   .page-hero__title,
   .page-hero__title__second {
-    font-size: 34px;
+    font-size: 30px;
   }
 
   .page-hero__title__small {
@@ -647,6 +765,8 @@
   .hero__promo {
     font-size: 18px;
     padding: 16px;
+    background-image: none !important;
+    text-align: center;
   }
 
   .hero__promo span {
@@ -655,7 +775,7 @@
 
   .hero__stats {
     margin: 24px 0;
-    gap: 16px;
+    gap: 8px;
   }
 
   .gallery__grid,
@@ -682,6 +802,9 @@
 }
 
 @media (max-width: 480px) {
+  .people__card__title__and__start {
+    flex-direction: column;
+  }
   .boss__container,
   .bus__container,
   .jobs__container,
@@ -705,13 +828,19 @@
     padding-right: 12px;
   }
 
-  
-    .people__card, .time__card, .all__project__card, .service__card__bg__wrapper {
-        width: 100%;
-        flex-basis: 100%;
-    }
+  .service__card__bg {
+    opacity: 1;
+  }
 
-  
+  .people__card,
+  .time__card,
+  .all__project__card,
+  .service__card__bg__wrapper {
+    width: 100%;
+    flex-basis: 100%;
+    position: relative;
+  }
+
   .hero__title-line,
   .hero__title-line-second {
     font-size: 30px;

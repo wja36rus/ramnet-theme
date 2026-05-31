@@ -20,7 +20,7 @@ $services = new WP_Query(array(
         <h4 class="title__boss"><?php echo esc_html__( 'О компании', 'ramnet' ); ?></h4>
 
         <div class="boss__lines">
-        <?php if ( $services->have_posts() ) : ?>
+            <?php if ( $services->have_posts() ) : ?>
             <?php 
             $counter = 1;
             while ( $services->have_posts() ) : $services->the_post();
@@ -36,17 +36,17 @@ $services = new WP_Query(array(
                 
             ?>
             <!-- Фото основателя -->
-            <?php the_post_thumbnail('full'); ?>
+            <!-- <?php the_post_thumbnail('full'); ?> -->
 
             <div class="boss__card">
                 <h1 class="boss__title">
-                <?php echo esc_html__( $service_title, 'ramnet' ); ?>
+                    <?php echo esc_html__( $service_title, 'ramnet' ); ?>
                 </h1>
 
                 <div class="boss__text__flex">
                     <div class="boss__text">
-                       <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
-            </div>
+                        <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
+                    </div>
                 </div>
             </div>
             <?php 

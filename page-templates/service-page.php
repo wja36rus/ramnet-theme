@@ -17,8 +17,8 @@ $project_id = isset( $_GET['project_id'] ) ? intval( $_GET['project_id'] ) : 0;
 
 get_header(); ?>
 
-    <main>
-        <?php
+<main>
+    <?php
         $images = [];
         $gallery = [];
 
@@ -187,407 +187,437 @@ get_header(); ?>
                 
                 ?>
 
-        <!-- 1-й экран -->
-        <section class="page-hero">
-            <div class="page-hero__container">
-                <div class="page-hero__content">
+    <!-- 1-й экран -->
+    <section class="page-hero">
+        <div class="page-hero__container">
+            <div class="page-hero__content">
                 <a href="<?php echo esc_url( home_url( '/#jobs' ) ); ?>" class="no__decoration">
-                        <div class="paje__job__back__service">
-                            <img class="page__service__back" src="https://static.tildacdn.com/tild6334-3239-4032-b166-633565623864/left.svg" alt=""/>Вернуться ко всем услугам
-                        </div>
-                    </a>
-                    <?php echo getDataInArrayPage($pageData, 'job_title'); ?>
-                    <?php echo getDataInArrayPage($pageData, 'job_title_second'); ?>
-                    <?php echo getDataInArrayPage($pageData, 'job_subtitle'); ?>
-                    <div class="hero__stats">
-                        <?php if(isExistData($pageData, 'list_line_1')):?>
-                        <div class="hero__stat-item">
-                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
-                            <?php echo getDataInArrayPage($pageData, 'list_line_1'); ?>
-                        </div>
-                        <?php endif;?>
-                        
-                        <?php if(isExistData($pageData, 'list_line_2')):?>
-                        <div class="hero__stat-item">
-                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
-                            <?php echo getDataInArrayPage($pageData, 'list_line_2'); ?>
-                        </div>
-                        <?php endif;?>
-                        
-                        <?php if(isExistData($pageData, 'list_line_3')):?>
-                        <div class="hero__stat-item">
-                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
-                            <?php echo getDataInArrayPage($pageData, 'list_line_3'); ?>
-                        </div>
-                        <?php endif;?>
-                        
-                        <?php if(isExistData($pageData, 'list_line_4')):?>
-                        <div class="hero__stat-item">
-                            <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
-                            <?php echo getDataInArrayPage($pageData, 'list_line_4'); ?>
-                        </div>
-                        <?php endif;?>
-
-                        <div class="button__container__main" style="width: auto; text-align: left; padding-top: 50px;">
-                            <button class="button__main call__open__form"><p class="button__text">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</p></button>
-                        </div>
+                    <div class="paje__job__back__service">
+                        <img class="page__service__back"
+                            src="https://static.tildacdn.com/tild6334-3239-4032-b166-633565623864/left.svg"
+                            alt="" />Вернуться ко всем услугам
                     </div>
+                </a>
+                <?php echo getDataInArrayPage($pageData, 'job_title'); ?>
+                <?php echo getDataInArrayPage($pageData, 'job_title_second'); ?>
+                <?php echo getDataInArrayPage($pageData, 'job_subtitle'); ?>
+                <div class="hero__stats">
+                    <?php if(isExistData($pageData, 'list_line_1')):?>
+                    <div class="hero__stat-item">
+                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                        <?php echo getDataInArrayPage($pageData, 'list_line_1'); ?>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(isExistData($pageData, 'list_line_2')):?>
+                    <div class="hero__stat-item">
+                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                        <?php echo getDataInArrayPage($pageData, 'list_line_2'); ?>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(isExistData($pageData, 'list_line_3')):?>
+                    <div class="hero__stat-item">
+                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                        <?php echo getDataInArrayPage($pageData, 'list_line_3'); ?>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(isExistData($pageData, 'list_line_4')):?>
+                    <div class="hero__stat-item">
+                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                        <?php echo getDataInArrayPage($pageData, 'list_line_4'); ?>
+                    </div>
+                    <?php endif;?>
+
+                    <div class="button__container__main" style="width: auto; text-align: left; padding-top: 50px;">
+                        <button class="button__main call__open__form">
+                            <p class="button__text">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</p>
+                        </button>
+                    </div>
+                    <?php 
+                    $text = getDataInArrayPage($pageData, 'running_line','', "hero__lines__mobile");
+                    $ex = explode(' и ', $text);
+
+                    
+                    echo "<p class='mobile__run__line'>".$ex[0]."</p>";
+                    echo "<p class='mobile__run__line'>".$ex[1]."</p>";
+                    ?>
+
                 </div>
             </div>
-            <?php if(!empty($images[0]['src'])):?>
-            <div class="page-hero__image" style="background-image: linear-gradient(to right, rgb(40 40 40) 14%, rgb(40 40 40 / 0%) 100%), url('<?php echo esc_url($images[0]['src']); ?>');"></div>
+        </div>
+        <?php if(!empty($images[0]['src'])):?>
+        <div class="page-hero__image"
+            style="background-image: linear-gradient(to right, rgb(40 40 40) 14%, rgb(40 40 40 / 0%) 100%), url('<?php echo esc_url($images[0]['src']); ?>');">
+        </div>
+        <?php endif;?>
+        <?php if(!empty($images[0]['src'])):?>
+        <div class="page-hero__image__mobile"
+            style="background-image: linear-gradient(to top, rgb(40 40 40) 25%, rgb(40 40 40 / 0%) 100%), url('<?php echo esc_url($images[0]['src']); ?>');">
+        </div>
+        <?php endif;?>
+
+        <?php echo getDataInArrayPage($pageData, 'running_line','span', "hero__lines");?>
+        <?php echo getDataInArrayPage($pageData, 'running_line','span', "hero__lines__second");?>
+        <?php echo getDataInArrayPage($pageData, 'running_line','span', "hero__lines__third");?>
+    </section>
+
+    <?php if(isExistData($pageData, 'promotion_date') || isExistData($pageData, 'call_to_purchase')):?>
+    <section class="action">
+        <div class="action__container">
+            <div class="hero__promo"
+                <?php echo !empty($images[1]['src']) ? 'style="background-image: url(' . esc_url($images[1]['src']) . ');"' : ''; ?>>
+                <?php echo getDataInArrayPage($pageData, 'promotion_date'); ?>
+                <?php echo getDataInArrayPage($pageData, 'call_to_purchase'); ?>
+
+                <div class="button__container__main" style="width: 50%; text-align: center; padding-top: 20px;">
+                    <button class="button__main__black call__open__form">
+                        <p class="button__text">ЗАКАЗАТЬ</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif;?>
+
+    <?php if(isExistData($pageData, 'description_title') || isExistData($pageData, 'description_paragraph')):?>
+    <!-- Современное решение -->
+    <section class="solution">
+        <div class="solution__container">
+            <?php if(isExistData($pageData, 'description_title') || isExistData($pageData, 'description_subtitle')):?>
+            <h2 class="solution__title">
+                <?php echo getDataInArrayPage($pageData, 'description_title'); ?>
+                <?php if(isExistData($pageData, 'description_title_second')):?><br><?php echo getDataInArrayPage($pageData, 'description_title_second'); ?><?php endif;?>
+                <?php if(isExistData($pageData, 'description_subtitle')):?><br>
+                <strong><?php echo getDataInArrayPage($pageData, 'description_subtitle'); ?></strong>
+                <?php endif;?>
+            </h2>
             <?php endif;?>
-            
-            <?php echo getDataInArrayPage($pageData, 'running_line','span', "hero__lines");?>
-            <?php echo getDataInArrayPage($pageData, 'running_line','span', "hero__lines__second");?>
-            <?php echo getDataInArrayPage($pageData, 'running_line','span', "hero__lines__third");?>
-        </section>
 
-        <?php if(isExistData($pageData, 'promotion_date') || isExistData($pageData, 'call_to_purchase')):?>
-        <section class="action">
-            <div class="action__container">
-                <div class="hero__promo" <?php echo !empty($images[1]['src']) ? 'style="background-image: url(' . esc_url($images[1]['src']) . ');"' : ''; ?>>
-                    <?php echo getDataInArrayPage($pageData, 'promotion_date'); ?>
-                    <?php echo getDataInArrayPage($pageData, 'call_to_purchase'); ?>
-                    
-                    <div class="button__container__main" style="width: 50%; text-align: center; padding-top: 20px;">
-                        <button class="button__main__black call__open__form"><p class="button__text">ЗАКАЗАТЬ</p></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <?php endif;?>
+            <?php echo getDataInArrayPage($pageData, 'description_paragraph'); ?>
 
-        <?php if(isExistData($pageData, 'description_title') || isExistData($pageData, 'description_paragraph')):?>
-        <!-- Современное решение -->
-        <section class="solution">
-            <div class="solution__container">
-                <?php if(isExistData($pageData, 'description_title') || isExistData($pageData, 'description_subtitle')):?>
-                <h2 class="solution__title">
-                    <?php echo getDataInArrayPage($pageData, 'description_title'); ?>
-                    <?php if(isExistData($pageData, 'description_title_second')):?><br><?php echo getDataInArrayPage($pageData, 'description_title_second'); ?><?php endif;?>
-                    <?php if(isExistData($pageData, 'description_subtitle')):?><br>
-                    <strong><?php echo getDataInArrayPage($pageData, 'description_subtitle'); ?></strong>
-                    <?php endif;?>
-                </h2>
-                <?php endif;?>
-                
-                <?php echo getDataInArrayPage($pageData, 'description_paragraph'); ?>
-                
-                <?php if(isExistData($pageData, 'description_paragraph_second')):?>
-                <br>
-                <?php echo getDataInArrayPage($pageData, 'description_paragraph_second'); ?>
-                <?php endif;?>
-                
-                <?php if(isExistData($pageData, 'service_types')):?>
-                <br>
-                <?php echo getDataInArrayPage($pageData, 'service_types'); ?>
-                <?php endif;?>
-                
-                <?php if(isExistData($pageData, 'type_1')):?>
-                <br>
-                <p class="solution__text__flex">
-                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                    <?php echo getDataInArrayPage($pageData, 'type_1'); ?>
-                </p>
-                <?php endif;?>
-                
-                <?php if(isExistData($pageData, 'type_2')):?>
-                <br>
-                <p class="solution__text__flex">
-                    <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
-                    <?php echo getDataInArrayPage($pageData, 'type_2'); ?>
-                </p>
-                <?php endif;?>
-            </div>
-        </section>
-        <?php endif;?>
+            <?php if(isExistData($pageData, 'description_paragraph_second')):?>
+            <br>
+            <?php echo getDataInArrayPage($pageData, 'description_paragraph_second'); ?>
+            <?php endif;?>
 
-        <?php if(isExistData($pageData, 'questions_title') || isExistData($pageData, 'answer_1')):?>
-        <!-- ПОЧЕМУ ВЫБИРАЮТ -->
-        <section class="benefits">
-            <div class="benefits__container">
-                <?php if(isExistData($pageData, 'questions_title')):?>
-                <h2 class="section__title">
-                    <?php echo getDataInArrayPage($pageData, 'questions_title'); ?>
-                    <?php if(isExistData($pageData, 'questions_title_second')):?><br><?php echo getDataInArrayPage($pageData, 'questions_title_second'); ?><?php endif;?>
-                </h2>
-                <?php endif;?>
-                
-                <div class="benefits__grid">
-                    <?php if(isExistData($pageData, 'answer_1')):?>
-                    <div class="benefit__item">
-                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
-                        <div class="benefit__content">
-                            <?php echo getDataInArrayPage($pageData, 'answer_1'); ?>
-                            <?php echo getDataInArrayPage($pageData, 'answer_1_explanation'); ?>
-                        </div>
-                    </div>
-                    <?php endif;?>
-                    
-                    <?php if(isExistData($pageData, 'answer_2')):?>
-                    <div class="benefit__item">
-                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
-                        <div class="benefit__content">
-                            <?php echo getDataInArrayPage($pageData, 'answer_2'); ?>
-                            <?php echo getDataInArrayPage($pageData, 'answer_2_explanation'); ?>
-                        </div>
-                    </div>
-                    <?php endif;?>
-                    
-                    <?php if(isExistData($pageData, 'answer_3')):?>
-                    <div class="benefit__item">
-                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
-                        <div class="benefit__content">
-                            <?php echo getDataInArrayPage($pageData, 'answer_3'); ?>
-                            <?php echo getDataInArrayPage($pageData, 'answer_3_explanation'); ?>
-                        </div>
-                    </div>
-                    <?php endif;?>
-                    
-                    <?php if(isExistData($pageData, 'answer_4')):?>
-                    <div class="benefit__item">
-                        <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
-                        <div class="benefit__content">
-                            <?php echo getDataInArrayPage($pageData, 'answer_4'); ?>
-                            <?php echo getDataInArrayPage($pageData, 'answer_4_explanation'); ?>
-                        </div>
-                    </div>
-                    <?php endif;?>
-                </div>
-            </div>
-        </section>
-        <?php endif;?>
+            <?php if(isExistData($pageData, 'service_types')):?>
+            <br>
+            <?php echo getDataInArrayPage($pageData, 'service_types'); ?>
+            <?php endif;?>
 
-        <?php if(isExistData($pageData, 'characteristics') || isExistData($pageData, 'features')):?>
-        <!-- Технические характеристики и особенности -->
-        <section class="specs-features">
-            <div class="specs-features__container">
-                <?php if(isExistData($pageData, 'characteristics') || isExistData($pageData, 'specifications_description')):?>
-                <div class="spec__flex">
-                    <?php if(isExistData($pageData, 'characteristics')):?>
-                    <div>
-                        <?php echo getDataInArrayPage($pageData, 'characteristics'); ?>
-                        <?php echo getDataInArrayPage($pageData, 'characteristics_second_line'); ?>
+            <?php if(isExistData($pageData, 'type_1')):?>
+            <br>
+            <p class="solution__text__flex">
+                <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
+                <?php echo getDataInArrayPage($pageData, 'type_1'); ?>
+            </p>
+            <?php endif;?>
+
+            <?php if(isExistData($pageData, 'type_2')):?>
+            <br>
+            <p class="solution__text__flex">
+                <img src="<?php echo esc_url( RAMNET_THEME_URI . '/assets/images/icon/cross_q.svg' ); ?>" alt="">
+                <?php echo getDataInArrayPage($pageData, 'type_2'); ?>
+            </p>
+            <?php endif;?>
+        </div>
+    </section>
+    <?php endif;?>
+
+    <?php if(isExistData($pageData, 'questions_title') || isExistData($pageData, 'answer_1')):?>
+    <!-- ПОЧЕМУ ВЫБИРАЮТ -->
+    <section class="benefits">
+        <div class="benefits__container">
+            <?php if(isExistData($pageData, 'questions_title')):?>
+            <h2 class="section__title">
+                <?php echo getDataInArrayPage($pageData, 'questions_title'); ?>
+                <?php if(isExistData($pageData, 'questions_title_second')):?><br><?php echo getDataInArrayPage($pageData, 'questions_title_second'); ?><?php endif;?>
+            </h2>
+            <?php endif;?>
+
+            <div class="benefits__grid">
+                <?php if(isExistData($pageData, 'answer_1')):?>
+                <div class="benefit__item">
+                    <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
+                    <div class="benefit__content">
+                        <?php echo getDataInArrayPage($pageData, 'answer_1'); ?>
+                        <?php echo getDataInArrayPage($pageData, 'answer_1_explanation'); ?>
                     </div>
-                    <?php endif;?>
-                    <?php echo getDataInArrayPage($pageData, 'specifications_description'); ?>
                 </div>
                 <?php endif;?>
 
-                <?php if(isExistData($pageData, 'features')):?>
-                <div class="spec__flex__second">
-                    <div>
-                        <?php echo getDataInArrayPage($pageData, 'features'); ?>
-                        <?php echo getDataInArrayPage($pageData, 'features_description'); ?>
+                <?php if(isExistData($pageData, 'answer_2')):?>
+                <div class="benefit__item">
+                    <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                    <div class="benefit__content">
+                        <?php echo getDataInArrayPage($pageData, 'answer_2'); ?>
+                        <?php echo getDataInArrayPage($pageData, 'answer_2_explanation'); ?>
                     </div>
+                </div>
+                <?php endif;?>
 
-                    <div class="features__list">
-                        <?php if(isExistData($pageData, 'features_description_about_1')):?>
-                        <div class="feature__group">
-                            <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_1'); ?></h4>
-                            <div class="feature__tags">
-                                <?php for($i = 1; $i <= 6; $i++):?>
-                                    <?php $textKey = 'features_description_about_1_text_' . $i;?>
-                                    <?php if(isExistData($pageData, $textKey)):?>
-                                        <span class="feature__tag">
-                                            <?php echo getDataInArrayPage($pageData, $textKey);?>
-                                        </span>
-                                    <?php endif;?>
-                                <?php endfor;?>
-                            </div>
-                        </div>
-                        <?php endif;?>
-                        
-                        <?php if(isExistData($pageData, 'features_description_about_2')):?>
-                        <div class="feature__group">
-                            <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_2'); ?></h4>
-                            <div class="feature__tags">
-                                <?php for($i = 1; $i <= 6; $i++):?>
-                                    <?php $textKey = 'features_description_about_2_text_' . $i;?>
-                                    <?php if(isExistData($pageData, $textKey)):?>
-                                        <span class="feature__tag">
-                                            <?php echo getDataInArrayPage($pageData, $textKey);?>
-                                        </span>
-                                    <?php endif;?>
-                                <?php endfor;?>
-                            </div>
-                        </div>
-                        <?php endif;?>
-                        
-                        <?php if(isExistData($pageData, 'features_description_about_3')):?>
-                        <div class="feature__group">
-                            <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_3'); ?></h4>
-                            <div class="feature__tags">
-                                <?php for($i = 1; $i <= 6; $i++):?>
-                                    <?php $textKey = 'features_description_about_3_text_' . $i;?>
-                                    <?php if(isExistData($pageData, $textKey)):?>
-                                        <span class="feature__tag">
-                                            <?php echo getDataInArrayPage($pageData, $textKey);?>
-                                        </span>
-                                    <?php endif;?>
-                                <?php endfor;?>
-                            </div>
-                        </div>
-                        <?php endif;?>
-                        
-                        <?php if(isExistData($pageData, 'features_description_about_4')):?>
-                        <div class="feature__group">
-                            <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_4'); ?></h4>
-                            <div class="feature__tags">
-                                <?php for($i = 1; $i <= 6; $i++):?>
-                                    <?php $textKey = 'features_description_about_4_text_' . $i;?>
-                                    <?php if(isExistData($pageData, $textKey)):?>
-                                        <span class="feature__tag">
-                                            <?php echo getDataInArrayPage($pageData, $textKey);?>
-                                        </span>
-                                    <?php endif;?>
-                                <?php endfor;?>
-                            </div>
-                        </div>
-                        <?php endif;?>
-                        
-                        <?php if(isExistData($pageData, 'features_description_about_5')):?>
-                        <div class="feature__group">
-                            <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_5'); ?></h4>
-                            <div class="feature__tags">
-                                <?php for($i = 1; $i <= 6; $i++):?>
-                                    <?php $textKey = 'features_description_about_5_text_' . $i;?>
-                                    <?php if(isExistData($pageData, $textKey)):?>
-                                        <span class="feature__tag">
-                                            <?php echo getDataInArrayPage($pageData, $textKey);?>
-                                        </span>
-                                    <?php endif;?>
-                                <?php endfor;?>
-                            </div>
-                        </div>
-                        <?php endif;?>
+                <?php if(isExistData($pageData, 'answer_3')):?>
+                <div class="benefit__item">
+                    <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg');?>" alt="">
+                    <div class="benefit__content">
+                        <?php echo getDataInArrayPage($pageData, 'answer_3'); ?>
+                        <?php echo getDataInArrayPage($pageData, 'answer_3_explanation'); ?>
+                    </div>
+                </div>
+                <?php endif;?>
+
+                <?php if(isExistData($pageData, 'answer_4')):?>
+                <div class="benefit__item">
+                    <img src="<?php echo esc_url( RAMNET_THEME_URI.'/assets/images/icon/divider.svg')?>" alt="">
+                    <div class="benefit__content">
+                        <?php echo getDataInArrayPage($pageData, 'answer_4'); ?>
+                        <?php echo getDataInArrayPage($pageData, 'answer_4_explanation'); ?>
                     </div>
                 </div>
                 <?php endif;?>
             </div>
-        </section>
-        <?php endif;?>
+        </div>
+    </section>
+    <?php endif;?>
 
-        <?php if(!empty($gallery)):?>
-        <!-- Галерея проектов -->
-        <section class="gallery">
-            <div class="gallery__container">
-                <?php if(isExistData($pageData, 'gallery_title')):?>
-                <h2 class="section__title">
-                    <?php echo getDataInArrayPage($pageData, 'gallery_title'); ?>
-                    <?php if(isExistData($pageData, 'gallery_title_second')):?><br><?php echo getDataInArrayPage($pageData, 'gallery_title_second'); ?><?php endif;?>
-                </h2>
-                <?php endif;?>
-            </div>
-            <div class="flexslider">
-                <ul class="slides">
-                    <?php foreach($gallery as $value):?>
-                        <li>
-                            <div class="gallery__item" style="background-image: url(<?php echo esc_url($value['src']); ?>);">
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <div class="gallery__container">
-                <!-- Блок с отзывами внутри галереи, как в ТЗ -->
-                <?php if(isExistData($pageData, 'people_answer_say') || isExistData($pageData, 'people_answer_text')):?>
-                <div style="display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 40px;">
-                    <div>
-                        <?php if(isExistData($pageData, 'people_answer_say')):?>
-                        <h3 style="color: white; font-size: 26px; font-weight: 400; font-style: italic; max-width: 700px;">
-                            <?php echo getDataInArrayPage($pageData, 'people_answer_say'); ?>
-                        </h3>
-                        <?php endif;?>
-                        <?php if(isExistData($pageData, 'people_answer_text')):?>
-                        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;"><?php echo getDataInArrayPage($pageData, 'people_answer_text'); ?></p>
-                        <?php endif;?>
-                    </div>
-                    <a href="<?= home_url()?>/#people" style="text-decoration: none;"><button class="button__main"><p class="button__text">ОТЗЫВЫ</p></button></a>
+    <?php if(isExistData($pageData, 'characteristics') || isExistData($pageData, 'features')):?>
+    <!-- Технические характеристики и особенности -->
+    <section class="specs-features">
+        <div class="specs-features__container">
+            <?php if(isExistData($pageData, 'characteristics') || isExistData($pageData, 'specifications_description')):?>
+            <div class="spec__flex">
+                <?php if(isExistData($pageData, 'characteristics')):?>
+                <div>
+                    <?php echo getDataInArrayPage($pageData, 'characteristics'); ?>
+                    <?php echo getDataInArrayPage($pageData, 'characteristics_second_line'); ?>
                 </div>
                 <?php endif;?>
+                <?php echo getDataInArrayPage($pageData, 'specifications_description'); ?>
             </div>
-        </section>
-        <?php endif;?>
+            <?php endif;?>
 
-        <?php if(isExistData($pageData, 'how_we_work')):?>
-        <!-- Как мы работаем -->
-        <section class="work-steps">
-            <div class="work-steps__container">
-                <h2 class="section__title"><?php echo getDataInArrayPage($pageData, 'how_we_work'); ?></h2>
-                <div class="steps__grid">
-                    <?php if(isExistData($pageData, 'how_we_work_1_stage_1') || isExistData($pageData, 'how_we_work_1_stage_2')):?>
-                    <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_1'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_2'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_3'); ?></div>
-                    </div>
-                    <?php endif;?>
-                    
-                    <?php if(isExistData($pageData, 'how_we_work_2_stage_1') || isExistData($pageData, 'how_we_work_2_stage_2')):?>
-                    <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_1'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_2'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_3'); ?></div>
-                    </div>
-                    <?php endif;?>
-                    
-                    <?php if(isExistData($pageData, 'how_we_work_3_stage_1') || isExistData($pageData, 'how_we_work_3_stage_2')):?>
-                    <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_1'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_2'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_3'); ?></div>
-                    </div>
-                    <?php endif;?>
-                    
-                    <?php if(isExistData($pageData, 'how_we_work_4_stage_1') || isExistData($pageData, 'how_we_work_4_stage_2')):?>
-                    <div class="step__card">
-                        <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_1'); ?></div>
-                        <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_2'); ?></div>
-                        <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_3'); ?></div>
-                    </div>
-                    <?php endif;?>
+            <?php if(isExistData($pageData, 'features')):?>
+            <div class="spec__flex__second">
+                <div>
+                    <?php echo getDataInArrayPage($pageData, 'features'); ?>
+                    <?php echo getDataInArrayPage($pageData, 'features_description'); ?>
                 </div>
-            </div>
-        </section>
-        <?php endif;?>
 
-        <?php if(isExistData($pageData, 'form_title') && !empty($images)):?>
-        <section class="form">
-            <div class="form__container">
-                <div class="form__inner">
-                    <h1 class="form__title__second">
-                        <?php echo getDataInArrayPage($pageData, 'form_title'); ?><br>
-                        <?php echo getDataInArrayPage($pageData, 'form_title_second'); ?><br>
-                        <?php echo getDataInArrayPage($pageData, 'form_title_third'); ?><br>
-                    </h1>
-
-                    <form id="form" novalidate>
-                        <input type="text" name="username" class="form__input"
-                            placeholder="<?php echo esc_attr__( 'Имя', 'ramnet' ); ?>">
-                        <input name="phone" type="text" class="form__input phone-mask" placeholder="+7">
-                        <span>
-                            <?php echo esc_html('Нажимая на кнопку, Вы даете согласие ');?><br>
-                            <?php echo esc_html('на обработку персональных данных');?>
-                        </span>
-                        <div class="button__container__project">
-                            <button id="form__submit" class="button__main">
-                                <p class="button__text"><?php echo esc_html( 'РАССЧИТАТЬ СТОИМОСТЬ', 'ramnet' ); ?></p>
-                            </button>
+                <div class="features__list">
+                    <?php if(isExistData($pageData, 'features_description_about_1')):?>
+                    <div class="feature__group">
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_1'); ?></h4>
+                        <div class="feature__tags">
+                            <?php for($i = 1; $i <= 6; $i++):?>
+                            <?php $textKey = 'features_description_about_1_text_' . $i;?>
+                            <?php if(isExistData($pageData, $textKey)):?>
+                            <span class="feature__tag">
+                                <?php echo getDataInArrayPage($pageData, $textKey);?>
+                            </span>
+                            <?php endif;?>
+                            <?php endfor;?>
                         </div>
-                    </form>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(isExistData($pageData, 'features_description_about_2')):?>
+                    <div class="feature__group">
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_2'); ?></h4>
+                        <div class="feature__tags">
+                            <?php for($i = 1; $i <= 6; $i++):?>
+                            <?php $textKey = 'features_description_about_2_text_' . $i;?>
+                            <?php if(isExistData($pageData, $textKey)):?>
+                            <span class="feature__tag">
+                                <?php echo getDataInArrayPage($pageData, $textKey);?>
+                            </span>
+                            <?php endif;?>
+                            <?php endfor;?>
+                        </div>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(isExistData($pageData, 'features_description_about_3')):?>
+                    <div class="feature__group">
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_3'); ?></h4>
+                        <div class="feature__tags">
+                            <?php for($i = 1; $i <= 6; $i++):?>
+                            <?php $textKey = 'features_description_about_3_text_' . $i;?>
+                            <?php if(isExistData($pageData, $textKey)):?>
+                            <span class="feature__tag">
+                                <?php echo getDataInArrayPage($pageData, $textKey);?>
+                            </span>
+                            <?php endif;?>
+                            <?php endfor;?>
+                        </div>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(isExistData($pageData, 'features_description_about_4')):?>
+                    <div class="feature__group">
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_4'); ?></h4>
+                        <div class="feature__tags">
+                            <?php for($i = 1; $i <= 6; $i++):?>
+                            <?php $textKey = 'features_description_about_4_text_' . $i;?>
+                            <?php if(isExistData($pageData, $textKey)):?>
+                            <span class="feature__tag">
+                                <?php echo getDataInArrayPage($pageData, $textKey);?>
+                            </span>
+                            <?php endif;?>
+                            <?php endfor;?>
+                        </div>
+                    </div>
+                    <?php endif;?>
+
+                    <?php if(isExistData($pageData, 'features_description_about_5')):?>
+                    <div class="feature__group">
+                        <h4><?php echo getDataInArrayPage($pageData, 'features_description_about_5'); ?></h4>
+                        <div class="feature__tags">
+                            <?php for($i = 1; $i <= 6; $i++):?>
+                            <?php $textKey = 'features_description_about_5_text_' . $i;?>
+                            <?php if(isExistData($pageData, $textKey)):?>
+                            <span class="feature__tag">
+                                <?php echo getDataInArrayPage($pageData, $textKey);?>
+                            </span>
+                            <?php endif;?>
+                            <?php endfor;?>
+                        </div>
+                    </div>
+                    <?php endif;?>
                 </div>
-                <?php $img = $images[count($images) - 1]['src']; ?>
-                <img class="form__images" src="<?php echo esc_url($img); ?>" alt="">
-                <img class="form__images__fon" src="<?php echo esc_url($img); ?>" alt="">
             </div>
-        </section>
-        <?php endif;?>
+            <?php endif;?>
+        </div>
+    </section>
+    <?php endif;?>
 
-        <?php endwhile; ?>
-        <?php endif; ?>
+    <?php if(!empty($gallery)):?>
+    <!-- Галерея проектов -->
+    <section class="gallery">
+        <div class="gallery__container">
+            <?php if(isExistData($pageData, 'gallery_title')):?>
+            <h2 class="section__title">
+                <?php echo getDataInArrayPage($pageData, 'gallery_title'); ?>
+                <?php if(isExistData($pageData, 'gallery_title_second')):?><br><?php echo getDataInArrayPage($pageData, 'gallery_title_second'); ?><?php endif;?>
+            </h2>
+            <?php endif;?>
+        </div>
+        <div class="flexslider">
+            <ul class="slides">
+                <?php foreach($gallery as $value):?>
+                <li>
+                    <div class="gallery__item" style="background-image: url(<?php echo esc_url($value['src']); ?>);">
+                    </div>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="gallery__container">
+            <!-- Блок с отзывами внутри галереи, как в ТЗ -->
+            <?php if(isExistData($pageData, 'people_answer_say') || isExistData($pageData, 'people_answer_text')):?>
+            <div class="service__ansver__lines">
+                <div>
+                    <?php if(isExistData($pageData, 'people_answer_say')):?>
+                    <h3 style="color: white; font-size: 26px; font-weight: 400; font-style: italic; max-width: 700px;">
+                        <?php echo getDataInArrayPage($pageData, 'people_answer_say'); ?>
+                    </h3>
+                    <?php endif;?>
+                    <?php if(isExistData($pageData, 'people_answer_text')):?>
+                    <p style="color: rgba(255,255,255,0.6); margin-top: 10px;">
+                        <?php echo getDataInArrayPage($pageData, 'people_answer_text'); ?></p>
+                    <?php endif;?>
+                </div>
+                <a href="<?= home_url()?>/#people" style="text-decoration: none;"><button class="button__main">
+                        <p class="button__text">ОТЗЫВЫ</p>
+                    </button></a>
+            </div>
+            <?php endif;?>
+        </div>
+    </section>
+    <?php endif;?>
 
-    </main>
+    <?php if(isExistData($pageData, 'how_we_work')):?>
+    <!-- Как мы работаем -->
+    <section class="work-steps">
+        <div class="work-steps__container">
+            <h2 class="section__title"><?php echo getDataInArrayPage($pageData, 'how_we_work'); ?></h2>
+            <div class="steps__grid">
+                <?php if(isExistData($pageData, 'how_we_work_1_stage_1') || isExistData($pageData, 'how_we_work_1_stage_2')):?>
+                <div class="step__card">
+                    <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_1'); ?>
+                    </div>
+                    <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_2'); ?></div>
+                    <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_1_stage_3'); ?></div>
+                </div>
+                <?php endif;?>
+
+                <?php if(isExistData($pageData, 'how_we_work_2_stage_1') || isExistData($pageData, 'how_we_work_2_stage_2')):?>
+                <div class="step__card">
+                    <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_1'); ?>
+                    </div>
+                    <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_2'); ?></div>
+                    <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_2_stage_3'); ?></div>
+                </div>
+                <?php endif;?>
+
+                <?php if(isExistData($pageData, 'how_we_work_3_stage_1') || isExistData($pageData, 'how_we_work_3_stage_2')):?>
+                <div class="step__card">
+                    <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_1'); ?>
+                    </div>
+                    <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_2'); ?></div>
+                    <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_3_stage_3'); ?></div>
+                </div>
+                <?php endif;?>
+
+                <?php if(isExistData($pageData, 'how_we_work_4_stage_1') || isExistData($pageData, 'how_we_work_4_stage_2')):?>
+                <div class="step__card">
+                    <div class="step__number"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_1'); ?>
+                    </div>
+                    <div class="step__title"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_2'); ?></div>
+                    <div class="step__desc"><?php echo getDataInArrayPage($pageData, 'how_we_work_4_stage_3'); ?></div>
+                </div>
+                <?php endif;?>
+            </div>
+        </div>
+    </section>
+    <?php endif;?>
+
+    <?php if(isExistData($pageData, 'form_title') && !empty($images)):?>
+    <section class="form">
+        <div class="form__container">
+            <div class="form__inner">
+                <h1 class="form__title__second">
+                    <?php echo getDataInArrayPage($pageData, 'form_title'); ?><br>
+                    <?php echo getDataInArrayPage($pageData, 'form_title_second'); ?><br>
+                    <?php echo getDataInArrayPage($pageData, 'form_title_third'); ?><br>
+                </h1>
+
+                <form id="form" novalidate>
+                    <input type="text" name="username" class="form__input"
+                        placeholder="<?php echo esc_attr__( 'Имя', 'ramnet' ); ?>">
+                    <input name="phone" type="text" class="form__input phone-mask" placeholder="+7">
+                    <span>
+                        <?php echo esc_html('Нажимая на кнопку, Вы даете согласие ');?><br>
+                        <?php echo esc_html('на обработку персональных данных');?>
+                    </span>
+                    <div class="button__container__project">
+                        <button id="form__submit" class="button__main">
+                            <p class="button__text"><?php echo esc_html( 'РАССЧИТАТЬ СТОИМОСТЬ', 'ramnet' ); ?></p>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <?php $img = $images[count($images) - 1]['src']; ?>
+            <img class="form__images" src="<?php echo esc_url($img); ?>" alt="">
+            <img class="form__images__fon" src="<?php echo esc_url($img); ?>" alt="">
+        </div>
+    </section>
+    <?php endif;?>
+
+    <?php endwhile; ?>
+    <?php endif; ?>
+
+</main>
 
 <?php get_footer(); ?>

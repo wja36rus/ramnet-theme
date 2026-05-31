@@ -22,6 +22,8 @@ $hero_bg_url = get_theme_mod( 'background_image' );
     <div class="hero__background">
         <img src="<?php echo esc_url( $hero_bg_url ); ?>"
             alt="<?php esc_attr_e( 'Фоновое изображение остекления', 'ramnet' ); ?>" class="hero__background-image">
+        <div style="background-image: url(<?php echo esc_url( $hero_bg_url ); ?>)" src="<?php echo esc_url( $hero_bg_url ); ?>" alt="<?php esc_attr_e( 'Фоновое изображение остекления', 'ramnet' ); ?>" class="hero__background-image-mobile"></div>
+        <div style="background-image: url(<?php echo esc_url( $hero_bg_url ); ?>)" src="<?php echo esc_url( $hero_bg_url ); ?>" alt="<?php esc_attr_e( 'Фоновое изображение остекления', 'ramnet' ); ?>" class="hero__background-image-mobile-effect"></div>
     </div>
 
     <div class="hero__content">

@@ -18,7 +18,7 @@ $services = new WP_Query(array(
 <section class="say">
     <div class="say__container">
         <?php if ( $services->have_posts() ) : ?>
-            <?php 
+        <?php 
             $counter = 1;
             while ( $services->have_posts() ) : $services->the_post();
                                 
@@ -36,10 +36,11 @@ $services = new WP_Query(array(
             <?php echo esc_html__( wp_strip_all_tags($service_title), 'ramnet' ); ?>
         </h4>
 
+
         <h1 class="say_hero">
             <?php echo esc_html__( the_content($service_description), 'ramnet' ); ?>
         </h1>
-            <?php 
+        <?php 
                 $counter++;
             endwhile;
             wp_reset_postdata();
