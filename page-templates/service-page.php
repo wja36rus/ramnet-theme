@@ -507,7 +507,7 @@ get_header(); ?>
             <ul class="slides">
                 <?php foreach($gallery as $value):?>
                 <li>
-                    <div class="gallery__item" style="background-image: url(<?php echo esc_url($value['src']); ?>);">
+                    <div class="gallery__item open_image_after_click" style="background-image: url(<?php echo esc_url($value['src']); ?>);">
                     </div>
                 </li>
                 <?php endforeach; ?>

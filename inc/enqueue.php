@@ -62,6 +62,7 @@ function ramnet_enqueue_scripts() {
         'ramnet_ajax', 
         array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'maxUrl' => 'https://max.ru/@Рам.нет',
             'nonce'    => wp_create_nonce( 'ramnet_nonce' ),
             'site_url' => site_url(),
             'theme_url' => RAMNET_THEME_URI,

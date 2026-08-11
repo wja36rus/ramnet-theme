@@ -89,7 +89,7 @@ $services = new WP_Query(array(
                         if ($gallery):
                             foreach($gallery['src'] as $value): ?>
                             <li>
-                                <img src="<?= $value; ?>" class="page__job__gallery__image" alt="">
+                                <div class="gallery__item open_image_after_click" style="background-image: url(<?php echo esc_url($value); ?>);"></div>
                             </li>
                         <?php
                         endforeach;

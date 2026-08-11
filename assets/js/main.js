@@ -23,20 +23,21 @@
     });
 
     /* ========== Jobs section tabs ========== */
-    $(".jobs__items").hover(function (e) {
-      e.preventDefault();
-      const attr = $(this).attr("data-attribute");
+    $(".jobs__items").hover(
+      function (e) {
+        e.preventDefault();
+        const attr = $(this).attr("data-attribute");
 
-      $(".jobs__items").removeClass("active");
-      $(this).addClass("active");
-      $(".jobs__item__card").removeClass("active");
-      $(`#jobs${attr}`).addClass("active");
-        
-      }, function () {
+        $(".jobs__items").removeClass("active");
+        $(this).addClass("active");
+        $(".jobs__item__card").removeClass("active");
+        $(`#jobs${attr}`).addClass("active");
+      },
+      function () {
         // out
-      }
+      },
     );
-    
+
     $(".jobs__items").click(function (e) {
       e.preventDefault();
       const attr = $(this).attr("data-attribute");
@@ -373,8 +374,8 @@
     $(".telegramm__to__go").click(function (e) {
       e.preventDefault();
 
-      var telegramUrl = ramnet_ajax.telegram_url || "https://t.me/ramnet";
-      window.open(telegramUrl, "_blank");
+      var maxUrl = ramnet_ajax.maxUrl || "https://t.me/ramnet";
+      window.open(maxUrl, "_blank");
     });
 
     /* ========== Add active class to current menu item ========== */
@@ -409,10 +410,25 @@
     $("body").addClass("loaded");
   });
 
-  $('.flexslider').flexslider({
+  $(".flexslider").flexslider({
     animation: "slide",
     itemWidth: 550,
-    itemMargin: 3
+    itemMargin: 3,
   });
-  
+
+  $(".open_image_after_click").click(function (e) {
+    e.preventDefault();
+    $(".open_image_wrapper").remove();
+
+    const img = $(this).clone();
+    $("body").append(img);
+    $(img).addClass("open_image");
+    $(".open_image").wrap('<div class="open_image_wrapper"></div>');
+  });
+
+  $(document).on("click", ".open_image", function (e) {
+    e.preventDefault();
+    console.log(this);
+    $(".open_image_wrapper").remove();
+  });
 })(jQuery);
